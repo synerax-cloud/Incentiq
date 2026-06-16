@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { blogSchema } from "@/lib/validations/blog";
 import { calculateReadingTime } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
