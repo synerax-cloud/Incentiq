@@ -57,7 +57,7 @@ export function DemoForm() {
     if (errors[id]) setErrors((prev) => { const e = { ...prev }; delete e[id]; return e; });
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validate(data);
     if (Object.keys(errs).length > 0) {
@@ -65,11 +65,28 @@ export function DemoForm() {
       return;
     }
     setLoading(true);
-    // Simulate async submission (replace with real API call / Formspree / etc.)
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch("/api/admin/demo-requests", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          company: data.company,
+          jobTitle: data.title,
+          companySize: data.teamSize,
+          message: data.message,
+          source: "website",
+        }),
+      });
+      if (!res.ok) throw new Error("Failed");
       setSubmitted(true);
-    }, 1200);
+    } catch {
+      setErrors({ submit: "Something went wrong. Please try again." });
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (submitted) {
