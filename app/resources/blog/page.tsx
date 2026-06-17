@@ -36,9 +36,10 @@ function initials(name: string) {
     .join("");
 }
 
-function formatDate(date: Date | null): string {
+function formatDate(date: Date | string | null): string {
   if (!date) return "";
-  return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  const d = typeof date === "string" ? new Date(date) : date;
+  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
 export default async function BlogIndexPage() {
