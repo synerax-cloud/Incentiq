@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect, useRef } from "react";
 import { Header } from "@/components/admin/Header";
@@ -61,11 +61,11 @@ export default function MediaPage() {
       <Header title="Media Library" />
       <div className="p-6 space-y-5">
         <div className="flex items-center justify-between">
-          <p className="text-sm text-gray-500">{total} files uploaded</p>
+          <p className="text-sm text-slate">{total} files uploaded</p>
           <button
             onClick={() => inputRef.current?.click()}
             disabled={uploading}
-            className="flex items-center gap-2 rounded-lg bg-[#2B4A7F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#1b3a6e] disabled:opacity-60 transition-colors shadow-sm"
+            className="flex items-center gap-2 rounded-lg bg-green px-4 py-2 text-sm font-semibold text-white hover:bg-dark-green disabled:opacity-60 transition-colors shadow-sm"
           >
             {uploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
             {uploading ? "Uploading…" : "Upload files"}

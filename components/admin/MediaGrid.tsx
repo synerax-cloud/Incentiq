@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { Trash2, Copy, Check } from "lucide-react";
@@ -39,7 +39,7 @@ export function MediaGrid({ items, onDelete, onSelect, selectable }: MediaGridPr
 
   if (!items.length) {
     return (
-      <div className="flex h-48 flex-col items-center justify-center text-gray-400">
+      <div className="flex h-48 flex-col items-center justify-center text-slate">
         <p className="text-sm">No media files uploaded yet.</p>
       </div>
     );
@@ -52,8 +52,8 @@ export function MediaGrid({ items, onDelete, onSelect, selectable }: MediaGridPr
           key={item.id}
           onClick={() => onSelect?.(item.url)}
           className={cn(
-            "group relative overflow-hidden rounded-lg border border-gray-200 bg-gray-50 transition-all",
-            selectable && "cursor-pointer hover:border-[#2B4A7F] hover:shadow-sm"
+            "group relative overflow-hidden rounded-lg border border-light-gray bg-light-gray/30 transition-all",
+            selectable && "cursor-pointer hover:border-green hover:shadow-soft"
           )}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -63,14 +63,14 @@ export function MediaGrid({ items, onDelete, onSelect, selectable }: MediaGridPr
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); copyUrl(item.url); }}
-                className="rounded-md bg-white/90 p-1.5 text-gray-700 hover:bg-white transition-colors shadow-sm"
+                className="rounded-md bg-white/90 p-1.5 text-dark-green hover:bg-white transition-colors shadow-sm"
               >
-                {copied === item.url ? <Check className="h-3 w-3 text-green-600" /> : <Copy className="h-3 w-3" />}
+                {copied === item.url ? <Check className="h-3 w-3 text-green" /> : <Copy className="h-3 w-3" />}
               </button>
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); onDelete(item.id); }}
-                className="rounded-md bg-red-500 p-1.5 text-white hover:bg-red-600 transition-colors shadow-sm"
+                className="rounded-md bg-red p-1.5 text-white hover:bg-red/80 transition-colors shadow-sm"
               >
                 <Trash2 className="h-3 w-3" />
               </button>

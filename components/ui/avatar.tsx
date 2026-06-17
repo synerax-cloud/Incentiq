@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 import { cn } from "@/lib/utils";
@@ -31,7 +31,7 @@ export function AvatarFallback({
   return (
     <AvatarPrimitive.Fallback
       className={cn(
-        "flex h-full w-full items-center justify-center rounded-full bg-accent/10 text-accent text-sm font-semibold",
+        "flex h-full w-full items-center justify-center rounded-full bg-green/10 text-green text-sm font-semibold",
         className
       )}
       {...props}

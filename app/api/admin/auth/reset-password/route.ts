@@ -1,24 +1,25 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
   try {
     const { email, newPassword } = await request.json();
-
     if (!email || !newPassword || newPassword.length < 8) {
       return NextResponse.json({ error: "Invalid request." }, { status: 400 });
     }
 
-    const user = await prisma.user.findUnique({ where: { email } });
+    const { data: user } = await supabase
+      .from("users")
+      .select("id")
+      .eq("email", email)
+      .single();
 
-    // Always return the same response to avoid leaking whether email exists
-    if (!user) {
-      return NextResponse.json({ ok: true });
-    }
+    // Always return ok to avoid leaking whether email exists
+    if (!user) return NextResponse.json({ ok: true });
 
     const hashed = await bcrypt.hash(newPassword, 12);
-    await prisma.user.update({ where: { id: user.id }, data: { password: hashed } });
+    await supabase.from("users").update({ password: hashed }).eq("id", user.id);
 
     return NextResponse.json({ ok: true });
   } catch {

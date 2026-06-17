@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+﻿import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
 import { TrendingUp, TrendingDown } from "lucide-react";
 
@@ -13,10 +13,10 @@ interface StatsCardProps {
 }
 
 const COLORS = {
-  blue:   { iconBg: "bg-accent-soft",                  iconRing: "ring-accent/10",  icon: "text-accent"   },
-  green:  { iconBg: "bg-emerald-50",                   iconRing: "ring-emerald-100",icon: "text-emerald-600" },
-  amber:  { iconBg: "bg-amber-50",                     iconRing: "ring-amber-100",  icon: "text-amber-600" },
-  violet: { iconBg: "bg-violet-50",                    iconRing: "ring-violet-100", icon: "text-violet-600" },
+  blue:   { iconBg: "bg-light-green",                  iconRing: "ring-green/10",  icon: "text-green"   },
+  green:  { iconBg: "bg-light-green",                   iconRing: "ring-light-green",icon: "text-dark-green" },
+  amber:  { iconBg: "bg-amber/10",                     iconRing: "ring-amber/20",  icon: "text-amber" },
+  violet: { iconBg: "bg-teal/10",                    iconRing: "ring-teal/20", icon: "text-teal" },
 };
 
 export function StatsCard({
@@ -29,17 +29,17 @@ export function StatsCard({
     <div className={cn("card p-5", className)}>
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">{title}</p>
-          <p className="mt-2 font-display text-3xl font-bold leading-none tracking-tight text-ink">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-slate">{title}</p>
+          <p className="mt-2 font-display text-3xl font-bold leading-none tracking-tight text-dark-green">
             {value}
           </p>
           {subtitle && (
-            <p className="mt-1.5 text-[12px] text-muted">{subtitle}</p>
+            <p className="mt-1.5 text-[12px] text-slate">{subtitle}</p>
           )}
           {trend && (
             <div className={cn(
               "mt-3 inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[11.5px] font-semibold",
-              positive ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100" : "bg-red-50 text-red-700 ring-1 ring-red-100"
+              positive ? "bg-light-green text-dark-green ring-1 ring-light-green" : "bg-red/10 text-red ring-1 ring-red/20"
             )}>
               {positive
                 ? <TrendingUp  className="h-3.5 w-3.5" />

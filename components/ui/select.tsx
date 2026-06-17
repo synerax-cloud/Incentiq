@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check, ChevronDown } from "lucide-react";
@@ -16,8 +16,8 @@ export function SelectTrigger({
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        "flex h-10 w-full items-center justify-between rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink transition-colors",
-        "focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent",
+        "flex h-10 w-full items-center justify-between rounded-lg border border-light-gray bg-white px-3 py-2 text-sm text-dark-green transition-colors",
+        "focus:outline-none focus:ring-2 focus:ring-green/30 focus:border-green",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-100",
         className
@@ -42,7 +42,7 @@ export function SelectContent({
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         className={cn(
-          "relative z-50 min-w-[8rem] overflow-hidden rounded-lg border border-line bg-canvas shadow-float",
+          "relative z-50 min-w-[8rem] overflow-hidden rounded-lg border border-light-gray bg-white shadow-float",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -67,8 +67,8 @@ export function SelectItem({
   return (
     <SelectPrimitive.Item
       className={cn(
-        "relative flex w-full cursor-pointer select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-ink outline-none",
-        "focus:bg-surface focus:text-ink",
+        "relative flex w-full cursor-pointer select-none items-center rounded-md py-1.5 pl-8 pr-2 text-sm text-dark-green outline-none",
+        "focus:bg-light-gray focus:text-dark-green",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         "dark:text-neutral-100 dark:focus:bg-neutral-800",
         className
@@ -91,7 +91,7 @@ export function SelectLabel({
 }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>) {
   return (
     <SelectPrimitive.Label
-      className={cn("py-1.5 pl-8 pr-2 text-xs font-semibold text-ink/50", className)}
+      className={cn("py-1.5 pl-8 pr-2 text-xs font-semibold text-dark-green/50", className)}
       {...props}
     />
   );
@@ -102,6 +102,6 @@ export function SelectSeparator({
   ...props
 }: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>) {
   return (
-    <SelectPrimitive.Separator className={cn("-mx-1 my-1 h-px bg-line", className)} {...props} />
+    <SelectPrimitive.Separator className={cn("-mx-1 my-1 h-px bg-light-gray", className)} {...props} />
   );
 }

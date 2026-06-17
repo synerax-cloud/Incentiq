@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
@@ -76,24 +76,24 @@ export default function ResourcesPage() {
               {groups.map((g) => (
                 <RevealItem key={g.id}>
                   <article id={g.id} className="card flex h-full scroll-mt-28 flex-col p-7">
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-accent text-canvas shadow-soft">
+                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-green text-white shadow-soft">
                       <g.icon className="h-6 w-6" />
                     </span>
-                    <h3 className="mt-5 font-display text-display-3 font-bold text-ink">{g.title}</h3>
-                    <p className="mt-2 text-[13.5px] leading-relaxed text-muted">{g.body}</p>
-                    <ul className="mt-5 space-y-2.5 border-t border-line pt-5">
+                    <h3 className="mt-5 font-display text-display-3 font-bold text-dark-green">{g.title}</h3>
+                    <p className="mt-2 text-[13.5px] leading-relaxed text-slate">{g.body}</p>
+                    <ul className="mt-5 space-y-2.5 border-t border-light-gray pt-5">
                       {g.items.map((item) => (
                         <li key={item}>
-                          <Link href={`/resources/${g.id}`} className="group flex items-start justify-between gap-3 text-[13.5px] font-medium text-ink-2 hover:text-accent">
+                          <Link href={`/resources/${g.id}`} className="group flex items-start justify-between gap-3 text-[13.5px] font-medium text-navy hover:text-green">
                             <span>{item}</span>
-                            <IconArrow className="mt-0.5 h-4 w-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent" />
+                            <IconArrow className="mt-0.5 h-4 w-4 shrink-0 text-slate transition-transform group-hover:translate-x-0.5 group-hover:text-green" />
                           </Link>
                         </li>
                       ))}
                     </ul>
                     <Link
                       href={`/resources/${g.id}`}
-                      className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent hover:text-accent-600"
+                      className="mt-5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-green hover:text-dark-green"
                     >
                       Open {g.title}
                       <IconArrow className="h-4 w-4" />

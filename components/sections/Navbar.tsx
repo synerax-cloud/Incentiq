@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -119,7 +119,7 @@ export function Navbar() {
         className={[
           "relative mx-auto flex h-14 max-w-shell items-center justify-between rounded-full pl-4 pr-2 transition-all duration-300",
           scrolled || activeMenu
-            ? "glass shadow-[0_2px_16px_rgba(15,27,45,0.08)]"
+            ? "glass shadow-[0_2px_16px_rgba(11,29,45,0.08)]"
             : "border border-transparent bg-transparent shadow-none",
         ].join(" ")}
       >
@@ -141,15 +141,15 @@ export function Navbar() {
                 className={[
                   "flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[0.88rem] font-semibold transition-all duration-200",
                   isActive(item.href) || activeMenu === item.label
-                    ? "bg-accent-wash text-accent"
-                    : "text-ink-2 hover:bg-black/[0.04] hover:text-ink",
+                    ? "bg-light-green text-green"
+                    : "text-navy hover:bg-black/[0.04] hover:text-dark-green",
                 ].join(" ")}
               >
                 {item.label}
                 {item.menu ? (
                   <IconChevron
                     className={`h-3.5 w-3.5 opacity-60 transition-transform duration-200 ${
-                      activeMenu === item.label ? "rotate-180 opacity-100 text-accent" : ""
+                      activeMenu === item.label ? "rotate-180 opacity-100 text-green" : ""
                     }`}
                   />
                 ) : null}
@@ -166,13 +166,14 @@ export function Navbar() {
         <div className="hidden items-center gap-2 md:flex">
           <Link
             href="/product-tour"
-            className="inline-flex items-center rounded-full bg-white/85 px-5 py-2.5 text-[0.85rem] font-semibold text-ink shadow-soft ring-1 ring-line backdrop-blur transition-all duration-300 hover:text-accent hover:ring-accent/40"
+            className="inline-flex items-center rounded-full bg-white px-5 py-2.5 text-[0.85rem] font-semibold text-navy border border-light-gray shadow-soft transition-all duration-300 hover:bg-light-green hover:text-green hover:border-green"
           >
             Product Tour
           </Link>
           <Link
             href="/book-demo"
-            className="inline-flex items-center rounded-full bg-ink px-5 py-2.5 text-[0.85rem] font-semibold text-canvas shadow-[0_2px_10px_rgba(15,27,45,0.18)] transition-all duration-300 hover:bg-accent hover:shadow-[0_6px_20px_rgba(43,74,127,0.3)]"
+            style={{ backgroundColor: "#00A651", color: "#FFFFFF" }}
+            className="inline-flex items-center rounded-full bg-[#00A651] px-5 py-2.5 text-[0.85rem] font-semibold text-white shadow-[0_2px_10px_rgba(15,46,36,0.18)] transition-all duration-300 hover:bg-[#0F2E24] hover:shadow-[0_10px_28px_rgba(0,166,81,0.30)]"
           >
             Book a demo
           </Link>
@@ -182,14 +183,14 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-line md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-light-gray md:hidden"
           aria-label="Toggle menu"
           aria-expanded={open}
         >
           <span className="relative flex h-3.5 w-5 flex-col justify-between">
-            <span className={`h-0.5 w-full bg-ink transition-transform duration-300 ${open ? "translate-y-1.5 rotate-45" : ""}`} />
-            <span className={`h-0.5 w-full bg-ink transition-opacity duration-300 ${open ? "opacity-0" : ""}`} />
-            <span className={`h-0.5 w-full bg-ink transition-transform duration-300 ${open ? "-translate-y-1.5 -rotate-45" : ""}`} />
+            <span className={`h-0.5 w-full bg-dark-green transition-transform duration-300 ${open ? "translate-y-1.5 rotate-45" : ""}`} />
+            <span className={`h-0.5 w-full bg-dark-green transition-opacity duration-300 ${open ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-full bg-dark-green transition-transform duration-300 ${open ? "-translate-y-1.5 -rotate-45" : ""}`} />
           </span>
         </button>
       </nav>
@@ -207,21 +208,21 @@ export function Navbar() {
                       onClick={() =>
                         setMobileExpanded((v) => (v === item.label ? null : item.label))
                       }
-                      className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-[0.88rem] font-semibold text-ink hover:bg-white/80"
+                      className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-[0.88rem] font-semibold text-dark-green hover:bg-white/80"
                     >
                       {item.label}
                       <IconChevron
-                        className={`h-4 w-4 text-muted transition-transform duration-200 ${
+                        className={`h-4 w-4 text-slate transition-transform duration-200 ${
                           mobileExpanded === item.label ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                     {mobileExpanded === item.label ? (
-                      <div className="mb-1 ml-2 mt-0.5 flex flex-col gap-0.5 border-l-2 border-accent-soft pl-3">
+                      <div className="mb-1 ml-2 mt-0.5 flex flex-col gap-0.5 border-l-2 border-light-green pl-3">
                         <Link
                           href={item.href}
                           onClick={() => setOpen(false)}
-                          className="rounded-lg px-3 py-2 text-[13px] font-semibold text-accent hover:bg-white/70"
+                          className="rounded-lg px-3 py-2 text-[13px] font-semibold text-green hover:bg-white/70"
                         >
                           {item.menu.heading} overview
                         </Link>
@@ -230,7 +231,7 @@ export function Navbar() {
                             key={sub.label}
                             href={sub.href}
                             onClick={() => setOpen(false)}
-                            className="rounded-lg px-3 py-2 text-[13px] font-medium text-ink-2 hover:bg-white/70 hover:text-accent"
+                            className="rounded-lg px-3 py-2 text-[13px] font-medium text-navy hover:bg-white/70 hover:text-green"
                           >
                             {sub.label}
                           </Link>
@@ -242,7 +243,7 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-xl px-3 py-2.5 text-[0.88rem] font-semibold text-ink hover:bg-white/80"
+                    className="block rounded-xl px-3 py-2.5 text-[0.88rem] font-semibold text-dark-green hover:bg-white/80"
                   >
                     {item.label}
                   </Link>
@@ -251,16 +252,17 @@ export function Navbar() {
             ))}
 
             {/* mobile CTA strip */}
-            <div className="mt-2 space-y-2 border-t border-line pt-3">
+            <div className="mt-2 space-y-2 border-t border-light-gray pt-3">
               <Link
                 href="/product-tour"
-                className="block w-full rounded-xl bg-canvas px-4 py-2.5 text-center text-[0.88rem] font-semibold text-ink ring-1 ring-line transition-colors hover:text-accent hover:ring-accent/40"
+                className="block w-full rounded-xl bg-white px-4 py-2.5 text-center text-[0.88rem] font-semibold text-navy border border-light-gray transition-colors hover:bg-light-green hover:text-green hover:border-green"
               >
                 Product Tour
               </Link>
               <Link
                 href="/book-demo"
-                className="block w-full rounded-xl bg-ink px-4 py-2.5 text-center text-[0.88rem] font-semibold text-canvas"
+                style={{ backgroundColor: "#00A651", color: "#FFFFFF" }}
+                className="block w-full rounded-xl bg-[#00A651] px-4 py-2.5 text-center text-[0.88rem] font-semibold text-white transition-colors hover:bg-[#0F2E24]"
               >
                 Book a demo
               </Link>
@@ -279,12 +281,12 @@ function MegaMenu({ item }: { item: NavItem }) {
   return (
     <div className="absolute left-0 top-full z-[60] w-[23rem] pt-3">
       <div
-        className="animate-menu-in rounded-2xl border border-line p-2 shadow-[0_16px_40px_-8px_rgba(15,27,45,0.24),0_40px_80px_-20px_rgba(15,27,45,0.18)]"
+        className="animate-menu-in rounded-2xl border border-light-gray p-2 shadow-[0_16px_40px_-8px_rgba(11,29,45,0.24),0_40px_80px_-20px_rgba(11,29,45,0.18)]"
         style={{ backgroundColor: "#ffffff", opacity: 1 }}
       >
         {/* section label */}
         <div className="flex items-center gap-2.5 px-3.5 pb-2 pt-2.5">
-          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent/70">
+          <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-green/70">
             {item.label}
           </span>
           <span className="h-px flex-1 bg-gradient-to-r from-line to-transparent" />
@@ -303,14 +305,14 @@ function MegaMenu({ item }: { item: NavItem }) {
                   href={sub.href}
                   className={[
                     "group/item relative flex items-center gap-3 overflow-hidden rounded-xl px-3.5 py-2.5 transition-all duration-200",
-                    active ? "ring-1 ring-accent-soft" : "",
+                    active ? "ring-1 ring-light-green" : "",
                   ].join(" ")}
                 >
                   {/* sliding gradient highlight */}
                   <span
                     aria-hidden
                     className={[
-                      "pointer-events-none absolute inset-0 bg-gradient-to-r from-accent-wash via-accent-wash/70 to-transparent transition-opacity duration-250",
+                      "pointer-events-none absolute inset-0 bg-gradient-to-r from-light-green via-light-green/70 to-transparent transition-opacity duration-250",
                       active ? "opacity-100" : "opacity-0 group-hover/item:opacity-100",
                     ].join(" ")}
                   />
@@ -318,7 +320,7 @@ function MegaMenu({ item }: { item: NavItem }) {
                   <span
                     aria-hidden
                     className={[
-                      "absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-accent to-accent-400 transition-all duration-300",
+                      "absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-green to-sky transition-all duration-300",
                       active ? "h-7" : "h-0 group-hover/item:h-7",
                     ].join(" ")}
                   />
@@ -327,8 +329,8 @@ function MegaMenu({ item }: { item: NavItem }) {
                   <span className={[
                     "relative grid h-8 w-8 shrink-0 place-items-center rounded-lg transition-all duration-300",
                     active
-                      ? "bg-accent text-canvas"
-                      : "bg-accent-wash/60 text-accent-600 group-hover/item:bg-accent group-hover/item:text-canvas",
+                      ? "bg-green text-white"
+                      : "bg-light-green/60 text-dark-green group-hover/item:bg-green group-hover/item:text-white",
                   ].join(" ")}>
                     <sub.icon className="h-4 w-4" />
                   </span>
@@ -338,12 +340,12 @@ function MegaMenu({ item }: { item: NavItem }) {
                     <span
                       className={[
                         "block font-display text-[14px] font-semibold tracking-tight transition-colors duration-200",
-                        active ? "text-accent" : "text-ink",
+                        active ? "text-green" : "text-dark-green",
                       ].join(" ")}
                     >
                       {sub.label}
                     </span>
-                    <span className="mt-0.5 block text-[11.5px] leading-snug text-muted">
+                    <span className="mt-0.5 block text-[11.5px] leading-snug text-slate">
                       {sub.desc}
                     </span>
                   </span>
@@ -352,7 +354,7 @@ function MegaMenu({ item }: { item: NavItem }) {
                   <span
                     aria-hidden
                     className={[
-                      "relative text-accent/70 transition-all duration-300",
+                      "relative text-green/70 transition-all duration-300",
                       active
                         ? "translate-x-0 opacity-100"
                         : "-translate-x-2 opacity-0 group-hover/item:translate-x-0 group-hover/item:opacity-100",
@@ -368,10 +370,10 @@ function MegaMenu({ item }: { item: NavItem }) {
 
         {/* CTA footer */}
         <div className="relative mt-1 px-3 pb-1.5 pt-2.5">
-          <span className="mb-2.5 block h-px bg-gradient-to-r from-transparent via-line to-transparent" />
+          <span className="mb-2.5 block h-px bg-gradient-to-r from-transparent via-light-gray to-transparent" />
           <Link
             href={item.href}
-            className="group/cta flex items-center justify-between rounded-lg px-1 py-1 text-[12px] font-semibold text-accent transition-all hover:text-accent-600"
+            className="group/cta flex items-center justify-between rounded-lg px-1 py-1 text-[12px] font-semibold text-green transition-all hover:text-dark-green"
           >
             <span>Explore {item.label.toLowerCase()}</span>
             <span className="transition-transform duration-200 group-hover/cta:translate-x-1">

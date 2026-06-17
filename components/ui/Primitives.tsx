@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import type { ReactNode } from "react";
 import { IconArrow, IconSpark } from "./icons";
 
@@ -14,7 +14,7 @@ export function Pill({
   return (
     <span className="pill">
       {icon ? (
-        <span className="grid h-5 w-5 place-items-center rounded-full bg-accent text-canvas shadow-[0_1px_4px_rgba(43,74,127,0.3)]">
+        <span className="grid h-5 w-5 place-items-center rounded-full bg-green text-white shadow-[0_1px_4px_rgba(0,166,81,0.3)]">
           <IconSpark className="h-3 w-3" />
         </span>
       ) : null}
@@ -48,13 +48,13 @@ export function SectionHeading({
       ].join(" ")}
     >
       <span
-        className={`eyebrow ${tone === "light" ? "text-accent-400" : "text-accent"}`}
+        className={`eyebrow ${tone === "light" ? "text-sky" : "text-green"}`}
       >
         {eyebrow}
       </span>
       <h2
         className={`mt-4 font-display text-display-2 font-bold text-balance ${
-          tone === "light" ? "text-canvas" : "text-ink"
+          tone === "light" ? "text-white" : "text-dark-green"
         }`}
       >
         {title}
@@ -62,7 +62,7 @@ export function SectionHeading({
       {description ? (
         <p
           className={`mt-5 text-lead text-pretty ${
-            tone === "light" ? "text-canvas/70" : "text-muted"
+            tone === "light" ? "text-white/70" : "text-slate"
           }`}
         >
           {description}
@@ -82,6 +82,22 @@ type ButtonProps = {
   className?: string;
 };
 
+// Hex values are hardcoded so token purge / config issues can never break visibility.
+const styles: Record<string, string> = {
+  primary:
+    "bg-[#00A651] text-white hover:bg-[#0F2E24] shadow-[0_2px_10px_rgba(15,46,36,0.18)] hover:shadow-[0_10px_28px_rgba(0,166,81,0.30)]",
+  secondary:
+    "bg-white text-[#0B1D2D] ring-1 ring-[#475569]/25 backdrop-blur hover:ring-[#00A651] hover:text-[#00A651] shadow-soft",
+  ghost:
+    "text-[#0B1D2D] hover:text-[#00A651]",
+};
+
+// Inline-style fallback for primary — beats any class-level override.
+const primaryInline: React.CSSProperties = {
+  backgroundColor: "#00A651",
+  color: "#FFFFFF",
+};
+
 export function Button({
   href,
   children,
@@ -89,17 +105,10 @@ export function Button({
   withArrow = false,
   className = "",
 }: ButtonProps) {
-  const styles: Record<string, string> = {
-    primary:
-      "bg-ink text-canvas hover:bg-accent shadow-[0_2px_10px_rgba(15,27,45,0.18)] hover:shadow-[0_8px_24px_rgba(43,74,127,0.28)]",
-    secondary:
-      "bg-white/85 text-ink ring-1 ring-line backdrop-blur hover:ring-accent/40 hover:text-accent shadow-soft",
-    ghost: "text-ink hover:text-accent",
-  };
-
   return (
     <Link
       href={href}
+      style={variant === "primary" ? primaryInline : undefined}
       className={[
         "group inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-[0.92rem] font-semibold transition-all duration-300",
         styles[variant],

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as LabelPrimitive from "@radix-ui/react-label";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ export function Label({
   return (
     <LabelPrimitive.Root
       className={cn(
-        "text-sm font-medium text-ink leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-neutral-200",
+        "text-sm font-medium text-dark-green leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-neutral-200",
         className
       )}
       {...props}

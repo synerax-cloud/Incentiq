@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase, mapPost } from "@/lib/supabase";
 import { blogSchema } from "@/lib/validations/blog";
 import { calculateReadingTime } from "@/lib/utils";
 
@@ -10,51 +10,70 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const post = await prisma.post.findUnique({
-    where: { id: params.id },
-    include: { author: true, category: true, tags: { include: { tag: true } } },
-  });
-  if (!post) return NextResponse.json({ error: "Not found" }, { status: 404 });
-  return NextResponse.json(post);
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*, author:users(id,name,avatar), category:categories(*), post_tags(tags(id,name,slug))")
+    .eq("id", params.id)
+    .single();
+
+  if (error || !data) return NextResponse.json({ error: "Not found" }, { status: 404 });
+  return NextResponse.json(mapPost(data));
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const body = await req.json();
+  const body   = await req.json();
   const parsed = blogSchema.safeParse(body);
-  if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+  if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+
+  const { tagIds, ...d } = parsed.data;
+  const readingTime = calculateReadingTime(d.content);
+
+  const { data: post, error } = await supabase
+    .from("posts")
+    .update({
+      title:            d.title,
+      slug:             d.slug,
+      excerpt:          d.excerpt,
+      content:          d.content,
+      featured_image:   d.featuredImage,
+      status:           d.status,
+      published_at:     d.publishedAt  ?? null,
+      scheduled_at:     d.scheduledAt  ?? null,
+      meta_title:       d.metaTitle,
+      meta_description: d.metaDescription,
+      keywords:         d.keywords,
+      canonical_url:    d.canonicalUrl,
+      og_title:         d.ogTitle,
+      og_description:   d.ogDescription,
+      og_image:         d.ogImage,
+      no_index:         d.noIndex,
+      no_follow:        d.noFollow,
+      reading_time:     readingTime,
+      category_id:      d.categoryId   ?? null,
+    })
+    .eq("id", params.id)
+    .select("*, author:users(id,name,avatar), category:categories(*)")
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  // Replace tags
+  await supabase.from("post_tags").delete().eq("post_id", params.id);
+  if (tagIds?.length) {
+    await supabase.from("post_tags").insert(tagIds.map((tag_id) => ({ post_id: params.id, tag_id })));
   }
 
-  const { tagIds, ...postData } = parsed.data;
-  const readingTime = calculateReadingTime(postData.content);
-
-  // Delete existing tags then recreate
-  await prisma.postTag.deleteMany({ where: { postId: params.id } });
-
-  const post = await prisma.post.update({
-    where: { id: params.id },
-    data: {
-      ...postData,
-      readingTime,
-      publishedAt: postData.publishedAt ? new Date(postData.publishedAt) : null,
-      scheduledAt: postData.scheduledAt ? new Date(postData.scheduledAt) : null,
-      ...(tagIds?.length
-        ? { tags: { create: tagIds.map((tagId) => ({ tag: { connect: { id: tagId } } })) } }
-        : {}),
-    },
-    include: { author: true, category: true, tags: { include: { tag: true } } },
-  });
-
-  return NextResponse.json(post);
+  return NextResponse.json(mapPost(post));
 }
 
 export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  await prisma.post.delete({ where: { id: params.id } });
+  const { error } = await supabase.from("posts").delete().eq("id", params.id);
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   return NextResponse.json({ success: true });
 }

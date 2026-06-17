@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import { slugify } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
@@ -9,10 +9,19 @@ export async function GET() {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const tags = await prisma.tag.findMany({
-    orderBy: { name: "asc" },
-    include: { _count: { select: { posts: true } } },
-  });
+  const { data, error } = await supabase
+    .from("tags")
+    .select("*, post_tags(count)")
+    .order("name", { ascending: true });
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  const tags = (data ?? []).map((t) => ({
+    ...t,
+    createdAt: t.created_at,
+    _count: { posts: (t.post_tags as unknown as { count: number }[])?.[0]?.count ?? 0 },
+  }));
+
   return NextResponse.json(tags);
 }
 
@@ -23,6 +32,12 @@ export async function POST(req: NextRequest) {
   const { name } = await req.json();
   if (!name) return NextResponse.json({ error: "Name is required" }, { status: 400 });
 
-  const tag = await prisma.tag.create({ data: { name, slug: slugify(name) } });
-  return NextResponse.json(tag, { status: 201 });
+  const { data, error } = await supabase
+    .from("tags")
+    .insert({ name, slug: slugify(name) })
+    .select()
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json({ ...data, createdAt: data.created_at }, { status: 201 });
 }

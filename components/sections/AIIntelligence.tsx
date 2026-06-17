@@ -1,4 +1,4 @@
-import { SectionHeading } from "../ui/Primitives";
+﻿import { SectionHeading } from "../ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import { AIVisual } from "../visuals/AIVisual";
 import {
@@ -16,9 +16,9 @@ const items = [
 
 export function AIIntelligence() {
   return (
-    <section id="ai" className="relative overflow-hidden py-24 sm:py-32">
-      <div aria-hidden className="pointer-events-none absolute left-0 top-0 -z-10 h-96 w-96 rounded-full bg-mesh-sand opacity-40 blur-[100px]" />
-      <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-mesh-blue opacity-30 blur-3xl" />
+    <section id="ai" className="relative overflow-hidden py-14 sm:py-20">
+      <div aria-hidden className="pointer-events-none absolute left-0 top-0 -z-10 h-96 w-96 rounded-full bg-light-gray opacity-40 blur-[100px]" />
+      <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-teal opacity-30 blur-3xl" />
       <div className="shell">
         <Reveal>
           <SectionHeading
@@ -29,7 +29,7 @@ export function AIIntelligence() {
           />
         </Reveal>
 
-        <div className="mt-20 grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+        <div className="mt-12 sm:mt-16 grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
           <Reveal y={24}>
             <AIVisual />
           </Reveal>
@@ -37,13 +37,13 @@ export function AIIntelligence() {
           <RevealGroup className="grid gap-4 sm:grid-cols-2">
             {items.map((it) => (
               <RevealItem key={it.title}>
-                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-ink p-6 shadow-soft transition-all duration-300 hover:border-accent/40 hover:shadow-[0_8px_32px_rgba(43,74,127,0.18)]">
-                  <div aria-hidden className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-accent/20 blur-2xl" />
-                  <span className="relative grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-canvas ring-1 ring-white/15 transition-colors duration-300 group-hover:bg-accent group-hover:ring-accent">
+                <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-light-gray bg-white p-6 shadow-soft transition-all duration-300 hover:border-green/40 hover:shadow-[0_8px_32px_rgba(0,166,81,0.18)]">
+                  <div aria-hidden className="pointer-events-none absolute -right-4 -top-4 h-20 w-20 rounded-full bg-green/10 blur-2xl" />
+                  <span className="relative grid h-11 w-11 place-items-center rounded-xl bg-light-green text-dark-green ring-1 ring-light-green transition-colors duration-300 group-hover:bg-green group-hover:text-white group-hover:ring-green">
                     <it.icon className="h-5 w-5" />
                   </span>
-                  <h3 className="relative mt-4 text-[15px] font-semibold text-canvas">{it.title}</h3>
-                  <p className="relative mt-1.5 text-[13px] leading-relaxed text-canvas/60">{it.body}</p>
+                  <h3 className="relative mt-4 text-[15px] font-semibold text-dark-green">{it.title}</h3>
+                  <p className="relative mt-1.5 text-[13px] leading-relaxed text-slate">{it.body}</p>
                 </article>
               </RevealItem>
             ))}

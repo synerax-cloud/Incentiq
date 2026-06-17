@@ -1,4 +1,4 @@
-import { SectionHeading, Button } from "../ui/Primitives";
+﻿import { SectionHeading, Button } from "../ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import {
   IconSpeed, IconTrust, IconTransparency, IconWorkload, IconAttainment, IconVisibility,
@@ -15,7 +15,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section id="benefits" className="bg-surface py-24 sm:py-32">
+    <section id="benefits" className="bg-light-gray pt-14 sm:pt-20 pb-7 sm:pb-8">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-24">
           <Reveal className="lg:sticky lg:top-28">
@@ -35,17 +35,17 @@ export function Benefits() {
                 <div
                   className={[
                     "group h-full px-0 py-8 transition-colors duration-300 sm:px-9",
-                    "border-line",
+                    "border-light-gray",
                     i % 2 === 0 ? "sm:border-r" : "",
                     i < benefits.length - 2 ? "border-b" : "",
                     i === benefits.length - 2 || i === benefits.length - 1 ? "max-sm:border-b last:max-sm:border-b-0" : "",
                   ].join(" ")}
                 >
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white text-accent shadow-soft ring-1 ring-line transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-accent group-hover:text-canvas group-hover:shadow-float">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-white text-green shadow-soft ring-1 ring-light-gray transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-green group-hover:text-white group-hover:shadow-float">
                     <b.icon className="h-5 w-5" />
                   </span>
-                  <h3 className="mt-5 text-[17.5px] font-semibold tracking-tight text-ink">{b.title}</h3>
-                  <p className="mt-2 max-w-md text-[14px] leading-relaxed text-muted">{b.body}</p>
+                  <h3 className="mt-5 text-[17.5px] font-semibold tracking-tight text-dark-green">{b.title}</h3>
+                  <p className="mt-2 max-w-md text-[14px] leading-relaxed text-slate">{b.body}</p>
                 </div>
               </RevealItem>
             ))}

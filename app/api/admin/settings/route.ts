@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -8,8 +8,10 @@ export async function GET() {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const settings = await prisma.setting.findMany();
-  const obj = Object.fromEntries(settings.map((s: { key: string; value: string }) => [s.key, s.value]));
+  const { data, error } = await supabase.from("settings").select("key, value");
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  const obj = Object.fromEntries((data ?? []).map((s) => [s.key, s.value]));
   return NextResponse.json(obj);
 }
 
@@ -19,15 +21,10 @@ export async function POST(req: NextRequest) {
 
   const body = (await req.json()) as Record<string, string>;
 
-  await Promise.all(
-    Object.entries(body).map(([key, value]: [string, string]) =>
-      prisma.setting.upsert({
-        where: { key },
-        create: { key, value: String(value) },
-        update: { value: String(value) },
-      })
-    )
-  );
+  const upserts = Object.entries(body).map(([key, value]) => ({ key, value: String(value) }));
+
+  const { error } = await supabase.from("settings").upsert(upserts, { onConflict: "key" });
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
   return NextResponse.json({ success: true });
 }

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { Check } from "lucide-react";
@@ -11,10 +11,10 @@ export function Checkbox({
   return (
     <CheckboxPrimitive.Root
       className={cn(
-        "peer h-4 w-4 shrink-0 rounded-sm border border-line transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30",
+        "peer h-4 w-4 shrink-0 rounded-sm border border-light-gray transition-colors",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green/30",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "data-[state=checked]:bg-accent data-[state=checked]:border-accent data-[state=checked]:text-canvas",
+        "data-[state=checked]:bg-green data-[state=checked]:border-green data-[state=checked]:text-white",
         "dark:border-neutral-600",
         className
       )}

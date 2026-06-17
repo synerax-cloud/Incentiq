@@ -1,4 +1,4 @@
-import { Reveal } from "../ui/Reveal";
+﻿import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/Primitives";
 import { DashboardMockup } from "../visuals/DashboardMockup";
 import { IconVisibility, IconScale, IconWorkflow, IconSpark } from "../ui/icons";
@@ -12,10 +12,10 @@ const pillars = [
 
 export function Product() {
   return (
-    <section id="product" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="product" className="relative overflow-hidden py-14 sm:py-20">
       {/* ambient blobs */}
-      <div aria-hidden className="pointer-events-none absolute right-0 top-1/4 -z-10 h-96 w-96 rounded-full bg-mesh-lilac opacity-35 blur-[100px]" />
-      <div aria-hidden className="pointer-events-none absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-mesh-sage opacity-30 blur-3xl" />
+      <div aria-hidden className="pointer-events-none absolute right-0 top-1/4 -z-10 h-96 w-96 rounded-full bg-light-gray opacity-35 blur-[100px]" />
+      <div aria-hidden className="pointer-events-none absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-light-green opacity-30 blur-3xl" />
 
       <div className="shell">
         <div className="grid gap-16 lg:grid-cols-[0.9fr_1.18fr] lg:items-center lg:gap-24">
@@ -32,12 +32,12 @@ export function Product() {
               {pillars.map((p, i) => (
                 <Reveal key={p.title} delay={i * 0.07}>
                   <div className="group flex items-start gap-4 rounded-2xl px-4 py-4 transition-all duration-300 hover:bg-white hover:shadow-soft">
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent-wash text-accent-600 ring-1 ring-accent-soft transition-all duration-300 group-hover:bg-accent group-hover:text-canvas group-hover:shadow-soft">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-light-green text-dark-green ring-1 ring-light-green transition-all duration-300 group-hover:bg-green group-hover:text-white group-hover:shadow-soft">
                       <p.icon className="h-5 w-5" />
                     </span>
                     <div>
-                      <h3 className="text-[15.5px] font-semibold tracking-tight text-ink">{p.title}</h3>
-                      <p className="mt-1 text-[13.5px] leading-relaxed text-muted">{p.body}</p>
+                      <h3 className="text-[15.5px] font-semibold tracking-tight text-dark-green">{p.title}</h3>
+                      <p className="mt-1 text-[13.5px] leading-relaxed text-slate">{p.body}</p>
                     </div>
                   </div>
                 </Reveal>
@@ -47,7 +47,7 @@ export function Product() {
 
           <Reveal delay={0.12} y={30}>
             <div className="relative">
-              <div aria-hidden className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-mesh-blue/50 via-accent-wash/30 to-mesh-lilac/30 blur-3xl" />
+              <div aria-hidden className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-teal/50 via-light-green/30 to-light-gray/30 blur-3xl" />
               <DashboardMockup />
             </div>
           </Reveal>

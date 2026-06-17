@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase, mapDemo } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
@@ -10,22 +10,19 @@ export async function GET() {
     if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const [
-      totalDemoRequests,
-      newDemoRequests,
-      totalPosts,
-      publishedPosts,
-      totalMedia,
-      recentDemos,
+      { count: totalDemoRequests },
+      { count: newDemoRequests },
+      { count: totalPosts },
+      { count: publishedPosts },
+      { count: totalMedia },
+      { data: recentDemosRaw },
     ] = await Promise.all([
-      prisma.demoRequest.count(),
-      prisma.demoRequest.count({ where: { status: "NEW" } }),
-      prisma.post.count(),
-      prisma.post.count({ where: { status: "PUBLISHED" } }),
-      prisma.media.count(),
-      prisma.demoRequest.findMany({
-        take: 5,
-        orderBy: { createdAt: "desc" },
-      }),
+      supabase.from("demo_requests").select("*", { count: "exact", head: true }),
+      supabase.from("demo_requests").select("*", { count: "exact", head: true }).eq("status", "NEW"),
+      supabase.from("posts").select("*", { count: "exact", head: true }),
+      supabase.from("posts").select("*", { count: "exact", head: true }).eq("status", "PUBLISHED"),
+      supabase.from("media").select("*", { count: "exact", head: true }),
+      supabase.from("demo_requests").select("*").order("created_at", { ascending: false }).limit(5),
     ]);
 
     return NextResponse.json({
@@ -34,7 +31,7 @@ export async function GET() {
       totalPosts,
       publishedPosts,
       totalMedia,
-      recentDemos,
+      recentDemos: (recentDemosRaw ?? []).map(mapDemo),
     });
   } catch (err) {
     console.error("[stats]", err);

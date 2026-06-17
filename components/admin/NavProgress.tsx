@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -40,7 +40,7 @@ export function NavProgress() {
 
   return (
     <div
-      className="fixed top-0 left-0 z-50 h-0.5 bg-[#2B4A7F] transition-all duration-300 ease-out"
+      className="fixed top-0 left-0 z-50 h-0.5 bg-green transition-all duration-300 ease-out"
       style={{ width: `${width}%` }}
     />
   );

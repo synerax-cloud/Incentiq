@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { CalendarCheck, FileText, ImageIcon, Users, ArrowRight, Sparkles } from "lucide-react";
@@ -25,11 +25,11 @@ interface Stats {
 }
 
 const STATUS_STYLES: Record<string, string> = {
-  NEW:       "bg-accent-wash text-accent border-accent/15",
-  CONTACTED: "bg-amber-50 text-amber-700 border-amber-200",
-  QUALIFIED: "bg-emerald-50 text-emerald-700 border-emerald-200",
-  SCHEDULED: "bg-violet-50 text-violet-700 border-violet-200",
-  CLOSED:    "bg-surface text-muted border-line",
+  NEW:       "bg-light-green text-green border-green/15",
+  CONTACTED: "bg-amber/10 text-amber border-amber/20",
+  QUALIFIED: "bg-light-green text-dark-green border-light-green",
+  SCHEDULED: "bg-teal/10 text-teal border-teal/20",
+  CLOSED:    "bg-light-gray text-slate border-light-gray",
 };
 
 export default function AdminDashboard() {
@@ -53,10 +53,10 @@ export default function AdminDashboard() {
       <div className="flex-1 p-6 space-y-6">
 
         {/* Welcome banner */}
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-ink via-[#1b3a6e] to-accent p-6 text-canvas shadow-float">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-dark-green via-dark-green to-green p-6 text-white shadow-float">
           {/* decorative orbs */}
           <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/5 blur-3xl" />
-          <div className="absolute -bottom-8 left-1/3 h-32 w-32 rounded-full bg-accent-400/20 blur-2xl" />
+          <div className="absolute -bottom-8 left-1/3 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
           {/* subtle grid */}
           <div
             className="absolute inset-0 opacity-[0.04]"
@@ -70,11 +70,11 @@ export default function AdminDashboard() {
           <div className="relative flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="h-3.5 w-3.5 text-canvas/50" />
-                <span className="text-[11px] font-semibold uppercase tracking-widest text-canvas/50">{today}</span>
+                <Sparkles className="h-3.5 w-3.5 text-white/50" />
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-white/50">{today}</span>
               </div>
-              <h2 className="font-display text-xl font-bold text-canvas">Good to see you 👋</h2>
-              <p className="mt-1 text-sm text-canvas/60">
+              <h2 className="font-display text-xl font-bold text-white">Good to see you 👋</h2>
+              <p className="mt-1 text-sm text-white/60">
                 {loading
                   ? "Loading your workspace…"
                   : `${stats?.newDemoRequests ?? 0} new demo request${stats?.newDemoRequests !== 1 ? "s" : ""} waiting for your attention.`
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
             <div className="hidden sm:flex items-center gap-2">
               <Link
                 href="/admin/demo-requests"
-                className="flex items-center gap-1.5 rounded-full bg-canvas/10 px-4 py-2 text-[13px] font-semibold text-canvas/80 ring-1 ring-canvas/15 backdrop-blur-sm transition-all hover:bg-canvas/15 hover:text-canvas"
+                className="flex items-center gap-1.5 rounded-full bg-white/10 px-4 py-2 text-[13px] font-semibold text-white/80 ring-1 ring-white/15 backdrop-blur-sm transition-all hover:bg-white/15 hover:text-white"
               >
                 View requests <ArrowRight className="h-3.5 w-3.5" />
               </Link>
@@ -125,26 +125,26 @@ export default function AdminDashboard() {
 
         {/* Recent demo requests */}
         <div className="card overflow-hidden">
-          <div className="flex items-center justify-between border-b border-line px-6 py-4">
+          <div className="flex items-center justify-between border-b border-light-gray px-6 py-4">
             <div>
-              <h2 className="text-[13.5px] font-bold text-ink">Recent Demo Requests</h2>
-              <p className="mt-0.5 text-[11.5px] text-muted">Latest inbound requests from the book-demo form</p>
+              <h2 className="text-[13.5px] font-bold text-dark-green">Recent Demo Requests</h2>
+              <p className="mt-0.5 text-[11.5px] text-slate">Latest inbound requests from the book-demo form</p>
             </div>
             <Link
               href="/admin/demo-requests"
-              className="flex items-center gap-1 text-[12.5px] font-semibold text-accent transition-colors hover:text-accent-600"
+              className="flex items-center gap-1 text-[12.5px] font-semibold text-green transition-colors hover:text-dark-green"
             >
               View all <ArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>
 
           {loading && (
-            <div className="py-12 text-center text-sm text-muted">Loading…</div>
+            <div className="py-12 text-center text-sm text-slate">Loading…</div>
           )}
           {!loading && !stats?.recentDemos?.length && (
             <div className="py-12 text-center">
-              <p className="text-sm text-muted">No demo requests yet.</p>
-              <p className="mt-1 text-xs text-muted/60">They'll appear here once someone submits the form.</p>
+              <p className="text-sm text-slate">No demo requests yet.</p>
+              <p className="mt-1 text-xs text-slate/60">They'll appear here once someone submits the form.</p>
             </div>
           )}
 
@@ -152,27 +152,27 @@ export default function AdminDashboard() {
             <Link
               key={req.id}
               href={`/admin/demo-requests/${req.id}`}
-              className="flex items-center justify-between px-6 py-4 transition-colors hover:bg-canvas border-b border-line/60 last:border-0"
+              className="flex items-center justify-between px-6 py-4 transition-colors hover:bg-white border-b border-light-gray/60 last:border-0"
             >
               {/* Avatar + name */}
               <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-[11px] font-bold text-accent ring-1 ring-accent/10">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-light-green text-[11px] font-bold text-green ring-1 ring-green/10">
                   {req.firstName[0]}{req.lastName[0]}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[13px] font-semibold text-ink truncate">
+                  <p className="text-[13px] font-semibold text-dark-green truncate">
                     {req.firstName} {req.lastName}
                   </p>
-                  <p className="text-[11.5px] text-muted truncate">{req.company} · {req.email}</p>
+                  <p className="text-[11.5px] text-slate truncate">{req.company} · {req.email}</p>
                 </div>
               </div>
 
               {/* Meta */}
               <div className="flex shrink-0 items-center gap-3 ml-4">
-                <span className="hidden text-[11.5px] text-muted sm:block">
+                <span className="hidden text-[11.5px] text-slate sm:block">
                   {formatDateTime(req.createdAt)}
                 </span>
-                <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] font-semibold ${STATUS_STYLES[req.status] ?? "bg-surface text-muted border-line"}`}>
+                <span className={`inline-flex items-center rounded-lg border px-2.5 py-1 text-[11px] font-semibold ${STATUS_STYLES[req.status] ?? "bg-light-gray text-slate border-light-gray"}`}>
                   {req.status}
                 </span>
               </div>

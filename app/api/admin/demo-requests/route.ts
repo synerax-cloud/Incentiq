@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase, mapDemo } from "@/lib/supabase";
 import { demoRequestSchema } from "@/lib/validations/demo";
 
 export const dynamic = "force-dynamic";
@@ -12,44 +12,53 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
   const search = searchParams.get("search") || "";
-  const page = parseInt(searchParams.get("page") || "1");
+  const page  = parseInt(searchParams.get("page")  || "1");
   const limit = parseInt(searchParams.get("limit") || "20");
-  const skip = (page - 1) * limit;
+  const from  = (page - 1) * limit;
+  const to    = from + limit - 1;
 
-  const where = {
-    ...(status ? { status: status as "NEW" | "CONTACTED" | "QUALIFIED" | "SCHEDULED" | "CLOSED" } : {}),
-    ...(search
-      ? {
-          OR: [
-            { firstName: { contains: search, mode: "insensitive" as const } },
-            { lastName: { contains: search, mode: "insensitive" as const } },
-            { email: { contains: search, mode: "insensitive" as const } },
-            { company: { contains: search, mode: "insensitive" as const } },
-          ],
-        }
-      : {}),
-  };
+  let query = supabase
+    .from("demo_requests")
+    .select("*", { count: "exact" })
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
-  const [data, total] = await Promise.all([
-    prisma.demoRequest.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: limit,
-    }),
-    prisma.demoRequest.count({ where }),
-  ]);
+  if (status) query = query.eq("status", status);
+  if (search) {
+    query = query.or(
+      `first_name.ilike.%${search}%,last_name.ilike.%${search}%,email.ilike.%${search}%,company.ilike.%${search}%`
+    );
+  }
 
-  return NextResponse.json({ data, total, page, limit });
+  const { data, count, error } = await query;
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  return NextResponse.json({ data: (data ?? []).map(mapDemo), total: count ?? 0, page, limit });
 }
 
 export async function POST(req: NextRequest) {
-  const body = await req.json();
+  const body   = await req.json();
   const parsed = demoRequestSchema.safeParse(body);
-  if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
-  }
+  if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
 
-  const record = await prisma.demoRequest.create({ data: parsed.data });
-  return NextResponse.json(record, { status: 201 });
+  const d = parsed.data;
+  const { data, error } = await supabase
+    .from("demo_requests")
+    .insert({
+      first_name:   d.firstName,
+      last_name:    d.lastName,
+      email:        d.email,
+      phone:        d.phone,
+      company:      d.company,
+      job_title:    d.jobTitle,
+      country:      d.country,
+      company_size: d.companySize,
+      message:      d.message,
+      source:       d.source ?? "website",
+    })
+    .select()
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  return NextResponse.json(mapDemo(data), { status: 201 });
 }

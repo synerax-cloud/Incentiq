@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
@@ -64,7 +64,7 @@ export default function SolutionsPage() {
           secondary={{ label: "Explore capabilities", href: "/capabilities" }}
         />
 
-        <section className="bg-mist py-24 sm:py-32">
+        <section className="bg-light-green py-24 sm:py-32">
           <div className="shell">
             <Reveal>
               <SectionHeading
@@ -83,24 +83,24 @@ export default function SolutionsPage() {
                   >
                     <div>
                       <span className="eyebrow">{t.eyebrow}</span>
-                      <h3 className="mt-3 font-display text-display-3 font-bold text-ink">{t.title}</h3>
-                      <p className="mt-3 max-w-xl text-[14.5px] leading-relaxed text-muted">{t.body}</p>
+                      <h3 className="mt-3 font-display text-display-3 font-bold text-dark-green">{t.title}</h3>
+                      <p className="mt-3 max-w-xl text-[14.5px] leading-relaxed text-slate">{t.body}</p>
                       <Link
                         href={`/solutions/${t.id}`}
-                        className="group mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-accent hover:text-accent-600"
+                        className="group mt-5 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-green hover:text-dark-green"
                       >
                         Learn more
                         <IconArrow className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                       </Link>
                     </div>
-                    <div className="rounded-2xl bg-accent-wash/60 p-6 ring-1 ring-accent-soft">
-                      <span className="grid h-11 w-11 place-items-center rounded-xl bg-accent text-canvas shadow-soft">
+                    <div className="rounded-2xl bg-light-green/60 p-6 ring-1 ring-light-green">
+                      <span className="grid h-11 w-11 place-items-center rounded-xl bg-green text-white shadow-soft">
                         <t.icon className="h-5 w-5" />
                       </span>
                       <ul className="mt-5 space-y-2.5">
                         {t.points.map((p) => (
-                          <li key={p} className="flex items-start gap-2 text-[13.5px] font-medium text-ink-2">
-                            <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                          <li key={p} className="flex items-start gap-2 text-[13.5px] font-medium text-navy">
+                            <IconCheck className="mt-0.5 h-4 w-4 shrink-0 text-green" />
                             {p}
                           </li>
                         ))}

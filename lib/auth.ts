@@ -1,14 +1,12 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 import bcrypt from "bcryptjs";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   secret: process.env.AUTH_SECRET,
   session: { strategy: "jwt" },
-  pages: {
-    signIn: "/admin/login",
-  },
+  pages: { signIn: "/admin/login" },
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
@@ -29,44 +27,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
+        email:    { label: "Email",    type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         try {
-          if (!credentials?.email || !credentials?.password) {
-            console.log("[auth] Missing credentials");
-            return null;
-          }
+          if (!credentials?.email || !credentials?.password) return null;
 
-          const user = await prisma.user.findUnique({
-            where: { email: credentials.email as string },
-          });
+          const { data: user, error } = await supabase
+            .from("users")
+            .select("id, email, name, password, role")
+            .eq("email", credentials.email as string)
+            .single();
 
-          if (!user) {
-            console.log("[auth] No user found for:", credentials.email);
-            return null;
-          }
+          if (error || !user) return null;
 
-          const passwordMatch = await bcrypt.compare(
+          const ok = await bcrypt.compare(
             credentials.password as string,
             user.password
           );
+          if (!ok) return null;
 
-          if (!passwordMatch) {
-            console.log("[auth] Password mismatch for:", credentials.email);
-            return null;
-          }
-
-          console.log("[auth] Login success for:", user.email);
-          return {
-            id: user.id,
-            email: user.email,
-            name: user.name,
-            role: user.role,
-          };
+          return { id: user.id, email: user.email, name: user.name, role: user.role };
         } catch (err) {
-          console.error("[auth] authorize error:", err);
+          console.error("[auth] error:", err);
           return null;
         }
       },

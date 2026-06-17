@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as SwitchPrimitive from "@radix-ui/react-switch";
 import { cn } from "@/lib/utils";
@@ -11,9 +11,9 @@ export function Switch({
     <SwitchPrimitive.Root
       className={cn(
         "peer inline-flex h-5 w-9 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/30",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green/30",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "data-[state=checked]:bg-accent data-[state=unchecked]:bg-line",
+        "data-[state=checked]:bg-green data-[state=unchecked]:bg-light-gray",
         "dark:data-[state=unchecked]:bg-neutral-700",
         className
       )}

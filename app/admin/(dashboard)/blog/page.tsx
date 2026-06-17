@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
@@ -73,7 +73,7 @@ export default function BlogPage() {
       <div className="p-6 space-y-4">
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-48">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate" />
             <Input
               placeholder="Search posts…"
               value={search}
@@ -95,19 +95,19 @@ export default function BlogPage() {
 
           <Link
             href="/admin/blog/new"
-            className="flex items-center gap-2 rounded-lg bg-[#2B4A7F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#1b3a6e] transition-colors shadow-sm"
+            className="flex items-center gap-2 rounded-lg bg-green px-4 py-2 text-sm font-semibold text-white hover:bg-dark-green transition-colors shadow-sm"
           >
             <Plus className="h-4 w-4" />
             New post
           </Link>
         </div>
 
-        <p className="text-xs text-gray-500">{total} total posts</p>
+        <p className="text-xs text-slate">{total} total posts</p>
 
-        <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl border border-light-gray bg-white shadow-sm overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gray-50 hover:bg-gray-50">
+              <TableRow className="bg-light-gray/30 hover:bg-light-gray/30">
                 <TableHead>Title</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead>Category</TableHead>
@@ -119,35 +119,35 @@ export default function BlogPage() {
             <TableBody>
               {loading && (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-12 text-center text-gray-400">Loading…</TableCell>
+                  <TableCell colSpan={6} className="py-12 text-center text-slate">Loading…</TableCell>
                 </TableRow>
               )}
               {!loading && !posts.length && (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-12 text-center text-gray-400">No posts yet.</TableCell>
+                  <TableCell colSpan={6} className="py-12 text-center text-slate">No posts yet.</TableCell>
                 </TableRow>
               )}
               {posts.map((post) => (
                 <TableRow key={post.id}>
                   <TableCell>
                     <div>
-                      <p className="font-medium text-gray-900 line-clamp-1">{post.title}</p>
-                      <p className="text-xs text-gray-500">/{post.slug}</p>
+                      <p className="font-medium text-dark-green line-clamp-1">{post.title}</p>
+                      <p className="text-xs text-slate">/{post.slug}</p>
                     </div>
                   </TableCell>
                   <TableCell>
                     <Badge variant={STATUS_COLORS[post.status] ?? "secondary"}>{post.status}</Badge>
                   </TableCell>
-                  <TableCell className="text-gray-500 text-sm">{post.category?.name ?? "—"}</TableCell>
-                  <TableCell className="text-gray-500 text-sm">{post.author?.name}</TableCell>
-                  <TableCell className="text-gray-500 text-xs">
+                  <TableCell className="text-slate text-sm">{post.category?.name ?? "—"}</TableCell>
+                  <TableCell className="text-slate text-sm">{post.author?.name}</TableCell>
+                  <TableCell className="text-slate text-xs">
                     {post.publishedAt ? formatDate(post.publishedAt) : formatDate(post.createdAt)}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/blog/${post.id}/edit`}
-                        className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+                        className="rounded-md p-1.5 text-slate hover:bg-light-gray hover:text-dark-green transition-colors"
                       >
                         <Pencil className="h-4 w-4" />
                       </Link>
@@ -155,7 +155,7 @@ export default function BlogPage() {
                         <AlertDialogTrigger asChild>
                           <button
                             onClick={() => setDeleteId(post.id)}
-                            className="rounded-md p-1.5 text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors"
+                            className="rounded-md p-1.5 text-slate hover:bg-red/10 hover:text-red transition-colors"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>

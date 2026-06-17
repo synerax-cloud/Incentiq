@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState, useCallback } from "react";
 import { Header } from "@/components/admin/Header";
@@ -100,7 +100,7 @@ export default function DemoRequestsPage() {
         {/* Toolbar */}
         <div className="flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-48">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate" />
             <Input
               placeholder="Search by name, email, company…"
               value={search}
@@ -122,19 +122,19 @@ export default function DemoRequestsPage() {
 
           <button
             onClick={handleExport}
-            className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 transition-colors shadow-sm"
+            className="flex items-center gap-2 rounded-lg border border-light-gray bg-white px-3 py-2 text-sm text-slate hover:bg-light-gray/30 transition-colors shadow-sm"
           >
             <Download className="h-4 w-4" />
             Export CSV
           </button>
         </div>
 
-        <p className="text-xs text-gray-500">{total} total requests</p>
+        <p className="text-xs text-slate">{total} total requests</p>
 
-        <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
+        <div className="rounded-xl border border-light-gray bg-white shadow-sm overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow className="bg-gray-50 hover:bg-gray-50">
+              <TableRow className="bg-light-gray/30 hover:bg-light-gray/30">
                 <TableHead>Name</TableHead>
                 <TableHead>Company</TableHead>
                 <TableHead>Size</TableHead>
@@ -146,27 +146,27 @@ export default function DemoRequestsPage() {
             <TableBody>
               {loading && (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-12 text-center text-gray-400">Loading…</TableCell>
+                  <TableCell colSpan={6} className="py-12 text-center text-slate">Loading…</TableCell>
                 </TableRow>
               )}
               {!loading && !requests.length && (
                 <TableRow>
-                  <TableCell colSpan={6} className="py-12 text-center text-gray-400">No requests found.</TableCell>
+                  <TableCell colSpan={6} className="py-12 text-center text-slate">No requests found.</TableCell>
                 </TableRow>
               )}
               {requests.map((req) => (
                 <TableRow key={req.id}>
                   <TableCell>
                     <div>
-                      <p className="font-medium text-gray-900">{req.firstName} {req.lastName}</p>
-                      <p className="text-xs text-gray-500">{req.email}</p>
+                      <p className="font-medium text-dark-green">{req.firstName} {req.lastName}</p>
+                      <p className="text-xs text-slate">{req.email}</p>
                     </div>
                   </TableCell>
                   <TableCell>
-                    <p className="text-gray-700">{req.company}</p>
-                    {req.jobTitle && <p className="text-xs text-gray-500">{req.jobTitle}</p>}
+                    <p className="text-dark-green">{req.company}</p>
+                    {req.jobTitle && <p className="text-xs text-slate">{req.jobTitle}</p>}
                   </TableCell>
-                  <TableCell className="text-gray-500 text-sm">{req.companySize ?? "—"}</TableCell>
+                  <TableCell className="text-slate text-sm">{req.companySize ?? "—"}</TableCell>
                   <TableCell>
                     <Select value={req.status} onValueChange={(v) => handleStatusChange(req.id, v)}>
                       <SelectTrigger className="h-7 w-32 border-0 bg-transparent p-0 shadow-none focus:ring-0 text-xs">
@@ -179,12 +179,12 @@ export default function DemoRequestsPage() {
                       </SelectContent>
                     </Select>
                   </TableCell>
-                  <TableCell className="text-gray-500 text-xs">{formatDateTime(req.createdAt)}</TableCell>
+                  <TableCell className="text-slate text-xs">{formatDateTime(req.createdAt)}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/demo-requests/${req.id}`}
-                        className="rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition-colors"
+                        className="rounded-md p-1.5 text-slate hover:bg-light-gray hover:text-dark-green transition-colors"
                       >
                         <Eye className="h-4 w-4" />
                       </Link>
@@ -192,7 +192,7 @@ export default function DemoRequestsPage() {
                         <AlertDialogTrigger asChild>
                           <button
                             onClick={() => setDeleteId(req.id)}
-                            className="rounded-md p-1.5 text-gray-400 hover:bg-red-50 hover:text-red-500 transition-colors"
+                            className="rounded-md p-1.5 text-slate hover:bg-red/10 hover:text-red transition-colors"
                           >
                             <Trash2 className="h-4 w-4" />
                           </button>

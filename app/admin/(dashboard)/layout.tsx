@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { SessionProvider } from "next-auth/react";
 import { Sidebar } from "@/components/admin/Sidebar";
@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <SessionProvider>
       <NavProgress />
-      <div className="flex h-screen overflow-hidden bg-canvas">
+      <div className="flex h-screen overflow-hidden bg-white">
         <Sidebar />
         <div className="flex flex-1 flex-col overflow-hidden">
           <main className="flex-1 overflow-y-auto">

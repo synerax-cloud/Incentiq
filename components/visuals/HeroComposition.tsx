@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion, useReducedMotion } from "framer-motion";
 import { DashboardMockup } from "./DashboardMockup";
@@ -11,9 +11,9 @@ export function HeroComposition() {
     <div className="relative mx-auto max-w-[1200px]">
       {/* gradient orbs behind */}
       <div aria-hidden className="pointer-events-none absolute -inset-x-16 -top-10 -bottom-16 -z-10">
-        <div className="absolute left-[6%] top-[12%] h-56 w-56 rounded-full bg-mesh-blue blur-3xl opacity-70" />
-        <div className="absolute right-[4%] top-[4%] h-52 w-52 rounded-full bg-mesh-lilac blur-3xl opacity-60" />
-        <div className="absolute bottom-[2%] left-[40%] h-60 w-60 rounded-full bg-mesh-sage blur-3xl opacity-60" />
+        <div className="absolute left-[6%] top-[12%] h-56 w-56 rounded-full bg-teal blur-3xl opacity-70" />
+        <div className="absolute right-[4%] top-[4%] h-52 w-52 rounded-full bg-light-gray blur-3xl opacity-60" />
+        <div className="absolute bottom-[2%] left-[40%] h-60 w-60 rounded-full bg-light-green blur-3xl opacity-60" />
       </div>
 
       <motion.div
@@ -32,7 +32,7 @@ export function HeroComposition() {
         icon={<IconCheck className="h-4 w-4" />}
         title="Commission run complete"
         sub="486 reps · 0 errors · 1.2s"
-        accent="#2B4A7F"
+        accent="#00A651"
       />
 
       {/* floating glass card — bottom right */}
@@ -42,7 +42,7 @@ export function HeroComposition() {
         icon={<IconResolve className="h-4 w-4" />}
         title="Dispute auto-resolved"
         sub="Matched to plan rule"
-        accent="#3E7C59"
+        accent="#0F2E24"
       />
 
       {/* forecast pill — top right */}
@@ -52,12 +52,12 @@ export function HeroComposition() {
         transition={{ duration: 0.6, delay: 0.95 }}
         className="glass absolute -right-2 -top-6 hidden items-center gap-2.5 rounded-2xl px-3.5 py-2.5 md:flex lg:-right-10"
       >
-        <span className="grid h-8 w-8 place-items-center rounded-xl bg-accent text-canvas">
+        <span className="grid h-8 w-8 place-items-center rounded-xl bg-green text-white">
           <IconForecast className="h-4 w-4" />
         </span>
         <div className="pr-1">
-          <p className="text-[11px] font-medium text-muted">Forecast attainment</p>
-          <p className="font-display text-sm font-bold text-ink">118% · Q4</p>
+          <p className="text-[11px] font-medium text-slate">Forecast attainment</p>
+          <p className="font-display text-sm font-bold text-dark-green">118% · Q4</p>
         </div>
       </motion.div>
     </div>
@@ -88,8 +88,8 @@ function FloatCard({
           {icon}
         </span>
         <div>
-          <p className="text-[12.5px] font-semibold leading-tight text-ink">{title}</p>
-          <p className="mt-0.5 text-[11px] text-muted">{sub}</p>
+          <p className="text-[12.5px] font-semibold leading-tight text-dark-green">{title}</p>
+          <p className="mt-0.5 text-[11px] text-slate">{sub}</p>
         </div>
       </div>
     </motion.div>

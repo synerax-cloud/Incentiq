@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
@@ -99,7 +99,7 @@ export default function EditBlogPostPage() {
     return (
       <div className="flex flex-col">
         <Header title="Edit Post" />
-        <div className="flex h-64 items-center justify-center text-gray-400">Loading…</div>
+        <div className="flex h-64 items-center justify-center text-slate">Loading…</div>
       </div>
     );
   }
@@ -108,8 +108,8 @@ export default function EditBlogPostPage() {
     <div className="flex flex-col">
       <Header title="Edit Blog Post" />
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-center justify-between border-b border-gray-200 bg-white px-6 py-3">
-          <Link href="/admin/blog" className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900">
+        <div className="flex items-center justify-between border-b border-light-gray bg-white px-6 py-3">
+          <Link href="/admin/blog" className="flex items-center gap-2 text-sm text-slate hover:text-dark-green">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Link>
@@ -131,7 +131,7 @@ export default function EditBlogPostPage() {
             <button
               type="submit"
               disabled={saving}
-              className="flex items-center gap-2 rounded-lg bg-[#2B4A7F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#1b3a6e] disabled:opacity-60 transition-colors shadow-sm"
+              className="flex items-center gap-2 rounded-lg bg-green px-4 py-2 text-sm font-semibold text-white hover:bg-dark-green disabled:opacity-60 transition-colors shadow-sm"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
               Update
@@ -141,7 +141,7 @@ export default function EditBlogPostPage() {
 
         <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[1fr_280px]">
           <div className="space-y-5">
-            <div className="space-y-1.5"><Label>Title</Label><Input {...register("title")} className="text-lg" />{errors.title && <p className="text-xs text-red-500">{errors.title.message}</p>}</div>
+            <div className="space-y-1.5"><Label>Title</Label><Input {...register("title")} className="text-lg" />{errors.title && <p className="text-xs text-red">{errors.title.message}</p>}</div>
             <div className="space-y-1.5"><Label>Excerpt</Label><Textarea rows={2} {...register("excerpt")} /></div>
             <div className="space-y-1.5">
               <Label>Content</Label>
@@ -165,12 +165,12 @@ export default function EditBlogPostPage() {
                 <div className="space-y-1.5"><Label>OG Image URL</Label><Input {...register("ogImage")} /></div>
               </TabsContent>
               <TabsContent value="advanced" className="space-y-3 pt-4">
-                <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3">
-                  <div><p className="text-sm text-gray-800">No Index</p><p className="text-xs text-gray-500">Prevent search engines from indexing</p></div>
+                <div className="flex items-center justify-between rounded-lg border border-light-gray bg-light-gray/30 p-3">
+                  <div><p className="text-sm text-dark-green">No Index</p><p className="text-xs text-slate">Prevent search engines from indexing</p></div>
                   <Controller control={control} name="noIndex" render={({ field }) => <Switch checked={field.value} onCheckedChange={field.onChange} />} />
                 </div>
-                <div className="flex items-center justify-between rounded-lg border border-gray-200 bg-gray-50 p-3">
-                  <div><p className="text-sm text-gray-800">No Follow</p><p className="text-xs text-gray-500">Prevent link equity passing</p></div>
+                <div className="flex items-center justify-between rounded-lg border border-light-gray bg-light-gray/30 p-3">
+                  <div><p className="text-sm text-dark-green">No Follow</p><p className="text-xs text-slate">Prevent link equity passing</p></div>
                   <Controller control={control} name="noFollow" render={({ field }) => <Switch checked={field.value} onCheckedChange={field.onChange} />} />
                 </div>
               </TabsContent>
@@ -178,12 +178,12 @@ export default function EditBlogPostPage() {
           </div>
 
           <div className="space-y-5">
-            <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3 shadow-sm">
-              <h3 className="text-sm font-semibold text-gray-800">Featured Image</h3>
+            <div className="rounded-xl border border-light-gray bg-white p-4 space-y-3 shadow-sm">
+              <h3 className="text-sm font-semibold text-dark-green">Featured Image</h3>
               <Controller control={control} name="featuredImage" render={({ field }) => <ImageUpload value={field.value} onChange={field.onChange} />} />
             </div>
-            <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3 shadow-sm">
-              <h3 className="text-sm font-semibold text-gray-800">Category</h3>
+            <div className="rounded-xl border border-light-gray bg-white p-4 space-y-3 shadow-sm">
+              <h3 className="text-sm font-semibold text-dark-green">Category</h3>
               <Controller control={control} name="categoryId" render={({ field }) => (
                 <Select value={field.value ?? ""} onValueChange={field.onChange}>
                   <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
@@ -191,8 +191,8 @@ export default function EditBlogPostPage() {
                 </Select>
               )} />
             </div>
-            <div className="rounded-xl border border-gray-200 bg-white p-4 space-y-3 shadow-sm">
-              <h3 className="text-sm font-semibold text-gray-800">Tags</h3>
+            <div className="rounded-xl border border-light-gray bg-white p-4 space-y-3 shadow-sm">
+              <h3 className="text-sm font-semibold text-dark-green">Tags</h3>
               <div className="flex flex-wrap gap-2">
                 {tags.map((tag) => (
                   <button key={tag.id} type="button" onClick={() => toggleTag(tag.id)} className="transition-all">

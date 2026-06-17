@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { supabase, mapPost } from "@/lib/supabase";
 import { blogSchema } from "@/lib/validations/blog";
 import { calculateReadingTime } from "@/lib/utils";
 
@@ -13,62 +13,70 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const status = searchParams.get("status");
   const search = searchParams.get("search") || "";
-  const page = parseInt(searchParams.get("page") || "1");
+  const page  = parseInt(searchParams.get("page")  || "1");
   const limit = parseInt(searchParams.get("limit") || "20");
-  const skip = (page - 1) * limit;
+  const from  = (page - 1) * limit;
+  const to    = from + limit - 1;
 
-  const where = {
-    ...(status ? { status: status as "DRAFT" | "PUBLISHED" | "SCHEDULED" } : {}),
-    ...(search
-      ? {
-          OR: [
-            { title: { contains: search, mode: "insensitive" as const } },
-            { excerpt: { contains: search, mode: "insensitive" as const } },
-          ],
-        }
-      : {}),
-  };
+  let query = supabase
+    .from("posts")
+    .select("*, author:users(id,name,avatar), category:categories(*), post_tags(tags(id,name,slug))", { count: "exact" })
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
-  const [data, total] = await Promise.all([
-    prisma.post.findMany({
-      where,
-      orderBy: { createdAt: "desc" },
-      skip,
-      take: limit,
-      include: { author: { select: { id: true, name: true, avatar: true } }, category: true },
-    }),
-    prisma.post.count({ where }),
-  ]);
+  if (status) query = query.eq("status", status);
+  if (search) query = query.or(`title.ilike.%${search}%,excerpt.ilike.%${search}%`);
 
-  return NextResponse.json({ data, total, page, limit });
+  const { data, count, error } = await query;
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  return NextResponse.json({ data: (data ?? []).map(mapPost), total: count ?? 0, page, limit });
 }
 
 export async function POST(req: NextRequest) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const body = await req.json();
+  const body   = await req.json();
   const parsed = blogSchema.safeParse(body);
-  if (!parsed.success) {
-    return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+  if (!parsed.success) return NextResponse.json({ error: parsed.error.flatten() }, { status: 400 });
+
+  const { tagIds, ...d } = parsed.data;
+  const readingTime = calculateReadingTime(d.content);
+
+  const { data: post, error } = await supabase
+    .from("posts")
+    .insert({
+      title:            d.title,
+      slug:             d.slug,
+      excerpt:          d.excerpt,
+      content:          d.content,
+      featured_image:   d.featuredImage,
+      status:           d.status,
+      published_at:     d.publishedAt  ?? null,
+      scheduled_at:     d.scheduledAt  ?? null,
+      meta_title:       d.metaTitle,
+      meta_description: d.metaDescription,
+      keywords:         d.keywords,
+      canonical_url:    d.canonicalUrl,
+      og_title:         d.ogTitle,
+      og_description:   d.ogDescription,
+      og_image:         d.ogImage,
+      no_index:         d.noIndex,
+      no_follow:        d.noFollow,
+      reading_time:     readingTime,
+      category_id:      d.categoryId   ?? null,
+      author_id:        session.user?.id ?? "",
+    })
+    .select("*, author:users(id,name,avatar), category:categories(*)")
+    .single();
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  // Insert tags
+  if (tagIds?.length && post) {
+    await supabase.from("post_tags").insert(tagIds.map((tag_id) => ({ post_id: post.id, tag_id })));
   }
 
-  const { tagIds, ...postData } = parsed.data;
-  const readingTime = calculateReadingTime(postData.content);
-
-  const post = await prisma.post.create({
-    data: {
-      ...postData,
-      readingTime,
-      publishedAt: postData.publishedAt ? new Date(postData.publishedAt) : null,
-      scheduledAt: postData.scheduledAt ? new Date(postData.scheduledAt) : null,
-      authorId: session.user?.id ?? "",
-      ...(tagIds?.length
-        ? { tags: { create: tagIds.map((tagId) => ({ tag: { connect: { id: tagId } } })) } }
-        : {}),
-    },
-    include: { author: true, category: true, tags: { include: { tag: true } } },
-  });
-
-  return NextResponse.json(post, { status: 201 });
+  return NextResponse.json(mapPost(post), { status: 201 });
 }

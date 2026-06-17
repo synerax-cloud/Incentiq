@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -57,7 +57,7 @@ export default function RootLayout({
       lang="en"
       className={`${geist.variable} ${inter.variable} ${display.variable}`}
     >
-      <body className="bg-canvas font-sans text-ink antialiased">
+      <body className="bg-white font-sans text-dark-green antialiased">
         {children}
       </body>
     </html>

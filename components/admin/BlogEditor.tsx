@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -38,8 +38,8 @@ function ToolbarButton({ onClick, active, title, children }: {
       className={cn(
         "flex h-7 w-7 items-center justify-center rounded text-xs transition-colors",
         active
-          ? "bg-[#2B4A7F] text-white"
-          : "text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+          ? "bg-green text-white"
+          : "text-slate hover:bg-light-gray hover:text-dark-green"
       )}
     >
       {children}
@@ -48,7 +48,7 @@ function ToolbarButton({ onClick, active, title, children }: {
 }
 
 function Divider() {
-  return <div className="mx-1 h-5 w-px bg-gray-200" />;
+  return <div className="mx-1 h-5 w-px bg-light-gray" />;
 }
 
 export function BlogEditor({ content, onChange }: BlogEditorProps) {
@@ -68,7 +68,7 @@ export function BlogEditor({ content, onChange }: BlogEditorProps) {
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
     editorProps: {
       attributes: {
-        class: "min-h-[400px] p-5 outline-none prose prose-sm max-w-none text-gray-800",
+        class: "min-h-[400px] p-5 outline-none prose prose-sm max-w-none text-dark-green",
       },
     },
   });
@@ -93,9 +93,9 @@ export function BlogEditor({ content, onChange }: BlogEditorProps) {
   };
 
   return (
-    <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+    <div className="overflow-hidden rounded-lg border border-light-gray bg-white">
       {/* Toolbar */}
-      <div className="flex flex-wrap items-center gap-0.5 border-b border-gray-200 bg-gray-50 px-2 py-1.5">
+      <div className="flex flex-wrap items-center gap-0.5 border-b border-light-gray bg-light-gray/30 px-2 py-1.5">
         <ToolbarButton onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()} active={editor.isActive("heading", { level: 1 })} title="H1">
           <Heading1 className="h-3.5 w-3.5" />
         </ToolbarButton>

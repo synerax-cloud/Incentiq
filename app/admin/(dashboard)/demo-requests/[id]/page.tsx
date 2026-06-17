@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
@@ -63,7 +63,7 @@ export default function DemoRequestDetailPage() {
     return (
       <div className="flex flex-col">
         <Header title="Demo Request" />
-        <div className="p-6 flex h-64 items-center justify-center text-gray-400">Loading…</div>
+        <div className="p-6 flex h-64 items-center justify-center text-slate">Loading…</div>
       </div>
     );
   }
@@ -74,19 +74,19 @@ export default function DemoRequestDetailPage() {
       <div className="p-6 space-y-6 max-w-3xl">
         <Link
           href="/admin/demo-requests"
-          className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+          className="flex items-center gap-2 text-sm text-slate hover:text-dark-green transition-colors"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to requests
         </Link>
 
-        <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
-          <div className="flex items-start justify-between border-b border-gray-200 p-5">
+        <div className="rounded-xl border border-light-gray bg-white shadow-sm">
+          <div className="flex items-start justify-between border-b border-light-gray p-5">
             <div>
-              <h2 className="text-lg font-semibold text-gray-900">
+              <h2 className="text-lg font-semibold text-dark-green">
                 {request.firstName} {request.lastName}
               </h2>
-              <p className="text-sm text-gray-500">{request.email}</p>
+              <p className="text-sm text-slate">{request.email}</p>
             </div>
             <div className="flex items-center gap-3">
               <Select value={request.status} onValueChange={handleStatusChange} disabled={saving}>
@@ -117,9 +117,9 @@ export default function DemoRequestDetailPage() {
           </div>
 
           {request.message && (
-            <div className="border-t border-gray-200 p-5">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-500">Message</p>
-              <p className="text-sm text-gray-700 whitespace-pre-wrap">{request.message}</p>
+            <div className="border-t border-light-gray p-5">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-slate">Message</p>
+              <p className="text-sm text-dark-green whitespace-pre-wrap">{request.message}</p>
             </div>
           )}
         </div>
@@ -131,10 +131,10 @@ export default function DemoRequestDetailPage() {
 function InfoRow({ icon: Icon, label, value }: { icon: React.ElementType; label: string; value: string }) {
   return (
     <div className="flex items-start gap-3">
-      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-gray-400" />
+      <Icon className="mt-0.5 h-4 w-4 shrink-0 text-slate" />
       <div>
-        <p className="text-xs text-gray-500">{label}</p>
-        <p className="text-sm text-gray-800">{value}</p>
+        <p className="text-xs text-slate">{label}</p>
+        <p className="text-sm text-dark-green">{value}</p>
       </div>
     </div>
   );

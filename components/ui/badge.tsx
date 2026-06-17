@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
@@ -8,13 +8,13 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-ink text-canvas",
-        secondary: "bg-surface text-ink border border-line",
-        success: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400",
-        warning: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
-        destructive: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
-        outline: "border border-line text-ink",
-        accent: "bg-accent/10 text-accent border border-accent/20",
+        default: "bg-dark-green text-white",
+        secondary: "bg-light-gray text-dark-green border border-light-gray",
+        success: "bg-light-green text-dark-green",
+        warning: "bg-amber/10 text-amber",
+        destructive: "bg-red/10 text-red",
+        outline: "border border-light-gray text-dark-green",
+        accent: "bg-green/10 text-green border border-green/20",
       },
     },
     defaultVariants: { variant: "default" },

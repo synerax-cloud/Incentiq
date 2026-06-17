@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
@@ -79,7 +79,7 @@ export default function PricingPage() {
         />
 
         {/* tiers */}
-        <section className="bg-mist py-24 sm:py-32">
+        <section className="bg-light-green py-24 sm:py-32">
           <div className="shell">
             <RevealGroup className="grid items-stretch gap-5 lg:grid-cols-3">
               {tiers.map((t) => (
@@ -87,33 +87,33 @@ export default function PricingPage() {
                   <article className={[
                     "relative flex h-full flex-col overflow-hidden rounded-xl3",
                     t.highlight
-                      ? "bg-gradient-to-br from-[#1a2e55] via-[#2b4a7f] to-[#1c3260] text-canvas shadow-float ring-1 ring-white/10"
+                      ? "bg-gradient-to-br from-[#0F2E24] via-[#00A651] to-[#0F2E24] text-white shadow-float ring-1 ring-white/10"
                       : "card",
                   ].join(" ")}>
                     {/* top accent bar for highlighted */}
                     {t.highlight ? (
-                      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-accent-400/0 via-accent-400 to-accent-400/0" />
+                      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-sky/0 via-accent-green to-sky/0" />
                     ) : null}
 
                     <div className="flex flex-1 flex-col p-8">
                       {t.badge ? (
-                        <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-accent-400/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent-400">
+                        <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-sky">
                           <IconSpark className="h-3 w-3" />
                           {t.badge}
                         </span>
                       ) : null}
 
-                      <h3 className={`font-display text-display-3 font-bold ${t.highlight ? "text-canvas" : "text-ink"}`}>
+                      <h3 className={`font-display text-display-3 font-bold ${t.highlight ? "text-white" : "text-dark-green"}`}>
                         {t.name}
                       </h3>
-                      <p className={`mt-2 text-[13.5px] leading-relaxed ${t.highlight ? "text-canvas/65" : "text-muted"}`}>
+                      <p className={`mt-2 text-[13.5px] leading-relaxed ${t.highlight ? "text-white/65" : "text-slate"}`}>
                         {t.tagline}
                       </p>
 
-                      <ul className={`mt-6 flex-1 space-y-3 border-t pt-6 ${t.highlight ? "border-white/12" : "border-line"}`}>
+                      <ul className={`mt-6 flex-1 space-y-3 border-t pt-6 ${t.highlight ? "border-white/12" : "border-light-gray"}`}>
                         {t.features.map((f) => (
-                          <li key={f} className={`flex items-start gap-2.5 text-[13.5px] ${t.highlight ? "text-canvas/80" : "text-ink-2"}`}>
-                            <span className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full ${t.highlight ? "bg-accent-400/30 text-accent-400" : "bg-accent text-canvas"}`}>
+                          <li key={f} className={`flex items-start gap-2.5 text-[13.5px] ${t.highlight ? "text-white/80" : "text-navy"}`}>
+                            <span className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full ${t.highlight ? "bg-white/30 text-white" : "bg-green text-white"}`}>
                               <IconCheck className="h-2.5 w-2.5" />
                             </span>
                             {f}
@@ -127,8 +127,8 @@ export default function PricingPage() {
                           className={[
                             "group flex w-full items-center justify-center gap-2 rounded-full py-3 text-[0.9rem] font-semibold transition-all duration-300",
                             t.highlight
-                              ? "bg-white text-ink shadow-soft hover:bg-accent-wash hover:text-accent"
-                              : "bg-ink text-canvas shadow-soft hover:bg-accent hover:shadow-[0_6px_20px_rgba(43,74,127,0.28)]",
+                              ? "bg-white text-dark-green shadow-soft hover:bg-light-green hover:text-green"
+                              : "bg-[#00A651] text-white shadow-soft hover:bg-[#0F2E24] hover:shadow-[0_10px_28px_rgba(0,166,81,0.30)]",
                           ].join(" ")}
                         >
                           {t.cta}
@@ -142,7 +142,7 @@ export default function PricingPage() {
             </RevealGroup>
 
             <Reveal>
-              <p className="mt-10 text-center text-[13px] text-muted">
+              <p className="mt-10 text-center text-[13px] text-slate">
                 All plans run natively on ServiceNow. Pricing is tailored to org size and modules — talk to us for a quote.
               </p>
             </Reveal>
@@ -153,7 +153,7 @@ export default function PricingPage() {
         <section className="py-20 sm:py-28">
           <div className="shell">
             <Reveal>
-              <h2 className="font-display text-display-2 font-bold text-ink text-balance">
+              <h2 className="font-display text-display-2 font-bold text-dark-green text-balance">
                 Common questions
               </h2>
             </Reveal>
@@ -161,9 +161,9 @@ export default function PricingPage() {
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {faqs.map((faq) => (
                 <Reveal key={faq.q}>
-                  <div className="rounded-2xl border border-line bg-white p-6 sm:p-7">
-                    <h3 className="font-display text-[16px] font-bold text-ink">{faq.q}</h3>
-                    <p className="mt-3 text-[14px] leading-relaxed text-muted">{faq.a}</p>
+                  <div className="rounded-2xl border border-light-gray bg-white p-6 sm:p-7">
+                    <h3 className="font-display text-[16px] font-bold text-dark-green">{faq.q}</h3>
+                    <p className="mt-3 text-[14px] leading-relaxed text-slate">{faq.a}</p>
                   </div>
                 </Reveal>
               ))}

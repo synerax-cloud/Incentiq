@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
@@ -37,7 +37,7 @@ export function DialogContent({
       <DialogPrimitive.Content
         className={cn(
           "fixed left-[50%] top-[50%] z-50 w-full max-w-lg translate-x-[-50%] translate-y-[-50%]",
-          "rounded-xl border border-line bg-canvas p-6 shadow-float",
+          "rounded-xl border border-light-gray bg-white p-6 shadow-float",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -49,7 +49,7 @@ export function DialogContent({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-accent/30">
+        <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-green/30">
           <X className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
@@ -77,7 +77,7 @@ export function DialogTitle({
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>) {
   return (
     <DialogPrimitive.Title
-      className={cn("text-lg font-semibold leading-none tracking-tight text-ink dark:text-neutral-100", className)}
+      className={cn("text-lg font-semibold leading-none tracking-tight text-dark-green dark:text-neutral-100", className)}
       {...props}
     />
   );
@@ -89,7 +89,7 @@ export function DialogDescription({
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>) {
   return (
     <DialogPrimitive.Description
-      className={cn("text-sm text-ink/60 dark:text-neutral-400", className)}
+      className={cn("text-sm text-dark-green/60 dark:text-neutral-400", className)}
       {...props}
     />
   );

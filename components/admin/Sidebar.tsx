@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useTransition, useState, useEffect } from "react";
 import Link from "next/link";
@@ -64,9 +64,9 @@ export function Sidebar() {
       <div className="flex h-[60px] shrink-0 items-center gap-2.5 border-b border-white/[0.06] px-5">
         <LogoMark className="h-7 w-auto" />
         <span className="font-display text-[15px] font-extrabold tracking-tight text-white">
-          Incent<span className="text-[#0CA721]">IQ</span>
+          Incent<span className="text-green">IQ</span>
         </span>
-        <span className="ml-auto rounded-md bg-[#0CA721]/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#0CA721]">
+        <span className="ml-auto rounded-md bg-green/15 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-green">
           Admin
         </span>
       </div>
@@ -89,13 +89,13 @@ export function Sidebar() {
               className={cn(
                 "group relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium text-left transition-all duration-150",
                 active
-                  ? "bg-gradient-to-r from-[#2B4A7F]/40 to-[#2B4A7F]/20 text-white"
+                  ? "bg-gradient-to-r from-[#00A651]/40 to-[#00A651]/20 text-white"
                   : "text-white/40 hover:bg-white/[0.05] hover:text-white/75"
               )}
             >
               {/* active left bar */}
               {active && (
-                <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-[#0CA721]" />
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5 w-[3px] rounded-r-full bg-green" />
               )}
 
               {loading ? (
@@ -104,7 +104,7 @@ export function Sidebar() {
                 <Icon
                   className={cn(
                     "h-4 w-4 shrink-0 transition-colors",
-                    active ? "text-[#7fa8e8]" : "text-white/30 group-hover:text-white/60"
+                    active ? "text-[#7ED321]" : "text-white/30 group-hover:text-white/60"
                   )}
                 />
               )}
@@ -132,7 +132,7 @@ export function Sidebar() {
 
         {/* User row */}
         <div className="mt-1 flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#2B4A7F] to-[#0A2148] text-[11px] font-bold text-white ring-1 ring-white/10">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#00A651] to-[#0B1D2D] text-[11px] font-bold text-white ring-1 ring-white/10">
             {initials}
           </div>
           <div className="min-w-0 flex-1">
@@ -142,7 +142,7 @@ export function Sidebar() {
           <button
             onClick={() => signOut({ callbackUrl: "/admin/login" })}
             title="Sign out"
-            className="shrink-0 text-white/25 transition-colors hover:text-red-400"
+            className="shrink-0 text-white/25 transition-colors hover:text-red/70"
           >
             <LogOut className="h-3.5 w-3.5" />
           </button>

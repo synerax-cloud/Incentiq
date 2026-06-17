@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { Header } from "@/components/admin/Header";
@@ -90,8 +90,8 @@ export default function SettingsPage() {
       <Header title="Settings" />
       <div className="p-6 max-w-2xl">
         <form onSubmit={handleSave} className="space-y-6">
-          <section className="rounded-xl border border-gray-200 bg-white p-5 space-y-4 shadow-sm">
-            <h2 className="text-sm font-semibold text-gray-900">General</h2>
+          <section className="rounded-xl border border-light-gray bg-white p-5 space-y-4 shadow-sm">
+            <h2 className="text-sm font-semibold text-dark-green">General</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>Site Name</Label>
@@ -112,8 +112,8 @@ export default function SettingsPage() {
             </div>
           </section>
 
-          <section className="rounded-xl border border-gray-200 bg-white p-5 space-y-4 shadow-sm">
-            <h2 className="text-sm font-semibold text-gray-900">Social Links</h2>
+          <section className="rounded-xl border border-light-gray bg-white p-5 space-y-4 shadow-sm">
+            <h2 className="text-sm font-semibold text-dark-green">Social Links</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label>LinkedIn URL</Label>
@@ -126,8 +126,8 @@ export default function SettingsPage() {
             </div>
           </section>
 
-          <section className="rounded-xl border border-gray-200 bg-white p-5 space-y-4 shadow-sm">
-            <h2 className="text-sm font-semibold text-gray-900">Footer</h2>
+          <section className="rounded-xl border border-light-gray bg-white p-5 space-y-4 shadow-sm">
+            <h2 className="text-sm font-semibold text-dark-green">Footer</h2>
             <div className="space-y-1.5">
               <Label>Footer Text</Label>
               <Textarea value={settings.footer_text} onChange={(e) => handleChange("footer_text", e.target.value)} rows={2} placeholder="© 2026 IncentIQ. All rights reserved." />
@@ -137,7 +137,7 @@ export default function SettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="flex items-center gap-2 rounded-lg bg-[#2B4A7F] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1b3a6e] disabled:opacity-60 transition-colors shadow-sm"
+            className="flex items-center gap-2 rounded-lg bg-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-dark-green disabled:opacity-60 transition-colors shadow-sm"
           >
             {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
             Save Settings
@@ -146,10 +146,10 @@ export default function SettingsPage() {
 
         {/* Change Password — separate form */}
         <form onSubmit={handleChangePassword} className="mt-6 space-y-6">
-          <section className="rounded-xl border border-gray-200 bg-white p-5 space-y-4 shadow-sm">
+          <section className="rounded-xl border border-light-gray bg-white p-5 space-y-4 shadow-sm">
             <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-gray-500" />
-              <h2 className="text-sm font-semibold text-gray-900">Change Password</h2>
+              <Lock className="h-4 w-4 text-slate" />
+              <h2 className="text-sm font-semibold text-dark-green">Change Password</h2>
             </div>
 
             <div className="space-y-1.5">
@@ -163,7 +163,7 @@ export default function SettingsPage() {
                   className="pr-10"
                   required
                 />
-                <button type="button" onClick={() => setShowCurrent(!showCurrent)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <button type="button" onClick={() => setShowCurrent(!showCurrent)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate hover:text-slate">
                   {showCurrent ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
@@ -181,7 +181,7 @@ export default function SettingsPage() {
                     className="pr-10"
                     required
                   />
-                  <button type="button" onClick={() => setShowNew(!showNew)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                  <button type="button" onClick={() => setShowNew(!showNew)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate hover:text-slate">
                     {showNew ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
@@ -198,7 +198,7 @@ export default function SettingsPage() {
                     className="pr-10"
                     required
                   />
-                  <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                  <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate hover:text-slate">
                     {showConfirm ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                   </button>
                 </div>
@@ -208,7 +208,7 @@ export default function SettingsPage() {
             <button
               type="submit"
               disabled={pwSaving}
-              className="flex items-center gap-2 rounded-lg bg-[#2B4A7F] px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#1b3a6e] disabled:opacity-60 transition-colors shadow-sm"
+              className="flex items-center gap-2 rounded-lg bg-green px-5 py-2.5 text-sm font-semibold text-white hover:bg-dark-green disabled:opacity-60 transition-colors shadow-sm"
             >
               {pwSaving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Lock className="h-4 w-4" />}
               Update Password

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import { X } from "lucide-react";
@@ -15,7 +15,7 @@ export const ToastViewport = ({ className, ...props }: React.ComponentPropsWitho
 export const Toast = ({ className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Root>) => (
   <ToastPrimitive.Root
     className={cn(
-      "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-xl border border-line bg-canvas p-4 pr-8 shadow-float transition-all",
+      "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-xl border border-light-gray bg-white p-4 pr-8 shadow-float transition-all",
       "data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out",
       "data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full",
       "data-[state=open]:slide-in-from-bottom-full",
@@ -28,7 +28,7 @@ export const Toast = ({ className, ...props }: React.ComponentPropsWithoutRef<ty
 
 export const ToastClose = ({ className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Close>) => (
   <ToastPrimitive.Close
-    className={cn("absolute right-2 top-2 rounded-md p-1 text-ink/50 opacity-0 transition-opacity hover:text-ink focus:opacity-100 focus:outline-none focus:ring-1 group-hover:opacity-100", className)}
+    className={cn("absolute right-2 top-2 rounded-md p-1 text-dark-green/50 opacity-0 transition-opacity hover:text-dark-green focus:opacity-100 focus:outline-none focus:ring-1 group-hover:opacity-100", className)}
     toast-close=""
     {...props}
   >
@@ -37,16 +37,16 @@ export const ToastClose = ({ className, ...props }: React.ComponentPropsWithoutR
 );
 
 export const ToastTitle = ({ className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Title>) => (
-  <ToastPrimitive.Title className={cn("text-sm font-semibold text-ink dark:text-neutral-100", className)} {...props} />
+  <ToastPrimitive.Title className={cn("text-sm font-semibold text-dark-green dark:text-neutral-100", className)} {...props} />
 );
 
 export const ToastDescription = ({ className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Description>) => (
-  <ToastPrimitive.Description className={cn("text-sm text-ink/60 dark:text-neutral-400", className)} {...props} />
+  <ToastPrimitive.Description className={cn("text-sm text-dark-green/60 dark:text-neutral-400", className)} {...props} />
 );
 
 export const ToastAction = ({ className, ...props }: React.ComponentPropsWithoutRef<typeof ToastPrimitive.Action>) => (
   <ToastPrimitive.Action
-    className={cn("inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-line bg-transparent px-3 text-sm font-medium transition-colors hover:bg-surface focus:outline-none focus:ring-1 focus:ring-accent/30 disabled:pointer-events-none disabled:opacity-50", className)}
+    className={cn("inline-flex h-8 shrink-0 items-center justify-center rounded-md border border-light-gray bg-transparent px-3 text-sm font-medium transition-colors hover:bg-light-gray focus:outline-none focus:ring-1 focus:ring-green/30 disabled:pointer-events-none disabled:opacity-50", className)}
     {...props}
   />
 );

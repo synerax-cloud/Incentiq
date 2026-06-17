@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
@@ -50,17 +50,17 @@ export default function CapabilitiesPage() {
                     href={`/capabilities/${c.slug}`}
                     className="card group flex h-full items-start gap-4 p-6"
                   >
-                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-accent-wash text-accent-600 ring-1 ring-accent-soft transition-colors group-hover:bg-accent group-hover:text-canvas">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-light-green text-dark-green ring-1 ring-light-green transition-colors group-hover:bg-green group-hover:text-white">
                       <Icon className="h-5 w-5" />
                     </span>
                     <span className="flex-1">
                       <span className="flex items-center justify-between gap-2">
-                        <span className="text-[15px] font-semibold text-ink">
+                        <span className="text-[15px] font-semibold text-dark-green">
                           {c.slug.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase())}
                         </span>
-                        <IconArrow className="h-4 w-4 text-muted transition-transform group-hover:translate-x-0.5 group-hover:text-accent" />
+                        <IconArrow className="h-4 w-4 text-slate transition-transform group-hover:translate-x-0.5 group-hover:text-green" />
                       </span>
-                      <span className="mt-1.5 block text-[13px] leading-relaxed text-muted">{c.lead}</span>
+                      <span className="mt-1.5 block text-[13px] leading-relaxed text-slate">{c.lead}</span>
                     </span>
                   </Link>
                 </RevealItem>

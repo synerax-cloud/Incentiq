@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useEffect } from "react";
 import { Header } from "@/components/admin/Header";
@@ -46,7 +46,7 @@ export default function TagsPage() {
           <button
             type="submit"
             disabled={adding || !name.trim()}
-            className="flex items-center gap-2 rounded-lg bg-[#2B4A7F] px-4 py-2 text-sm font-semibold text-white hover:bg-[#1b3a6e] disabled:opacity-60 transition-colors shrink-0 shadow-sm"
+            className="flex items-center gap-2 rounded-lg bg-green px-4 py-2 text-sm font-semibold text-white hover:bg-dark-green disabled:opacity-60 transition-colors shrink-0 shadow-sm"
           >
             <Plus className="h-4 w-4" />
             Add
@@ -54,15 +54,15 @@ export default function TagsPage() {
         </form>
 
         <div className="flex flex-wrap gap-2">
-          {tags.length === 0 && <p className="text-sm text-gray-400">No tags yet.</p>}
+          {tags.length === 0 && <p className="text-sm text-slate">No tags yet.</p>}
           {tags.map((tag) => (
             <div
               key={tag.id}
-              className="group flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 shadow-sm hover:border-gray-300 transition-colors"
+              className="group flex items-center gap-1.5 rounded-full border border-light-gray bg-white px-3 py-1.5 text-sm text-dark-green shadow-sm hover:border-light-gray transition-colors"
             >
               <span>{tag.name}</span>
-              <span className="text-xs text-gray-400">({tag._count?.posts ?? 0})</span>
-              <button className="ml-1 rounded-full opacity-0 group-hover:opacity-100 text-gray-400 hover:text-red-500 transition-all">
+              <span className="text-xs text-slate">({tag._count?.posts ?? 0})</span>
+              <button className="ml-1 rounded-full opacity-0 group-hover:opacity-100 text-slate hover:text-red transition-all">
                 <X className="h-3 w-3" />
               </button>
             </div>

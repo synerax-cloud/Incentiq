@@ -1,4 +1,4 @@
-import { IconSpark, IconArrow } from "../ui/icons";
+﻿import { IconSpark, IconArrow } from "../ui/icons";
 
 /* smooth area chart path (payout trend) */
 const points = [28, 34, 30, 42, 48, 44, 58, 66, 62, 78, 84, 96];
@@ -39,29 +39,29 @@ export function DashboardMockup({ className = "" }: { className?: string }) {
   return (
     <div
       className={[
-        "w-full overflow-hidden rounded-xl3 border border-line bg-white shadow-float",
+        "w-full overflow-hidden rounded-xl3 border border-light-gray bg-white shadow-float",
         className,
       ].join(" ")}
     >
-      <div className="flex items-center justify-between gap-3 border-b border-line bg-canvas/60 px-6 py-4">
+      <div className="flex items-center justify-between gap-3 border-b border-light-gray bg-white/60 px-6 py-4">
         <div className="flex items-center gap-2.5">
-          <span className="grid h-7 w-7 place-items-center rounded-lg bg-ink text-canvas">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-dark-green text-white">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <path d="M4 16l4-5 3.5 3L20 6" /><path d="M4 20h16" />
             </svg>
           </span>
-          <div className="flex items-center gap-1.5 text-[12px] font-medium text-muted">
+          <div className="flex items-center gap-1.5 text-[12px] font-medium text-slate">
             <span>Incentives</span>
-            <span className="text-line">/</span>
-            <span className="text-ink">Q3 Overview</span>
+            <span className="text-light-gray">/</span>
+            <span className="text-dark-green">Q3 Overview</span>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="hidden rounded-full bg-accent-wash px-2.5 py-1 text-[11px] font-semibold text-accent-600 sm:inline">
+          <span className="hidden rounded-full bg-light-green px-2.5 py-1 text-[11px] font-semibold text-dark-green sm:inline">
             Live
           </span>
           <span className="flex -space-x-1.5">
-            {["#6E8CBE", "#D8E4D5", "#EFE5D4"].map((c) => (
+            {["#00A651", "#E8F5E9", "#F1F5F9"].map((c) => (
               <span key={c} className="h-5 w-5 rounded-full ring-2 ring-white" style={{ background: c }} />
             ))}
           </span>
@@ -69,14 +69,14 @@ export function DashboardMockup({ className = "" }: { className?: string }) {
       </div>
 
       <div className="grid gap-5 p-6 sm:grid-cols-5">
-        <div className="rounded-xl2 bg-canvas/70 p-5 sm:col-span-2">
-          <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">
+        <div className="rounded-xl2 bg-white/70 p-5 sm:col-span-2">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-slate">
             Quota attainment
           </p>
           <div className="mt-2 flex items-center gap-4">
             <div className="relative grid place-items-center">
               <svg width={RING} height={RING} viewBox={`0 0 ${RING} ${RING}`} className="-rotate-90">
-                <circle cx={RC} cy={RC} r={R} fill="none" stroke="#E4E7E3" strokeWidth="10" />
+                <circle cx={RC} cy={RC} r={R} fill="none" stroke="#F1F5F9" strokeWidth="10" />
                 <circle
                   cx={RC} cy={RC} r={R} fill="none" stroke="url(#ringg)"
                   strokeWidth="10" strokeLinecap="round"
@@ -84,13 +84,13 @@ export function DashboardMockup({ className = "" }: { className?: string }) {
                 />
                 <defs>
                   <linearGradient id="ringg" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="#2B4A7F" />
-                    <stop offset="100%" stopColor="#6E8CBE" />
+                    <stop offset="0%" stopColor="#00BFA5" />
+                    <stop offset="100%" stopColor="#0092FF" />
                   </linearGradient>
                 </defs>
               </svg>
               <div className="absolute text-center">
-                <span className="font-display text-3xl font-bold text-ink">112%</span>
+                <span className="font-display text-3xl font-bold text-dark-green">112%</span>
               </div>
             </div>
             <div className="space-y-2.5">
@@ -100,22 +100,22 @@ export function DashboardMockup({ className = "" }: { className?: string }) {
           </div>
         </div>
 
-        <div className="rounded-xl2 bg-canvas/70 p-5 sm:col-span-3">
+        <div className="rounded-xl2 bg-white/70 p-5 sm:col-span-3">
           <div className="flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-wide text-muted">
+            <p className="text-[11px] font-semibold uppercase tracking-wide text-slate">
               Payout trend
             </p>
-            <span className="text-[11px] font-semibold text-accent-600">+18% MoM</span>
+            <span className="text-[11px] font-semibold text-dark-green">+18% MoM</span>
           </div>
           <svg viewBox={`0 0 ${W} ${H}`} className="mt-3 h-[152px] w-full" preserveAspectRatio="none">
             <defs>
               <linearGradient id="areag" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#2B4A7F" stopOpacity="0.22" />
-                <stop offset="100%" stopColor="#2B4A7F" stopOpacity="0" />
+                <stop offset="0%" stopColor="#00BFA5" stopOpacity="0.22" />
+                <stop offset="100%" stopColor="#00BFA5" stopOpacity="0" />
               </linearGradient>
             </defs>
             <path d={path.area} fill="url(#areag)" />
-            <path d={path.line} fill="none" stroke="#2B4A7F" strokeWidth="2.4" strokeLinecap="round" />
+            <path d={path.line} fill="none" stroke="#00BFA5" strokeWidth="2.4" strokeLinecap="round" />
           </svg>
         </div>
 
@@ -124,14 +124,14 @@ export function DashboardMockup({ className = "" }: { className?: string }) {
         <StatTile className="sm:col-span-1" label="Cycle time" value="1.2s" trend="fast" />
       </div>
 
-      <div className="mx-6 mb-6 flex items-start gap-3 rounded-xl2 border border-accent-soft bg-accent-wash px-5 py-3.5">
-        <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent text-canvas">
+      <div className="mx-6 mb-6 flex items-start gap-3 rounded-xl2 border border-light-green bg-light-green px-5 py-3.5">
+        <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-green text-white">
           <IconSpark className="h-4 w-4" />
         </span>
-        <p className="text-[13.5px] leading-relaxed text-ink-2">
-          <span className="font-semibold text-ink">AI insight</span> &mdash; West region pacing 9% above target. Review accelerator caps before next payout.
+        <p className="text-[13.5px] leading-relaxed text-navy">
+          <span className="font-semibold text-dark-green">AI insight</span> &mdash; West region pacing 9% above target. Review accelerator caps before next payout.
         </p>
-        <IconArrow className="ml-auto mt-1 h-4 w-4 shrink-0 text-accent" />
+        <IconArrow className="ml-auto mt-1 h-4 w-4 shrink-0 text-green" />
       </div>
     </div>
   );
@@ -140,8 +140,8 @@ export function DashboardMockup({ className = "" }: { className?: string }) {
 function Mini({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="font-display text-base font-bold leading-none text-ink">{value}</p>
-      <p className="mt-0.5 text-[11px] text-muted">{label}</p>
+      <p className="font-display text-base font-bold leading-none text-dark-green">{value}</p>
+      <p className="mt-0.5 text-[11px] text-slate">{label}</p>
     </div>
   );
 }
@@ -152,11 +152,11 @@ function StatTile({
   label: string; value: string; trend: string; className?: string;
 }) {
   return (
-    <div className={`rounded-xl2 border border-line bg-white px-5 py-3.5 ${className}`}>
-      <p className="text-[11.5px] text-muted">{label}</p>
+    <div className={`rounded-xl2 border border-light-gray bg-white px-5 py-3.5 ${className}`}>
+      <p className="text-[11.5px] text-slate">{label}</p>
       <div className="mt-1 flex items-baseline justify-between gap-2">
-        <span className="font-display text-xl font-bold text-ink">{value}</span>
-        <span className="text-[11px] font-semibold text-accent-600">{trend}</span>
+        <span className="font-display text-xl font-bold text-dark-green">{value}</span>
+        <span className="text-[11px] font-semibold text-dark-green">{trend}</span>
       </div>
     </div>
   );

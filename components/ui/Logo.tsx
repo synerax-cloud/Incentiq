@@ -1,12 +1,12 @@
-import * as React from "react";
+﻿import * as React from "react";
 
 /**
  * Brand colors sampled directly from the original IncentIQ artwork.
  *   navy  = the "i", the chart base/mountain and the "Incent" wordmark
  *   green = the upward trend arrow and the "IQ" wordmark
  */
-const NAVY = "#0A2148";
-const GREEN = "#0CA721";
+const NAVY = "#0B1D2D";
+const GREEN = "#00A651";
 
 const sizes = {
   sm: { icon: "h-7", text: "text-[1.35rem]", gap: "gap-1.5" },
