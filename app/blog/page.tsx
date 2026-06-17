@@ -53,11 +53,14 @@ export default async function BlogListPage() {
                 )}
                 <div className="p-5">
                   <div className="flex items-center gap-2 mb-3">
-                    {post.category && (
-                      <span className="rounded-full bg-green/10 px-2.5 py-0.5 text-[11px] font-semibold text-green">
-                        {post.category.name}
-                      </span>
-                    )}
+                    {(() => {
+                      const cat = Array.isArray(post.category) ? post.category[0] : post.category;
+                      return cat?.name ? (
+                        <span className="rounded-full bg-green/10 px-2.5 py-0.5 text-[11px] font-semibold text-green">
+                          {cat.name}
+                        </span>
+                      ) : null;
+                    })()}
                     {post.reading_time && (
                       <span className="text-xs text-dark-green/40">{post.reading_time} min read</span>
                     )}
@@ -69,8 +72,10 @@ export default async function BlogListPage() {
                     <p className="mt-2 text-sm text-dark-green/60 line-clamp-2">{post.excerpt}</p>
                   )}
                   <div className="mt-4 flex items-center gap-2 text-xs text-dark-green/40">
-                    {post.author?.name && <span>{post.author.name}</span>}
-                    {post.author?.name && <span>·</span>}
+                    {(() => {
+                      const authorName = (Array.isArray(post.author) ? post.author[0] : post.author)?.name;
+                      return authorName ? <><span>{authorName}</span><span>·</span></> : null;
+                    })()}
                     <span>{formatDate(post.published_at ?? post.created_at)}</span>
                   </div>
                 </div>
