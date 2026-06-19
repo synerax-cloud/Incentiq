@@ -212,7 +212,7 @@ export function Problem() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="problem" className="bg-light-gray py-14 sm:py-20">
+    <section id="problem" className="bg-light-gray py-16 sm:py-20">
       <div className="shell">
 
         {/* heading */}
@@ -260,7 +260,7 @@ export function Problem() {
         </RevealGroup>
 
         {/* ── Transformation comparison ─────────────────────────────────── */}
-        <div className="mt-12 sm:mt-16">
+        <div className="mt-10">
           <div className="relative overflow-hidden rounded-3xl">
 
             {/* Ambient drifting glow blobs */}

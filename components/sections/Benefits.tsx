@@ -15,7 +15,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section id="benefits" className="bg-light-gray pt-14 sm:pt-20 pb-7 sm:pb-8">
+    <section id="benefits" className="bg-light-gray py-16 sm:py-20">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-24">
           <Reveal className="lg:sticky lg:top-28">

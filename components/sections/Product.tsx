@@ -12,7 +12,7 @@ const pillars = [
 
 export function Product() {
   return (
-    <section id="product" className="relative overflow-hidden py-14 sm:py-20">
+    <section id="product" className="relative overflow-hidden py-16 sm:py-20">
       {/* ambient blobs */}
       <div aria-hidden className="pointer-events-none absolute right-0 top-1/4 -z-10 h-96 w-96 rounded-full bg-light-gray opacity-35 blur-[100px]" />
       <div aria-hidden className="pointer-events-none absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-light-green opacity-30 blur-3xl" />

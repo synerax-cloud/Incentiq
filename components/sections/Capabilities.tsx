@@ -16,7 +16,7 @@ const standard = [
 
 export function Capabilities() {
   return (
-    <section id="capabilities" className="bg-light-green py-14 sm:py-20">
+    <section id="capabilities" className="bg-light-green py-16 sm:py-20">
       <div className="shell">
         <Reveal>
           <SectionHeading

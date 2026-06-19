@@ -16,7 +16,7 @@ const items = [
 
 export function AIIntelligence() {
   return (
-    <section id="ai" className="relative overflow-hidden py-14 sm:py-20">
+    <section id="ai" className="relative overflow-hidden py-16 sm:py-20">
       <div aria-hidden className="pointer-events-none absolute left-0 top-0 -z-10 h-96 w-96 rounded-full bg-light-gray opacity-40 blur-[100px]" />
       <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-teal opacity-30 blur-3xl" />
       <div className="shell">
@@ -29,7 +29,7 @@ export function AIIntelligence() {
           />
         </Reveal>
 
-        <div className="mt-12 sm:mt-16 grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+        <div className="mt-10 grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
           <Reveal y={24}>
             <AIVisual />
           </Reveal>

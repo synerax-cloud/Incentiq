@@ -6,7 +6,7 @@ const assurances = ["Native to ServiceNow", "Enterprise governance", "AI-first b
 
 export function FinalCTA() {
   return (
-    <section id="demo" className="px-[var(--shell-px)] pt-7 sm:pt-8 pb-14 sm:pb-20">
+    <section id="demo" className="px-[var(--shell-px)] py-16 sm:py-20">
       <div className="mx-auto max-w-shell-wide">
         <Reveal>
           <div className="mesh grain relative overflow-hidden rounded-xl4 border border-white/60 px-7 py-20 text-center shadow-[0_24px_80px_rgba(11,29,45,0.14),0_4px_16px_rgba(11,29,45,0.06)] sm:px-16 sm:py-32">
