@@ -95,7 +95,7 @@ export function PlatformDetailPage({ content }: { content: DetailContent }) {
         </section>
 
         {/* ── Highlights ── */}
-        <section className="py-24 sm:py-32">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <SectionHeading

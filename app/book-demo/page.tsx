@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 const proof = [
-  "No credit card required",
   "30-minute personalised walkthrough",
   "Live on ServiceNow — see your real environment",
   "Get answers from an ICM specialist",

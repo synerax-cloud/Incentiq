@@ -157,7 +157,7 @@ export default function ResourcesPage() {
         />
 
         {/* ── 3 Resource hub linked blocks ── */}
-        <section className="bg-light-green py-14 sm:py-20">
+        <section className="bg-light-green py-14 sm:py-16">
           <div className="shell">
             <RevealGroup className="grid gap-5 sm:grid-cols-3">
               {resourceLinks.map((r) => (
@@ -185,7 +185,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* ── BLOG detailed section ── */}
-        <section id="blog" className="scroll-mt-24 py-16 sm:py-20">
+        <section id="blog" className="scroll-mt-24 py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <span className="eyebrow">BLOG</span>
@@ -218,7 +218,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* ── GUIDES detailed section ── */}
-        <section id="guides" className="scroll-mt-24 bg-light-green py-16 sm:py-20">
+        <section id="guides" className="scroll-mt-24 bg-light-green py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <span className="eyebrow">GUIDES</span>
@@ -251,7 +251,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* ── ANALYST INSIGHTS detailed section ── */}
-        <section id="analyst-insights" className="scroll-mt-24 py-16 sm:py-20">
+        <section id="analyst-insights" className="scroll-mt-24 py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <span className="eyebrow">ANALYST INSIGHTS</span>

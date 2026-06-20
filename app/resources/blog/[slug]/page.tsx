@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </section>
 
         {/* article body */}
-        <article className="py-16 sm:py-20">
+        <article className="py-14 sm:py-16">
           <div className="shell">
             <div className="mx-auto max-w-3xl">
               <Reveal>
@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
               {/* takeaway callout */}
               <Reveal>
-                <div className="mt-12 rounded-xl3 border border-light-green bg-light-green/60 p-7 sm:p-8">
+                <div className="mt-12 rounded-xl3 border border-light-green bg-light-green/60 p-6">
                   <p className="eyebrow">THE TAKEAWAY</p>
                   <p className="mt-3 flex items-start gap-3 text-[15.5px] leading-relaxed text-navy">
                     <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-green" />
@@ -142,7 +142,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
         {/* related posts */}
         {related.length > 0 && (
-          <section className="border-t border-light-gray bg-light-gray py-20 sm:py-24">
+          <section className="border-t border-light-gray bg-light-gray py-14 sm:py-16">
             <div className="shell">
               <div className="flex items-end justify-between gap-4">
                 <h2 className="font-display text-display-3 font-bold text-dark-green">Keep reading</h2>

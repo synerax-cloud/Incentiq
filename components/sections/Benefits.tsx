@@ -15,7 +15,7 @@ const benefits = [
 
 export function Benefits() {
   return (
-    <section id="benefits" className="bg-light-gray py-16 sm:py-20">
+    <section id="benefits" className="bg-light-gray py-14 sm:py-16">
       <div className="shell">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:gap-24">
           <Reveal className="lg:sticky lg:top-28">
@@ -34,7 +34,7 @@ export function Benefits() {
               <RevealItem key={b.title}>
                 <div
                   className={[
-                    "group h-full px-0 py-8 transition-colors duration-300 sm:px-9",
+                    "group h-full px-0 py-6 transition-colors duration-300 sm:px-9",
                     "border-light-gray",
                     i % 2 === 0 ? "sm:border-r" : "",
                     i < benefits.length - 2 ? "border-b" : "",

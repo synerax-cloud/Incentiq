@@ -157,7 +157,7 @@ function HighlightCard({
   body: string;
 }) {
   return (
-    <div className="card group flex flex-col gap-4 p-7 sm:p-8">
+    <div className="card group flex flex-col gap-4 p-6">
       <span className="grid h-12 w-12 place-items-center rounded-2xl bg-light-green ring-1 ring-light-green transition-all duration-300 group-hover:bg-green group-hover:text-white group-hover:shadow-soft text-dark-green">
         <Icon className="h-5 w-5" />
       </span>
@@ -263,7 +263,7 @@ export default function TeamsPage() {
         </section>
 
         {/* ── Section 1: Sales ─────────────────────────────── */}
-        <section id="sales" className="scroll-mt-28 py-24 sm:py-32">
+        <section id="sales" className="scroll-mt-28 py-14 sm:py-16">
           <div className="shell">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal className="space-y-5">
@@ -285,7 +285,7 @@ export default function TeamsPage() {
               </Reveal>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-8 sm:mt-10">
               <Reveal>
                 <p className="mb-8 text-[11px] font-bold uppercase tracking-[0.18em] text-green">
                   What Sales Teams Gain
@@ -303,7 +303,7 @@ export default function TeamsPage() {
         </section>
 
         {/* ── Section 2: RevOps ────────────────────────────── */}
-        <section id="revops" className="scroll-mt-28 bg-light-green py-24 sm:py-32">
+        <section id="revops" className="scroll-mt-28 bg-light-green py-14 sm:py-16">
           <div className="shell">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal delay={0.08} className="order-last lg:order-first">
@@ -325,7 +325,7 @@ export default function TeamsPage() {
               </Reveal>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-8 sm:mt-10">
               <Reveal>
                 <p className="mb-8 text-[11px] font-bold uppercase tracking-[0.18em] text-green">
                   What You Get
@@ -343,7 +343,7 @@ export default function TeamsPage() {
         </section>
 
         {/* ── Section 3: Finance ───────────────────────────── */}
-        <section id="finance" className="scroll-mt-28 py-24 sm:py-32">
+        <section id="finance" className="scroll-mt-28 py-14 sm:py-16">
           <div className="shell">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal className="space-y-5">
@@ -365,7 +365,7 @@ export default function TeamsPage() {
               </Reveal>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-8 sm:mt-10">
               <Reveal>
                 <p className="mb-8 text-[11px] font-bold uppercase tracking-[0.18em] text-green">
                   What You Get
@@ -383,7 +383,7 @@ export default function TeamsPage() {
         </section>
 
         {/* ── Section 4: Leadership ────────────────────────── */}
-        <section id="leadership" className="scroll-mt-28 bg-light-green py-24 sm:py-32">
+        <section id="leadership" className="scroll-mt-28 bg-light-green py-14 sm:py-16">
           <div className="shell">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <Reveal delay={0.08} className="order-last lg:order-first">
@@ -405,7 +405,7 @@ export default function TeamsPage() {
               </Reveal>
             </div>
 
-            <div className="mt-16">
+            <div className="mt-8 sm:mt-10">
               <Reveal>
                 <p className="mb-8 text-[11px] font-bold uppercase tracking-[0.18em] text-green">
                   What You Get
@@ -423,7 +423,7 @@ export default function TeamsPage() {
         </section>
 
         {/* ── Summary Table ────────────────────────────────── */}
-        <section className="py-24 sm:py-32">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <SectionHeading

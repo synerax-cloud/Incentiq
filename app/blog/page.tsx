@@ -19,7 +19,7 @@ export default async function BlogListPage() {
   const posts = data ?? [];
 
   return (
-    <main className="mx-auto max-w-5xl px-4 py-20 sm:px-6">
+    <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
       <div className="mb-12 text-center">
         <span className="eyebrow text-green text-xs">Blog</span>
         <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-dark-green">
@@ -33,7 +33,7 @@ export default async function BlogListPage() {
       {posts.length === 0 ? (
         <div className="text-center py-20 text-dark-green/40">No posts published yet.</div>
       ) : (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: (typeof posts)[number]) => (
             <Link key={post.id} href={`/blog/${post.slug}`} className="group block">
               <article className="h-full overflow-hidden rounded-2xl border border-light-gray bg-white transition-all duration-300 hover:shadow-float hover:-translate-y-0.5">

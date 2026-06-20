@@ -62,12 +62,12 @@ export function DetailPage({ content }: { content: DetailContent }) {
           secondary={{ label: content.overviewLabel, href: content.overviewHref }}
         />
 
-        <section className="py-24 sm:py-32">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             {/* Image placeholders (only rendered when content provides them) */}
             {content.images && content.images.length > 0 ? (
               <Reveal>
-                <div className="mb-20 grid gap-4 sm:grid-cols-3">
+                <div className="mb-8 grid gap-4 sm:grid-cols-3">
                   {content.images.map((label) => (
                     <MockPlaceholder key={label} label={label} />
                   ))}

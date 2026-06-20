@@ -6,9 +6,9 @@ import {
 } from "../ui/icons";
 
 const items = [
-  { icon: IconForecast, title: "Predictive forecasting", body: "Project attainment and payout exposure before the cycle closes." },
-  { icon: IconRecommend, title: "AI recommendations", body: "Surface the plan adjustments most likely to move performance." },
-  { icon: IconAnomaly, title: "Anomaly detection", body: "Flag irregular commissions and payouts the moment they appear." },
+  { icon: IconForecast, title: "Predictive Forecasting", body: "See where performance and incentive spend are likely to land before the quarter closes." },
+  { icon: IconRecommend, title: "Intelligent Recommendations", body: "Identify anomalies, optimize plans, and surface opportunities to improve incentive effectiveness." },
+  { icon: IconAnomaly, title: "Intelligent Anomaly Detection", body: "Identify payout exceptions, unusual trends, and emerging risks before they impact the business." },
   { icon: IconResolve, title: "Smart dispute resolution", body: "Match disputes to plan rules and recommend resolutions in seconds." },
   { icon: IconCoaching, title: "Sales coaching insights", body: "Turn performance data into specific, rep-level guidance." },
   { icon: IconAutonomous, title: "Autonomous operations", body: "AI agents run routine incentive tasks end to end, humans in control." },
@@ -16,7 +16,7 @@ const items = [
 
 export function AIIntelligence() {
   return (
-    <section id="ai" className="relative overflow-hidden py-16 sm:py-20">
+    <section id="ai" className="relative overflow-hidden py-14 sm:py-16">
       <div aria-hidden className="pointer-events-none absolute left-0 top-0 -z-10 h-96 w-96 rounded-full bg-light-gray opacity-40 blur-[100px]" />
       <div aria-hidden className="pointer-events-none absolute bottom-0 right-0 -z-10 h-72 w-72 rounded-full bg-teal opacity-30 blur-3xl" />
       <div className="shell">

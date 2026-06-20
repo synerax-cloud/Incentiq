@@ -6,17 +6,17 @@ import {
 } from "../ui/icons";
 
 const standard = [
-  { icon: IconOrg, title: "Organization Management", body: "Model your full org hierarchy — roles, territories, reporting lines — as the backbone for every plan." },
+  { icon: IconOrg, title: "Organization Management", body: "Manage hierarchies, territories, reporting relationships, and participant assignments from a single source of truth that adapts as your business evolves." },
   { icon: IconBusinessUnit, title: "Business Unit Management", body: "Run distinct compensation structures per business unit while keeping governance centralized." },
-  { icon: IconQuota, title: "Quota Management", body: "Set, distribute, and adjust quotas with full version history and complete auditability." },
-  { icon: IconPerformance, title: "Performance Tracking", body: "Track attainment in real time, with drill-downs from team to individual rep." },
-  { icon: IconStatement, title: "Statements Management", body: "Generate clear, itemized payout statements reps trust at a glance." },
-  { icon: IconDispute, title: "Dispute Resolution", body: "Route, investigate, and resolve payout disputes through a governed workflow." },
+  { icon: IconQuota, title: "Quota Management", body: "Create, distribute, and manage quotas across territories, teams, and individuals while maintaining transparency and accountability." },
+  { icon: IconPerformance, title: "Performance Tracking", body: "Monitor attainment, incentive performance, and compensation outcomes with real-time visibility across the organization." },
+  { icon: IconStatement, title: "Statements", body: "Deliver transparent compensation statements that help sellers understand earnings and reduce payout disputes." },
+  { icon: IconDispute, title: "Dispute Resolution", body: "Manage disputes, exceptions, and inquiries through a structured workflow that improves accountability and reduces operational effort." },
 ];
 
 export function Capabilities() {
   return (
-    <section id="capabilities" className="bg-light-green py-16 sm:py-20">
+    <section id="capabilities" className="bg-light-green py-14 sm:py-16">
       <div className="shell">
         <Reveal>
           <SectionHeading
@@ -30,14 +30,14 @@ export function Capabilities() {
         <RevealGroup className="mt-12 grid gap-6 lg:grid-cols-2">
           {/* Incentive Plans card */}
           <RevealItem>
-            <article className="card group relative flex h-full flex-col justify-between gap-8 overflow-hidden p-9 sm:flex-row sm:items-center sm:p-10">
+            <article className="card group relative flex h-full flex-col justify-between gap-8 overflow-hidden p-6 sm:flex-row sm:items-center">
               <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-light-green/60 blur-3xl" />
               <div className="relative max-w-xs">
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-green text-white shadow-soft">
                   <IconPlan className="h-6 w-6" />
                 </span>
-                <h3 className="mt-5 font-display text-display-3 font-bold text-dark-green">Incentive Plan Management</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-slate">Design tiered plans, accelerators, and rules — then deploy them without a single spreadsheet.</p>
+                <h3 className="mt-5 font-display text-display-3 font-bold text-dark-green">Incentive Plans</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-slate">Build compensation plans that align seller behaviour with business objectives using a flexible and governed rules framework.</p>
               </div>
               {/* tier chart mini */}
               <div className="relative flex items-end gap-2 self-stretch rounded-2xl bg-white/80 p-4 ring-1 ring-light-gray sm:w-44">
@@ -63,14 +63,14 @@ export function Capabilities() {
 
           {/* AI Assistant card */}
           <RevealItem>
-            <article className="card group relative flex h-full flex-col justify-between gap-8 overflow-hidden p-9 sm:flex-row sm:items-center sm:p-10">
+            <article className="card group relative flex h-full flex-col justify-between gap-8 overflow-hidden p-6 sm:flex-row sm:items-center">
               <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-light-green/60 blur-3xl" />
               <div className="relative max-w-xs">
                 <span className="grid h-12 w-12 place-items-center rounded-2xl bg-green text-white shadow-soft">
                   <IconAssistant className="h-6 w-6" />
                 </span>
-                <h3 className="mt-5 font-display text-display-3 font-bold text-dark-green">AI Assistant for Sales Teams</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-slate">Reps get instant, plain-language answers on earnings, quota, and the next best payout.</p>
+                <h3 className="mt-5 font-display text-display-3 font-bold text-dark-green">AI Assistant</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-slate">Leverage AI to answer compensation questions, explain earnings, forecast outcomes, and surface actionable insights across the incentive lifecycle.</p>
               </div>
               {/* chat mini */}
               <div className="relative flex flex-col justify-between self-stretch rounded-2xl bg-white/80 p-4 ring-1 ring-light-gray sm:w-52">

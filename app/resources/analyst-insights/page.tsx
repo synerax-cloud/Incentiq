@@ -36,7 +36,7 @@ export default function AnalystInsightsPage() {
           secondary={{ label: "Explore resources", href: "/resources" }}
         />
 
-        <section className="py-20 sm:py-24">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             {/* Placeholder disclaimer */}
             <Reveal>

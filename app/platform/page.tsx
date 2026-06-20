@@ -115,7 +115,7 @@ export default function PlatformPage() {
         />
 
         {/* ── Platform Pillars (horizontal linked cards) ── */}
-        <section className="bg-light-green py-14 sm:py-20">
+        <section className="bg-light-green py-14 sm:py-16">
           <div className="shell">
             <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {pillars.map((pillar) => (
@@ -149,7 +149,7 @@ export default function PlatformPage() {
             <section
               key={cap.slug}
               id={cap.slug}
-              className={`scroll-mt-24 py-16 sm:py-20${isLight ? " bg-light-green" : ""}`}
+              className={`scroll-mt-24 py-14 sm:py-16${isLight ? " bg-light-green" : ""}`}
             >
               <div className="shell">
                 <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
@@ -198,7 +198,7 @@ export default function PlatformPage() {
         })}
 
         {/* ── Positioning table ── */}
-        <section className="bg-light-green py-16 sm:py-24">
+        <section className="bg-light-green py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <SectionHeading

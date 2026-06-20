@@ -27,7 +27,7 @@ export default function GuidesPage() {
           secondary={{ label: "Explore resources", href: "/resources" }}
         />
 
-        <section className="py-20 sm:py-24">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             <RevealGroup className="grid items-stretch gap-6 sm:grid-cols-2">
               {guideItems.map((guide) => (

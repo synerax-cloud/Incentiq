@@ -109,7 +109,7 @@ export default function CapabilitiesPage() {
         />
 
         {/* ── 3 Group blocks ── */}
-        <section className="bg-light-green py-14 sm:py-20">
+        <section className="bg-light-green py-14 sm:py-16">
           <div className="shell">
             <RevealGroup className="grid gap-6 sm:grid-cols-3">
               {capGroups.map((group) => (
@@ -146,7 +146,7 @@ export default function CapabilitiesPage() {
             <section
               key={cap.slug}
               id={cap.slug}
-              className={`scroll-mt-24 py-16 sm:py-20${isLight ? " bg-light-green" : ""}`}
+              className={`scroll-mt-24 py-14 sm:py-16${isLight ? " bg-light-green" : ""}`}
             >
               <div className="shell">
                 <div className="grid gap-12 lg:grid-cols-2 lg:items-start">

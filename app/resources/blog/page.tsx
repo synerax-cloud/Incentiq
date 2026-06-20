@@ -38,7 +38,7 @@ export default function BlogPage() {
           secondary={{ label: "Explore resources", href: "/resources" }}
         />
 
-        <section className="py-20 sm:py-24">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             <RevealGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
               {blogPosts.map((post) => (

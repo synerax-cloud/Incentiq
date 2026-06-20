@@ -13,11 +13,11 @@ type Field = {
 };
 
 const fields: Field[] = [
-  { id: "firstName", label: "First name", type: "text", placeholder: "Alex", required: true, half: true },
-  { id: "lastName", label: "Last name", type: "text", placeholder: "Carter", required: true, half: true },
-  { id: "email", label: "Work email", type: "email", placeholder: "alex@company.com", required: true },
-  { id: "company", label: "Company name", type: "text", placeholder: "Acme Corp", required: true, half: true },
-  { id: "title", label: "Job title", type: "text", placeholder: "VP of Sales", required: true, half: true },
+  { id: "firstName", label: "First name", type: "text", placeholder: "", required: true, half: true },
+  { id: "lastName", label: "Last name", type: "text", placeholder: "", required: true, half: true },
+  { id: "email", label: "Work email", type: "email", placeholder: "", required: true },
+  { id: "company", label: "Company name", type: "text", placeholder: "", required: true, half: true },
+  { id: "title", label: "Job title", type: "text", placeholder: "", required: true, half: true },
 ];
 
 const teamSizes = [
@@ -217,7 +217,7 @@ export function DemoForm() {
                 : "border-light-gray bg-white focus:border-green/50",
             ].join(" ")}
           >
-            <option value="" disabled>Select team size…</option>
+            <option value="" disabled></option>
             {teamSizes.map((s) => (
               <option key={s} value={s}>{s}</option>
             ))}
@@ -235,7 +235,7 @@ export function DemoForm() {
           <textarea
             id="message"
             rows={3}
-            placeholder="e.g. We're spending 3 days per cycle reconciling comp in spreadsheets and want to automate it on ServiceNow…"
+            placeholder=""
             value={data.message ?? ""}
             onChange={(e) => handleChange("message", e.target.value)}
             className="w-full resize-none rounded-xl border border-light-gray bg-white px-4 py-2.5 text-[14px] text-dark-green outline-none transition-all placeholder:text-slate/50 focus:border-green/50 focus:ring-2 focus:ring-green/20"

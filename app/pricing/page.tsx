@@ -79,7 +79,7 @@ export default function PricingPage() {
         />
 
         {/* tiers */}
-        <section className="bg-light-green py-24 sm:py-32">
+        <section className="bg-light-green py-14 sm:py-16">
           <div className="shell">
             <RevealGroup className="grid items-stretch gap-5 lg:grid-cols-3">
               {tiers.map((t) => (
@@ -95,7 +95,7 @@ export default function PricingPage() {
                       <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-sky/0 via-accent-green to-sky/0" />
                     ) : null}
 
-                    <div className="flex flex-1 flex-col p-8">
+                    <div className="flex flex-1 flex-col p-6">
                       {t.badge ? (
                         <span className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-sky">
                           <IconSpark className="h-3 w-3" />
@@ -150,7 +150,7 @@ export default function PricingPage() {
         </section>
 
         {/* FAQ */}
-        <section className="py-20 sm:py-28">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <h2 className="font-display text-display-2 font-bold text-dark-green text-balance">

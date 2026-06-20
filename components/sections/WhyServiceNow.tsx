@@ -16,7 +16,7 @@ const pillars = [
 
 export function WhyServiceNow() {
   return (
-    <section id="servicenow" className="relative overflow-hidden py-16 sm:py-20">
+    <section id="servicenow" className="relative overflow-hidden py-14 sm:py-16">
       {/* layered background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-light-green/60 via-white to-white" />
       <div aria-hidden className="pointer-events-none absolute -right-24 top-0 -z-10 h-96 w-96 rounded-full bg-light-green opacity-60 blur-[120px]" />
@@ -35,7 +35,7 @@ export function WhyServiceNow() {
           <ServiceNowFlow />
         </Reveal>
 
-        <RevealGroup className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+        <RevealGroup className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((p) => (
             <RevealItem key={p.title}>
               <div className="group flex gap-4">

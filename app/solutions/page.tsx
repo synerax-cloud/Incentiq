@@ -64,7 +64,7 @@ export default function SolutionsPage() {
           secondary={{ label: "Explore capabilities", href: "/capabilities" }}
         />
 
-        <section className="bg-light-green py-24 sm:py-32">
+        <section className="bg-light-green py-14 sm:py-16">
           <div className="shell">
             <Reveal>
               <SectionHeading
@@ -79,7 +79,7 @@ export default function SolutionsPage() {
                 <Reveal key={t.id} delay={i * 0.05}>
                   <article
                     id={t.id}
-                    className="card grid scroll-mt-28 gap-8 p-8 sm:p-10 lg:grid-cols-[1.3fr_1fr] lg:items-center"
+                    className="card grid scroll-mt-28 gap-8 p-6 lg:grid-cols-[1.3fr_1fr] lg:items-center"
                   >
                     <div>
                       <span className="eyebrow">{t.eyebrow}</span>

@@ -25,7 +25,7 @@ export default function HelpCenterPage() {
           description="Product documentation and step-by-step answers across setup, plans, payouts, and administration."
         />
 
-        <section className="py-20 sm:py-24">
+        <section className="py-14 sm:py-16">
           <div className="shell">
             <div className="space-y-14">
               {helpCategories.map((cat) => {

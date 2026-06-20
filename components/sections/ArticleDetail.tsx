@@ -71,7 +71,7 @@ export function ArticleDetail({
         </section>
 
         {/* article body */}
-        <article className="py-16 sm:py-20">
+        <article className="py-14 sm:py-16">
           <div className="shell">
             <div className="mx-auto max-w-3xl">
               {/* section list */}
@@ -95,7 +95,7 @@ export function ArticleDetail({
               {/* takeaway callout */}
               <Reveal>
                 <div className="mt-14 overflow-hidden rounded-2xl border border-light-green bg-gradient-to-br from-light-green to-white">
-                  <div className="p-6 sm:p-8">
+                  <div className="p-6">
                     <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em] text-green">
                       <span className="grid h-5 w-5 place-items-center rounded-full bg-green">
                         <IconCheck className="h-3 w-3 text-white" />
@@ -121,7 +121,7 @@ export function ArticleDetail({
 
         {/* related items */}
         {related.length > 0 ? (
-          <section className="border-t border-light-gray bg-light-gray py-20 sm:py-24">
+          <section className="border-t border-light-gray bg-light-gray py-14 sm:py-16">
             <div className="shell">
               <div className="flex items-end justify-between gap-4">
                 <h2 className="font-display text-display-3 font-bold text-dark-green">{relatedTitle}</h2>
