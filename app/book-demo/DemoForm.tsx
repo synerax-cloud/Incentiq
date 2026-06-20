@@ -51,6 +51,7 @@ export function DemoForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [teamSizeOpen, setTeamSizeOpen] = useState(false);
 
   function handleChange(id: string, value: string) {
     setData((prev) => ({ ...prev, [id]: value }));
@@ -163,7 +164,7 @@ export function DemoForm() {
                   "focus:ring-2 focus:ring-green/20",
                   errors[f.id]
                     ? "border-red/30 bg-red/10/40 focus:border-red/40"
-                    : "border-light-gray bg-white focus:border-green/50",
+                    : "border-[#D1D5DB] bg-[#F8FAFC] focus:border-green/50",
                 ].join(" ")}
               />
               {errors[f.id] ? (
@@ -190,7 +191,7 @@ export function DemoForm() {
                 "focus:ring-2 focus:ring-green/20",
                 errors[f.id]
                   ? "border-red/30 bg-red/10/40 focus:border-red/40"
-                  : "border-light-gray bg-white focus:border-green/50",
+                  : "border-[#D1D5DB] bg-[#F8FAFC] focus:border-green/50",
               ].join(" ")}
             />
             {errors[f.id] ? (
@@ -199,29 +200,53 @@ export function DemoForm() {
           </div>
         ))}
 
-        {/* team size */}
-        <div>
-          <label htmlFor="teamSize" className="mb-1.5 block text-[13px] font-semibold text-dark-green">
+        {/* team size — custom dropdown */}
+        <div className="relative">
+          <label className="mb-1.5 block text-[13px] font-semibold text-dark-green">
             Sales team size <span className="text-green">*</span>
           </label>
-          <select
-            id="teamSize"
-            value={data.teamSize ?? ""}
-            onChange={(e) => handleChange("teamSize", e.target.value)}
+
+          {/* invisible overlay to close on outside click */}
+          {teamSizeOpen && (
+            <div className="fixed inset-0 z-10" onClick={() => setTeamSizeOpen(false)} />
+          )}
+
+          <button
+            type="button"
+            onClick={() => setTeamSizeOpen((o) => !o)}
             className={[
-              "w-full appearance-none rounded-xl border px-4 py-2.5 text-[14px] text-dark-green outline-none transition-all",
+              "relative z-20 flex w-full items-center justify-between rounded-xl border px-4 py-2.5 text-[14px] text-left outline-none transition-all",
               "focus:ring-2 focus:ring-green/20",
-              !data.teamSize ? "text-slate/50" : "",
               errors.teamSize
-                ? "border-red/30 bg-red/10/40 focus:border-red/40"
-                : "border-light-gray bg-white focus:border-green/50",
+                ? "border-red/30 bg-[#FEF2F2] text-red/70"
+                : "border-[#D1D5DB] bg-[#F8FAFC] focus:border-green/50",
+              !data.teamSize ? "text-slate/50" : "text-dark-green",
             ].join(" ")}
           >
-            <option value="" disabled></option>
-            {teamSizes.map((s) => (
-              <option key={s} value={s}>{s}</option>
-            ))}
-          </select>
+            <span>{data.teamSize || "Select team size"}</span>
+            <svg
+              className={`h-4 w-4 shrink-0 text-slate transition-transform duration-150 ${teamSizeOpen ? "rotate-180" : ""}`}
+              viewBox="0 0 20 20" fill="currentColor" aria-hidden
+            >
+              <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
+          </button>
+
+          {teamSizeOpen && (
+            <div className="absolute z-30 mt-1 w-full overflow-hidden rounded-xl border border-[#D1D5DB] bg-white shadow-lg">
+              {teamSizes.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => { handleChange("teamSize", s); setTeamSizeOpen(false); }}
+                  className="block w-full px-4 py-2.5 text-left text-[14px] text-dark-green transition-colors hover:bg-light-green hover:text-green"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+
           {errors.teamSize ? (
             <p className="mt-1 text-[11.5px] font-medium text-red">{errors.teamSize}</p>
           ) : null}
@@ -238,7 +263,7 @@ export function DemoForm() {
             placeholder=""
             value={data.message ?? ""}
             onChange={(e) => handleChange("message", e.target.value)}
-            className="w-full resize-none rounded-xl border border-light-gray bg-white px-4 py-2.5 text-[14px] text-dark-green outline-none transition-all placeholder:text-slate/50 focus:border-green/50 focus:ring-2 focus:ring-green/20"
+            className="w-full resize-none rounded-xl border border-[#D1D5DB] bg-[#F8FAFC] px-4 py-2.5 text-[14px] text-dark-green outline-none transition-all placeholder:text-slate/50 focus:border-green/50 focus:ring-2 focus:ring-green/20"
           />
         </div>
 
