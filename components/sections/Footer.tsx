@@ -33,7 +33,7 @@ const columns = [
     title: "Company",
     links: [
       { label: "Capabilities", href: "/capabilities" },
-      { label: "Pricing", href: "/pricing" },
+      { label: "Pricing", href: "/book-demo" },
       { label: "Why ServiceNow", href: "/why-servicenow" },
       { label: "Book a demo", href: "/book-demo" },
     ],

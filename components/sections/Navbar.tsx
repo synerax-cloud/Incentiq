@@ -110,6 +110,10 @@ const nav: NavItem[] = [
       ],
     },
   },
+  {
+    label: "Pricing",
+    href: "/book-demo",
+  },
 ];
 
 export function Navbar() {
