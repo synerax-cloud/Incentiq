@@ -7,10 +7,10 @@ const assurances = ["Native to ServiceNow", "Enterprise governance", "AI-first b
 
 export function FinalCTA() {
   return (
-    <section id="demo" className="px-[var(--shell-px)] py-16 sm:py-20">
+    <section id="demo" className="px-[var(--shell-px)] py-12 sm:py-14">
       <div className="mx-auto max-w-shell-wide">
         <Reveal>
-          <div className="mesh grain relative overflow-hidden rounded-xl4 border border-white/60 px-7 py-20 text-center shadow-[0_24px_80px_rgba(11,29,45,0.14),0_4px_16px_rgba(11,29,45,0.06)] sm:px-16 sm:py-32">
+          <div className="mesh grain relative overflow-hidden rounded-xl4 border border-white/60 px-7 py-14 text-center shadow-[0_24px_80px_rgba(11,29,45,0.14),0_4px_16px_rgba(11,29,45,0.06)] sm:px-16 sm:py-20">
             {/* ambient glow blobs */}
             <div aria-hidden className="pointer-events-none absolute -left-20 top-0 h-96 w-96 rounded-full bg-teal opacity-70 blur-[80px]" />
             <div aria-hidden className="pointer-events-none absolute -right-20 bottom-0 h-96 w-96 rounded-full bg-light-gray opacity-70 blur-[80px]" />

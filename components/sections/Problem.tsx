@@ -213,7 +213,7 @@ export function Problem() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="problem" className="bg-light-gray py-16 sm:py-20">
+    <section id="problem" className="bg-light-gray py-12 sm:py-14">
       <div className="shell">
 
         {/* heading */}

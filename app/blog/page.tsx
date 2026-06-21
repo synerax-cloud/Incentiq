@@ -31,7 +31,7 @@ export default async function BlogListPage() {
       </div>
 
       {posts.length === 0 ? (
-        <div className="text-center py-20 text-dark-green/40">No posts published yet.</div>
+        <div className="text-center py-10 text-dark-green/40">No posts published yet.</div>
       ) : (
         <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post: (typeof posts)[number]) => (

@@ -5,6 +5,15 @@
 .DS_Store
 *.pem
 npm-debug.log*
+
+# Environment variables
 .env
+.env.*
 .env*.local
+*.env
+
+# Database
+*.sql
+*.schema.sql
+
 next-env.d.ts

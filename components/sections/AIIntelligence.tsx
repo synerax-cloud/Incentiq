@@ -29,7 +29,7 @@ export function AIIntelligence() {
           />
         </Reveal>
 
-        <div className="mt-10 grid items-center gap-14 lg:grid-cols-[1fr_1.05fr] lg:gap-20">
+        <div className="mt-10 grid items-center gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-14">
           <Reveal y={24}>
             <AIVisual />
           </Reveal>

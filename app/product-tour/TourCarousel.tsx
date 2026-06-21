@@ -16,11 +16,6 @@ type Feature = { icon: (p: IconProps) => JSX.Element; title: string; body: strin
 type Slide   = { file: string; caption: string };
 type TabData = { id: string; label: string; banner: string; features: Feature[]; slides: Slide[] };
 
-/* ── Animation constants ─────────────────────────────────────────────── */
-
-const DURATION = 350;
-const EASE     = "cubic-bezier(0.22, 1, 0.36, 1)";
-
 /* ── Tab data ────────────────────────────────────────────────────────── */
 
 const TABS: TabData[] = [
@@ -224,7 +219,7 @@ function SlideImage({ file, caption }: { file: string; caption: string }) {
 
 function FeatureCards({ features }: { features: Feature[] }) {
   return (
-    <div className="mt-8 grid gap-4 sm:grid-cols-3">
+    <div className="mt-6 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-3">
       {features.map((f) => {
         const Icon = f.icon;
         return (
@@ -291,75 +286,61 @@ function ArrowBtn({
 /* ── Main carousel ───────────────────────────────────────────────────── */
 
 export function TourCarousel() {
-  /* ── Displayed position ── */
-  const [tabIdx,   setTabIdx]   = useState(0);
-  const [slideIdx, setSlideIdx] = useState(0);
-
-  /* ── Push animation state machine: idle → setup → go → idle ── */
-  const [outgoing,   setOutgoing]   = useState<{ file: string; caption: string } | null>(null);
-  const [animDir,    setAnimDir]    = useState<1 | -1>(1);
-  const [animPhase,  setAnimPhase]  = useState<"idle" | "setup" | "go">("idle");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [tabIdx,       setTabIdx]       = useState(0);
+  const [slideIdx,     setSlideIdx]     = useState(0);    // target (user intent)
+  const [displayedIdx, setDisplayedIdx] = useState(0);    // what's visible in frame
+  const [flipPhase,    setFlipPhase]    = useState<"idle" | "out" | "in-ready" | "in">("idle");
+  const [flipDir,      setFlipDir]      = useState<1 | -1>(1);
+  const [captionVisible, setCaptionVisible] = useState(true);
+  const flipRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const tab         = TABS[tabIdx];
   const totalSlides = tab.slides.length;
-  const current     = tab.slides[slideIdx];
+  const displayed   = tab.slides[displayedIdx];
 
-  /* Derive CSS transforms from animation phase ─────────────────────── */
-
-  // Incoming (current) slide
-  const incomingStyle: React.CSSProperties = {
-    position:   "absolute",
-    inset:      0,
-    transform:  animPhase === "setup"
-      ? `translateX(${animDir * 100}%) scale(1.04)`
-      : "translateX(0) scale(1)",
-    transition: animPhase === "go"
-      ? `transform ${DURATION}ms ${EASE}`
+  /* Card flip CSS ──────────────────────────────────────────────────── */
+  const flipStyle: React.CSSProperties = {
+    position: "absolute",
+    inset: 0,
+    backfaceVisibility: "hidden",
+    transform:
+      flipPhase === "out"
+        ? (flipDir === 1 ? "rotateY(-90deg)" : "rotateY(90deg)")
+        : flipPhase === "in-ready"
+        ? (flipDir === 1 ? "rotateY(90deg)"  : "rotateY(-90deg)")
+        : "rotateY(0deg)",
+    transition:
+      flipPhase === "out" ? "transform 150ms ease-in"
+      : flipPhase === "in" ? "transform 150ms ease-out"
       : "none",
     willChange: "transform",
   };
 
-  // Outgoing (previous) slide
-  const outgoingStyle: React.CSSProperties = {
-    position:   "absolute",
-    inset:      0,
-    transform:  animPhase === "go"
-      ? `translateX(${-animDir * 100}%) scale(0.96)`
-      : "translateX(0) scale(1)",
-    transition: animPhase === "go"
-      ? `transform ${DURATION}ms ${EASE}`
-      : "none",
-    willChange: "transform",
-  };
-
-  /* Navigate to a slide with push animation ─────────────────────────── */
+  /* Navigate with card flip ────────────────────────────────────────── */
   const navigateSlide = useCallback((next: number, dir: 1 | -1) => {
-    if (next === slideIdx) return;
-    if (timerRef.current) clearTimeout(timerRef.current);
+    if (next === slideIdx || flipPhase !== "idle") return;
+    if (flipRef.current) clearTimeout(flipRef.current);
 
-    // Snapshot what's currently on screen as the outgoing content
-    const leaving = TABS[tabIdx].slides[slideIdx];
-    setOutgoing({ file: leaving.file, caption: leaving.caption });
-    setAnimDir(dir);
-    setAnimPhase("setup");   // render both at start positions, no CSS transition yet
-    setSlideIdx(next);
+    setFlipDir(dir);
+    setFlipPhase("out");
 
-    // One double-RAF later: the browser has painted the setup state;
-    // now apply CSS transitions so the browser animates from start → end.
-    requestAnimationFrame(() => {
+    // After flip-out (150ms): swap image, snap to "in-ready" start angle, then flip in
+    flipRef.current = setTimeout(() => {
+      setSlideIdx(next);
+      setDisplayedIdx(next);
+      setFlipPhase("in-ready");
+
       requestAnimationFrame(() => {
-        setAnimPhase("go");
+        requestAnimationFrame(() => {
+          setFlipPhase("in");
+          flipRef.current = setTimeout(() => {
+            setFlipPhase("idle");
+            flipRef.current = null;
+          }, 160);
+        });
       });
-    });
-
-    // After animation completes: clean up outgoing layer
-    timerRef.current = setTimeout(() => {
-      setOutgoing(null);
-      setAnimPhase("idle");
-      timerRef.current = null;
-    }, DURATION + 60);
-  }, [slideIdx, tabIdx]);
+    }, 155);
+  }, [slideIdx, flipPhase]);
 
   const prev = useCallback(() => {
     if (slideIdx > 0) navigateSlide(slideIdx - 1, -1);
@@ -369,16 +350,16 @@ export function TourCarousel() {
     if (slideIdx < totalSlides - 1) navigateSlide(slideIdx + 1, 1);
   }, [slideIdx, totalSlides, navigateSlide]);
 
-  /* Switch tab — instant, no slide animation ──────────────────────── */
+  /* Switch tab — instant ────────────────────────────────────────────── */
   const switchTab = useCallback((index: number) => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-    setOutgoing(null);
-    setAnimPhase("idle");
+    if (flipRef.current) clearTimeout(flipRef.current);
+    setFlipPhase("idle");
     setTabIdx(index);
     setSlideIdx(0);
+    setDisplayedIdx(0);
   }, []);
 
-  /* Keyboard left / right arrows ─────────────────────────────────── */
+  /* Keyboard left / right arrows ────────────────────────────────────── */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement).closest("input, textarea, [contenteditable]")) return;
@@ -389,16 +370,24 @@ export function TourCarousel() {
     return () => window.removeEventListener("keydown", onKey);
   }, [prev, next]);
 
-  /* Cleanup on unmount ──────────────────────────────────────────────── */
-  useEffect(() => () => { if (timerRef.current) clearTimeout(timerRef.current); }, []);
+  /* Caption fade — triggers when displayed content changes ───────────── */
+  useEffect(() => {
+    setCaptionVisible(false);
+    const t = setTimeout(() => setCaptionVisible(true), 80);
+    return () => clearTimeout(t);
+  }, [displayedIdx, tabIdx]);
+
+  /* Cleanup on unmount ───────────────────────────────────────────────── */
+  useEffect(() => () => { if (flipRef.current) clearTimeout(flipRef.current); }, []);
 
   /* ── Render ─────────────────────────────────────────────────────── */
   return (
-    <section className="py-14 sm:py-20">
+    <section className="pt-8 pb-10 sm:pb-14">
       <div className="shell">
 
         {/* ── 1. Tab pills ── */}
         <div
+          id="tour-tabs"
           className="flex justify-center overflow-x-auto"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
         >
@@ -430,12 +419,11 @@ export function TourCarousel() {
                       : "bg-transparent text-[#475569] font-medium hover:bg-[#E8F5E9] hover:text-[#00A651]",
                   ].join(" ")}
                   style={{
-                    padding: "8px 18px",
-                    fontSize: "13.5px",
+                    padding: "6px 14px",
+                    fontSize: "12.5px",
                     boxShadow: isActive ? "0 2px 8px rgba(0,166,81,0.25)" : "none",
                   }}
                 >
-                  {/* Dot indicator — visible above label on active tab */}
                   <span
                     aria-hidden
                     style={{
@@ -460,22 +448,22 @@ export function TourCarousel() {
         <div id={`panel-${tab.id}`} role="tabpanel" aria-labelledby={`tab-${tab.id}`}>
 
           {/* ── 2. Stage banner ── */}
-          <div className="mt-7 flex items-center gap-3.5 rounded-xl border border-green/15 bg-light-green px-5 py-4">
+          <div className="mt-5 flex items-center gap-3.5 rounded-xl border border-green/15 bg-light-green px-5 py-3.5">
             <span className="h-2 w-2 shrink-0 rounded-full bg-green" aria-hidden />
             <span className="eyebrow mr-3">Stage {tabIdx + 1} of {TABS.length}</span>
             <p className="text-[14.5px] font-semibold leading-snug text-dark-green">{tab.banner}</p>
           </div>
 
           {/* ── 3. Screenshot carousel ── */}
-          <div className="mt-7">
+          <div className="mt-5">
 
             {/* Browser chrome frame */}
-            <div className="overflow-hidden rounded-2xl border border-light-gray bg-white shadow-float">
+            <div className="overflow-hidden rounded-2xl border border-light-gray bg-white shadow-[0_8px_32px_rgba(15,45,36,0.12),0_2px_8px_rgba(15,45,36,0.06)]">
               {/* Chrome bar */}
               <div className="flex items-center gap-1.5 border-b border-light-gray bg-[#F8FAFC] px-4 py-2.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-red/50"   aria-hidden />
-                <span className="h-2.5 w-2.5 rounded-full bg-amber/50" aria-hidden />
-                <span className="h-2.5 w-2.5 rounded-full bg-green/60" aria-hidden />
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FF5F57" }} aria-hidden />
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FFBD2E" }} aria-hidden />
+                <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#28C840" }} aria-hidden />
                 <div className="ml-3 flex min-w-0 flex-1 items-center gap-2 rounded-full border border-light-gray bg-white px-3 py-1 max-w-xs">
                   <svg className="h-2.5 w-2.5 shrink-0 text-slate/35" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                     <circle cx="11" cy="11" r="8" />
@@ -487,37 +475,39 @@ export function TourCarousel() {
                 </div>
               </div>
 
-              {/* Screenshot area — overflow:hidden clips the sliding images */}
-              <div className="relative aspect-[16/9] overflow-hidden bg-light-green/20">
-
-                {/* Outgoing slide (exits behind the incoming) */}
-                {outgoing && (
-                  <div style={outgoingStyle}>
-                    <SlideImage file={outgoing.file} caption={outgoing.caption} />
-                  </div>
-                )}
-
-                {/* Incoming / current slide */}
-                <div style={incomingStyle}>
+              {/* Screenshot area — perspective enables 3D card flip */}
+              <div
+                className="relative aspect-[16/9] overflow-hidden bg-light-green/20"
+                style={{ perspective: "1200px" }}
+              >
+                {/* Single flipping frame — image swaps at the 90° midpoint */}
+                <div style={flipStyle}>
                   <SlideImage
-                    key={`${tabIdx}-${slideIdx}`}
-                    file={current.file}
-                    caption={current.caption}
+                    key={`${tabIdx}-${displayedIdx}`}
+                    file={displayed.file}
+                    caption={displayed.caption}
                   />
                 </div>
 
-                {/* Left arrow — overlaid on image */}
-                <ArrowBtn direction="left" onClick={prev} disabled={slideIdx === 0} label="Previous screenshot" />
-
-                {/* Right arrow — overlaid on image */}
-                <ArrowBtn direction="right" onClick={next} disabled={slideIdx === totalSlides - 1} label="Next screenshot" />
+                <ArrowBtn
+                  direction="left"
+                  onClick={prev}
+                  disabled={slideIdx === 0 || flipPhase !== "idle"}
+                  label="Previous screenshot"
+                />
+                <ArrowBtn
+                  direction="right"
+                  onClick={next}
+                  disabled={slideIdx === totalSlides - 1 || flipPhase !== "idle"}
+                  label="Next screenshot"
+                />
               </div>
             </div>
 
             {/* Step counter + dot indicators + caption */}
-            <div className="mt-5 flex flex-col items-center gap-3">
+            <div className="mt-4 flex flex-col items-center gap-2.5">
               <p className="text-[11.5px] font-bold uppercase tracking-[0.1em] text-slate">
-                Step {slideIdx + 1} of {totalSlides}
+                Step {displayedIdx + 1} of {totalSlides}
               </p>
 
               <div className="flex items-center gap-1.5" role="group" aria-label="Screenshot navigation">
@@ -526,10 +516,10 @@ export function TourCarousel() {
                     key={i}
                     onClick={() => navigateSlide(i, i > slideIdx ? 1 : -1)}
                     aria-label={`Go to step ${i + 1}`}
-                    aria-current={i === slideIdx ? "step" : undefined}
+                    aria-current={i === displayedIdx ? "step" : undefined}
                     className={[
                       "rounded-full transition-all duration-300",
-                      i === slideIdx
+                      i === displayedIdx
                         ? "h-2 w-6 bg-green"
                         : "h-2 w-2 bg-light-gray hover:bg-green/40",
                     ].join(" ")}
@@ -538,11 +528,12 @@ export function TourCarousel() {
               </div>
 
               <p
-                className="max-w-[600px] text-center text-[14.5px] leading-relaxed text-slate"
+                className="max-w-[640px] text-center text-[15px] font-medium leading-relaxed text-[#0B1D2D]"
+                style={{ opacity: captionVisible ? 1 : 0, transition: "opacity 0.25s ease" }}
                 aria-live="polite"
                 aria-atomic="true"
               >
-                {current.caption}
+                {displayed.caption}
               </p>
             </div>
 

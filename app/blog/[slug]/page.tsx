@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-20 sm:px-6">
+    <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
       <nav className="mb-8">
         <Link href="/blog" className="text-sm text-green hover:underline">← All Posts</Link>
       </nav>
@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params }: Props) {
       )}
 
       {/* CTA */}
-      <div className="mt-16 rounded-2xl border border-light-gray bg-gradient-to-br from-light-green/40 to-light-green/20 p-8 text-center">
+      <div className="mt-10 rounded-2xl border border-light-gray bg-gradient-to-br from-light-green/40 to-light-green/20 p-8 text-center">
         <p className="font-display text-2xl font-bold text-dark-green mb-2">Ready to transform your ICM?</p>
         <p className="text-dark-green/60 mb-5">See how IncentIQ automates incentive compensation on <ServiceNowLogo size="md" />.</p>
         <Link

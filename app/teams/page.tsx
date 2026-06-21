@@ -231,7 +231,7 @@ export default function TeamsPage() {
       <Navbar />
       <main>
         {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="mesh grain relative overflow-hidden pb-20 pt-32 sm:pb-28 sm:pt-40">
+        <section className="mesh grain relative overflow-hidden pb-14 pt-32 sm:pb-16 sm:pt-40">
           <div aria-hidden className="pointer-events-none absolute -right-20 top-8 h-80 w-80 rounded-full bg-teal opacity-55 blur-[100px]" />
           <div aria-hidden className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full bg-light-gray opacity-45 blur-3xl" />
           <div aria-hidden className="pointer-events-none absolute left-1/3 top-1/4 h-48 w-48 rounded-full bg-light-green opacity-60 blur-3xl" />

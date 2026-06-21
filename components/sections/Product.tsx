@@ -19,7 +19,7 @@ export function Product() {
       <div aria-hidden className="pointer-events-none absolute -left-20 bottom-0 -z-10 h-64 w-64 rounded-full bg-light-green opacity-30 blur-3xl" />
 
       <div className="shell">
-        <div className="grid gap-16 lg:grid-cols-[0.9fr_1.18fr] lg:items-center lg:gap-24">
+        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.18fr] lg:items-center lg:gap-14">
           <div>
             <Reveal>
               <SectionHeading

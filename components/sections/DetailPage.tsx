@@ -84,7 +84,7 @@ export function DetailPage({ content }: { content: DetailContent }) {
               />
             </Reveal>
 
-            <RevealGroup className="mt-14 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <RevealGroup className="mt-8 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {content.highlights.map((h) => {
                 const Icon = h.icon;
                 return (

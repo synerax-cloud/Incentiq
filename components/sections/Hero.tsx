@@ -12,7 +12,7 @@ const logos = [
 
 export function Hero() {
   return (
-    <section id="top" className="mesh grain relative overflow-hidden pb-28 pt-36 sm:pb-32 sm:pt-44">
+    <section id="top" className="mesh grain relative overflow-hidden pb-14 pt-36 sm:pb-16 sm:pt-44">
       <div className="shell-wide relative">
         {/* copy */}
         <div className="mx-auto text-center">
@@ -59,12 +59,12 @@ export function Hero() {
         </div>
 
         {/* layered product composition */}
-        <div className="relative mt-20 sm:mt-24">
+        <div className="relative mt-12 sm:mt-14">
           <HeroComposition />
         </div>
 
         {/* trust strip */}
-        <div className="mt-24 sm:mt-28">
+        <div className="mt-12 sm:mt-14">
           <div className="divider-x mb-8" />
           <p className="text-center text-[11.5px] font-bold uppercase tracking-[0.18em] text-slate/70">
             Integrates with your enterprise stack
