@@ -162,7 +162,7 @@ const TABS: TabData[] = [
       { icon: IconGovernance, title: "Custom Reports",      body: "Create reports tailored to your business and leadership needs." },
     ],
     slides: [
-      { file: "31_dashboard-in-case-you-want-to-use-this.png",caption: "Build and explore reports and analytics across incentive performance, compensation spend, and effectiveness." },
+      { file: "35_reports.png", caption: "Build and explore reports and analytics across incentive performance, compensation spend, and organizational effectiveness." },
     ],
   },
   {
