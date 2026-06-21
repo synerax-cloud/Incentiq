@@ -6,6 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { IconCheck, IconSpark } from "@/components/ui/icons";
+import { ServiceNowLogo, withLogo } from "@/components/ui/ServiceNowLogo";
 
 const tiers = [
   {
@@ -111,12 +112,12 @@ export default function PricingPage() {
                       </p>
 
                       <ul className={`mt-6 flex-1 space-y-3 border-t pt-6 ${t.highlight ? "border-white/12" : "border-light-gray"}`}>
-                        {t.features.map((f) => (
-                          <li key={f} className={`flex items-start gap-2.5 text-[13.5px] ${t.highlight ? "text-white/80" : "text-navy"}`}>
+                        {t.features.map((f, fi) => (
+                          <li key={fi} className={`flex items-start gap-2.5 text-[13.5px] ${t.highlight ? "text-white/80" : "text-navy"}`}>
                             <span className={`mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full ${t.highlight ? "bg-white/30 text-white" : "bg-green text-white"}`}>
                               <IconCheck className="h-2.5 w-2.5" />
                             </span>
-                            {f}
+                            {withLogo(f, "sm")}
                           </li>
                         ))}
                       </ul>
@@ -143,7 +144,7 @@ export default function PricingPage() {
 
             <Reveal>
               <p className="mt-10 text-center text-[13px] text-slate">
-                All plans run natively on ServiceNow. Pricing is tailored to org size and modules — talk to us for a quote.
+                All plans run natively on <ServiceNowLogo size="sm" />. Pricing is tailored to org size and modules — talk to us for a quote.
               </p>
             </Reveal>
           </div>
@@ -159,11 +160,11 @@ export default function PricingPage() {
             </Reveal>
 
             <div className="mt-12 grid gap-6 sm:grid-cols-2">
-              {faqs.map((faq) => (
-                <Reveal key={faq.q}>
+              {faqs.map((faq, fi) => (
+                <Reveal key={fi}>
                   <div className="rounded-2xl border border-light-gray bg-white p-6 sm:p-7">
-                    <h3 className="font-display text-[16px] font-bold text-dark-green">{faq.q}</h3>
-                    <p className="mt-3 text-[14px] leading-relaxed text-slate">{faq.a}</p>
+                    <h3 className="font-display text-[16px] font-bold text-dark-green">{withLogo(faq.q, "lg")}</h3>
+                    <p className="mt-3 text-[14px] leading-relaxed text-slate">{withLogo(faq.a, "md")}</p>
                   </div>
                 </Reveal>
               ))}

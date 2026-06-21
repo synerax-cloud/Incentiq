@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { FinalCTA } from "./FinalCTA";
 import { Reveal } from "../ui/Reveal";
 import { IconArrow, IconCheck } from "../ui/icons";
+import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
 export type ArticleSection = { heading: string; paragraphs: string[] };
 
@@ -63,8 +64,8 @@ export function ArticleDetail({
                 ))}
               </div>
 
-              <h1 className="mt-6 font-display text-display-1 font-bold text-dark-green text-balance">{title}</h1>
-              <p className="mt-5 text-lead text-navy text-pretty">{excerpt}</p>
+              <h1 className="mt-6 font-display text-display-1 font-bold text-dark-green text-balance">{withLogo(title, "xl")}</h1>
+              <p className="mt-5 text-lead text-navy text-pretty">{withLogo(excerpt, "md")}</p>
             </div>
           </div>
           <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-light-gray/60 to-transparent" />
@@ -85,7 +86,7 @@ export function ArticleDetail({
                       </span>
                       <h2 className="font-display text-display-3 font-bold text-dark-green">{section.heading}</h2>
                       {section.paragraphs.map((p, i) => (
-                        <p key={i} className="mt-4 text-[16.5px] leading-[1.8] text-navy">{p}</p>
+                        <p key={i} className="mt-4 text-[16.5px] leading-[1.8] text-navy">{withLogo(p, "md")}</p>
                       ))}
                     </div>
                   </Reveal>
@@ -103,7 +104,7 @@ export function ArticleDetail({
                       The takeaway
                     </div>
                     <p className="mt-4 text-[16px] leading-relaxed text-navy">
-                      IncentIQ brings incentive data, calculations, and AI into one governed system on ServiceNow — so compensation is transparent, intelligent, and trusted at enterprise scale.
+                      IncentIQ brings incentive data, calculations, and AI into one governed system on <ServiceNowLogo size="md" /> — so compensation is transparent, intelligent, and trusted at enterprise scale.
                     </p>
                     <Link
                       href="/book-demo"
@@ -135,8 +136,8 @@ export function ArticleDetail({
                 {related.map((r) => (
                   <Link key={r.href} href={r.href} className="card group flex h-full flex-col p-6">
                     <span className="w-fit rounded-full bg-light-green px-2.5 py-1 text-[11px] font-semibold text-dark-green">{r.chip}</span>
-                    <h3 className="mt-4 font-display text-[17px] font-bold leading-snug text-dark-green transition-colors group-hover:text-green">{r.title}</h3>
-                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate">{r.excerpt}</p>
+                    <h3 className="mt-4 font-display text-[17px] font-bold leading-snug text-dark-green transition-colors group-hover:text-green">{withLogo(r.title, "lg")}</h3>
+                    <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate">{withLogo(r.excerpt, "sm")}</p>
                     <span className="mt-5 inline-flex items-center gap-1.5 border-t border-light-gray pt-4 text-[12.5px] font-semibold text-green transition-transform group-hover:translate-x-0.5">
                       Read more
                       <IconArrow className="h-4 w-4" />

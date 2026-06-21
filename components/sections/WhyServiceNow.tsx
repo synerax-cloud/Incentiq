@@ -1,6 +1,7 @@
 ﻿import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import { SectionHeading } from "../ui/Primitives";
 import { ServiceNowFlow } from "../visuals/ServiceNowFlow";
+import { ServiceNowLogo } from "../ui/ServiceNowLogo";
 import {
   IconGovernance, IconSecurity, IconWorkflow, IconScale, IconData, IconLowCode,
 } from "../ui/icons";
@@ -26,7 +27,7 @@ export function WhyServiceNow() {
         <Reveal>
           <SectionHeading
             eyebrow="WHY SERVICENOW"
-            title={<>Built on the power of <span className="text-gradient">ServiceNow.</span></>}
+            title={<>Built on the power of <ServiceNowLogo size="xl" />.</>}
             description="IncentIQ doesn't sit beside your systems — it runs inside the Now Platform. Governance, security, and scale come standard, so incentives inherit the same trust as the rest of the enterprise."
           />
         </Reveal>

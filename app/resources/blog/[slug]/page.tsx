@@ -7,6 +7,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { Reveal } from "@/components/ui/Reveal";
 import { IconArrow, IconCheck } from "@/components/ui/icons";
 import { supabasePublic } from "@/lib/supabase";
+import { ServiceNowLogo } from "@/components/ui/ServiceNowLogo";
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { data: post } = await supabasePublic
@@ -125,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                   <p className="eyebrow">THE TAKEAWAY</p>
                   <p className="mt-3 flex items-start gap-3 text-[15.5px] leading-relaxed text-navy">
                     <IconCheck className="mt-0.5 h-5 w-5 shrink-0 text-green" />
-                    IncentIQ brings incentive data, calculations, and AI into one governed system on ServiceNow — so compensation is transparent, intelligent, and trusted at enterprise scale.
+                    IncentIQ brings incentive data, calculations, and AI into one governed system on <ServiceNowLogo size="md" /> — so compensation is transparent, intelligent, and trusted at enterprise scale.
                   </p>
                   <Link
                     href="/book-demo"

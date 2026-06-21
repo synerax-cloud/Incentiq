@@ -2,6 +2,7 @@
 import { SectionHeading } from "../ui/Primitives";
 import { DashboardMockup } from "../visuals/DashboardMockup";
 import { IconVisibility, IconScale, IconWorkflow, IconSpark } from "../ui/icons";
+import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
 const pillars = [
   { icon: IconSpark, title: "Modern AI-first ICM", body: "Intelligence woven through every incentive workflow, not bolted on." },
@@ -24,7 +25,7 @@ export function Product() {
               <SectionHeading
                 eyebrow="MEET INCENTNOW"
                 title={<>One platform for incentives, <span className="text-gradient">end to end.</span></>}
-                description="IncentIQ unifies incentive data, calculations, and AI on ServiceNow — turning a fragmented, spreadsheet-driven process into a single governed system."
+                description={<>IncentIQ unifies incentive data, calculations, and AI on <ServiceNowLogo size="md" /> — turning a fragmented, spreadsheet-driven process into a single governed system.</>}
               />
             </Reveal>
 
@@ -36,7 +37,7 @@ export function Product() {
                       <p.icon className="h-5 w-5" />
                     </span>
                     <div>
-                      <h3 className="text-[15.5px] font-semibold tracking-tight text-dark-green">{p.title}</h3>
+                      <h3 className="text-[15.5px] font-semibold tracking-tight text-dark-green">{withLogo(p.title, "lg")}</h3>
                       <p className="mt-1 text-[13.5px] leading-relaxed text-slate">{p.body}</p>
                     </div>
                   </div>

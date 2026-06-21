@@ -6,6 +6,7 @@ import {
   IconAttainment, IconOrg, IconTrust, IconResolve,
   type IconProps,
 } from "@/components/ui/icons";
+import { ServiceNowLogo } from "@/components/ui/ServiceNowLogo";
 
 export type Group = "platform" | "capabilities" | "solutions" | "resources";
 
@@ -14,7 +15,7 @@ export type DetailContent = {
   slug: string;
   eyebrow: string;
   title: ReactNode;
-  lead: string;
+  lead: ReactNode;
   highlights: { icon: (p: IconProps) => JSX.Element; title: string; body: string }[];
   points: string[];
   overviewHref: string;
@@ -35,7 +36,7 @@ function make(
   slug: string,
   eyebrow: string,
   title: ReactNode,
-  lead: string,
+  lead: ReactNode,
   highlights: DetailContent["highlights"],
   points: string[],
   highlightsTitle?: string,
@@ -94,7 +95,7 @@ const platform: DetailContent[] = [
     "built-on-servicenow",
     "BUILT ON SERVICENOW",
     <>Enterprise-ready <span className="text-gradient">from day one.</span></>,
-    "Built natively on ServiceNow, IncentIQ inherits the platform capabilities trusted by some of the world's largest enterprises.",
+    <>Built natively on <ServiceNowLogo size="md" />, IncentIQ inherits the platform capabilities trusted by some of the world&apos;s largest enterprises.</>,
     [
       { icon: IconWorkflow, title: "Workflow Automation", body: "Automate approvals, exceptions, disputes, and operational processes through configurable workflows." },
       { icon: IconScale, title: "Enterprise Scale", body: "Support global organizations, complex compensation structures, and large transaction volumes." },

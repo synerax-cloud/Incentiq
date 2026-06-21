@@ -8,6 +8,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { IconArrow } from "@/components/ui/icons";
 import { detailByGroup } from "@/content/detail";
+import { ServiceNowLogo } from "@/components/ui/ServiceNowLogo";
 
 export const metadata: Metadata = {
   title: "Capabilities — IncentIQ",
@@ -103,7 +104,7 @@ export default function CapabilitiesPage() {
         <PageHero
           eyebrow="CAPABILITIES"
           title={<>Design. Operate. <span className="text-gradient">Optimize.</span></>}
-          description="IncentIQ unifies organization management, incentive design, compensation operations, analytics, and AI into a single governed platform built on ServiceNow"
+          description={<>IncentIQ unifies organization management, incentive design, compensation operations, analytics, and AI into a single governed platform built on <ServiceNowLogo size="md" /></>}
           primary={{ label: "Book a demo", href: "/book-demo" }}
           secondary={{ label: "Explore the platform", href: "/platform" }}
         />

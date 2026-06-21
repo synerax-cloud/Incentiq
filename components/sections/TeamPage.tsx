@@ -4,6 +4,7 @@ import { Footer } from "./Footer";
 import { FinalCTA } from "./FinalCTA";
 import { Button, SectionHeading } from "../ui/Primitives";
 import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
+import { ServiceNowLogo } from "../ui/ServiceNowLogo";
 
 /* ── Mockup variant types ─────────────────────────────── */
 
@@ -443,7 +444,7 @@ export function TeamPage({ eyebrow, title, body, highlightsTitle, highlights, mo
               <SectionHeading
                 eyebrow="HIGHLIGHTS"
                 title={highlightsTitle}
-                description="The essentials, built into one governed platform on ServiceNow."
+                description={<>The essentials, built into one governed platform on <ServiceNowLogo size="md" />.</>}
               />
             </Reveal>
 

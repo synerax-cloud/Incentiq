@@ -6,6 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { IconArrow } from "@/components/ui/icons";
+import { withLogo } from "@/components/ui/ServiceNowLogo";
 import { helpArticles, helpCategories } from "@/content/help";
 
 export const metadata: Metadata = {
@@ -48,9 +49,9 @@ export default function HelpCenterPage() {
                             className="card group flex h-full flex-col p-6"
                           >
                             <h3 className="font-display text-[16px] font-bold leading-snug text-dark-green transition-colors group-hover:text-green">
-                              {a.title}
+                              {withLogo(a.title, "lg")}
                             </h3>
-                            <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate">{a.excerpt}</p>
+                            <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate">{withLogo(a.excerpt, "sm")}</p>
                             <span className="mt-4 inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-green transition-transform group-hover:translate-x-0.5">
                               <span className="text-slate">{a.readTime}</span>
                               <IconArrow className="ml-1 h-4 w-4" />

@@ -9,6 +9,7 @@ import { loginSchema, type LoginInput } from "@/lib/validations/auth";
 import { Eye, EyeOff, Loader2, ShieldCheck, TrendingUp, BarChart3, Zap } from "lucide-react";
 import Link from "next/link";
 import { LogoMark } from "@/components/ui/Logo";
+import { withLogo } from "@/components/ui/ServiceNowLogo";
 
 const REMEMBER_KEY = "incentnow_admin_email";
 
@@ -84,7 +85,7 @@ export default function LoginPage() {
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-light-green ring-1 ring-green/10">
                     <Icon className="h-4 w-4 text-green" />
                   </span>
-                  <span className="text-[14px] font-medium text-navy">{text}</span>
+                  <span className="text-[14px] font-medium text-navy">{withLogo(text, "sm")}</span>
                 </li>
               ))}
             </ul>

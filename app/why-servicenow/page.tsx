@@ -5,6 +5,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { WhyServiceNow } from "@/components/sections/WhyServiceNow";
 import { Benefits } from "@/components/sections/Benefits";
 import { PageHero } from "@/components/ui/PageHero";
+import { ServiceNowLogo } from "@/components/ui/ServiceNowLogo";
 
 export const metadata: Metadata = {
   title: "Why ServiceNow — IncentIQ",
@@ -20,7 +21,7 @@ export default function WhyServiceNowPage() {
         <PageHero
           eyebrow="WHY SERVICENOW"
           title={<>Enterprise scale, <span className="text-gradient">inherited by design.</span></>}
-          description="By building natively on ServiceNow, IncentIQ inherits the governance, security, and scalability of the Now Platform — no bolt-on integrations, no data silos."
+          description={<>By building natively on <ServiceNowLogo size="md" />, IncentIQ inherits the governance, security, and scalability of the Now Platform — no bolt-on integrations, no data silos.</>}
           primary={{ label: "Book a demo", href: "/book-demo" }}
           secondary={{ label: "See the platform", href: "/platform" }}
         />

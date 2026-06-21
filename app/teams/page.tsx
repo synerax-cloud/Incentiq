@@ -20,6 +20,7 @@ import {
   IconForecast,
   IconData,
 } from "@/components/ui/icons";
+import { ServiceNowLogo } from "@/components/ui/ServiceNowLogo";
 
 export const metadata: Metadata = {
   title: "Teams — IncentIQ",
@@ -243,7 +244,7 @@ export default function TeamsPage() {
                   Incentive Intelligence for every team.
                 </h1>
                 <p className="mt-5 max-w-xl text-lead text-navy text-pretty">
-                  Sales gains transparency. Finance gains control. RevOps gains agility. Leadership gains insight. All from a unified platform built natively on ServiceNow.
+                  Sales gains transparency. Finance gains control. RevOps gains agility. Leadership gains insight. All from a unified platform built natively on <ServiceNowLogo size="md" />.
                 </p>
                 <div className="mt-9 flex flex-wrap items-center gap-3">
                   <Button href="/book-demo" variant="primary">Book a demo</Button>

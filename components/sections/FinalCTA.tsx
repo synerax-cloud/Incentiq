@@ -1,6 +1,7 @@
 ﻿import { Button } from "../ui/Primitives";
 import { Reveal } from "../ui/Reveal";
 import { IconCheck, IconSpark } from "../ui/icons";
+import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
 const assurances = ["Native to ServiceNow", "Enterprise governance", "AI-first by design", "No spreadsheets"];
 
@@ -29,7 +30,7 @@ export function FinalCTA() {
                 <span className="text-gradient">Automate incentives.</span>
               </h2>
               <p className="mx-auto mt-6 max-w-2xl text-lead text-navy text-pretty">
-                See how IncentIQ turns sales compensation into a transparent, intelligent, governed workflow — built natively on ServiceNow.
+                See how IncentIQ turns sales compensation into a transparent, intelligent, governed workflow — built natively on <ServiceNowLogo size="md" />.
               </p>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
@@ -42,12 +43,12 @@ export function FinalCTA() {
               </div>
 
               <ul className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-                {assurances.map((a) => (
-                  <li key={a} className="flex items-center gap-2 text-[13px] font-medium text-navy">
+                {assurances.map((a, i) => (
+                  <li key={i} className="flex items-center gap-2 text-[13px] font-medium text-navy">
                     <span className="grid h-4 w-4 place-items-center rounded-full bg-green">
                       <IconCheck className="h-2.5 w-2.5 text-white" />
                     </span>
-                    {a}
+                    {withLogo(a, "sm")}
                   </li>
                 ))}
               </ul>

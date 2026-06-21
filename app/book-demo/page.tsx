@@ -3,6 +3,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { DemoForm } from "./DemoForm";
 import { IconCheck } from "@/components/ui/icons";
+import { ServiceNowLogo, withLogo } from "@/components/ui/ServiceNowLogo";
 
 export const metadata: Metadata = {
   title: "Book a demo — IncentIQ",
@@ -37,16 +38,16 @@ export default function BookDemoPage() {
                 <span className="text-gradient">in action.</span>
               </h1>
               <p className="mt-5 max-w-lg text-lead text-navy text-pretty">
-                Get a personalised walkthrough of how IncentIQ transforms sales compensation — live on ServiceNow with your use case in focus.
+                Get a personalised walkthrough of how IncentIQ transforms sales compensation — live on <ServiceNowLogo size="md" /> with your use case in focus.
               </p>
 
               <ul className="mt-8 space-y-3.5">
-                {proof.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[15px] font-medium text-navy">
+                {proof.map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-[15px] font-medium text-navy">
                     <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-green shadow-[0_2px_8px_rgba(0,166,81,0.25)]">
                       <IconCheck className="h-3 w-3 text-white" />
                     </span>
-                    {item}
+                    {withLogo(item, "md")}
                   </li>
                 ))}
               </ul>

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { formatDate } from "@/lib/utils";
 import type { Metadata } from "next";
+import { ServiceNowLogo } from "@/components/ui/ServiceNowLogo";
 
 export const revalidate = 60;
 
@@ -131,7 +132,7 @@ export default async function BlogPostPage({ params }: Props) {
       {/* CTA */}
       <div className="mt-16 rounded-2xl border border-light-gray bg-gradient-to-br from-light-green/40 to-light-green/20 p-8 text-center">
         <p className="font-display text-2xl font-bold text-dark-green mb-2">Ready to transform your ICM?</p>
-        <p className="text-dark-green/60 mb-5">See how IncentIQ automates incentive compensation on ServiceNow.</p>
+        <p className="text-dark-green/60 mb-5">See how IncentIQ automates incentive compensation on <ServiceNowLogo size="md" />.</p>
         <Link
           href="/book-demo"
           style={{ backgroundColor: "#00A651", color: "#FFFFFF" }}

@@ -1,6 +1,7 @@
 ﻿import { Button, Pill } from "../ui/Primitives";
 import { HeroComposition } from "../visuals/HeroComposition";
 import { IconCheck } from "../ui/icons";
+import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
 const features = ["Quota management", "Commission automation", "Dispute resolution", "AI assistant"];
 
@@ -16,7 +17,7 @@ export function Hero() {
         {/* copy */}
         <div className="mx-auto text-center">
           <div className="flex justify-center">
-            <Pill>Built natively on ServiceNow</Pill>
+            <Pill>Built natively on <ServiceNowLogo size="sm" /></Pill>
           </div>
 
           <h1
@@ -29,7 +30,7 @@ export function Hero() {
           </h1>
 
           <p className="mx-auto mt-7 max-w-2xl text-lead text-navy text-pretty">
-            Move beyond spreadsheets and legacy commission tools. IncentIQ delivers intelligent automation, real-time visibility, and enterprise-scale incentive management built on ServiceNow.
+            Move beyond spreadsheets and legacy commission tools. IncentIQ delivers intelligent automation, real-time visibility, and enterprise-scale incentive management built on <ServiceNowLogo size="md" />.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3.5">
@@ -73,7 +74,7 @@ export function Hero() {
               {[...logos, ...logos].map((l, i) => (
                 <span key={i} className="flex items-center">
                   <span className="whitespace-nowrap px-8 font-display text-[1.1rem] font-bold tracking-tight text-dark-green/30 transition-colors hover:text-dark-green/55">
-                    {l}
+                    {withLogo(l, "sm")}
                   </span>
                   {i % logos.length !== logos.length - 1 ? (
                     <span className="h-1 w-1 shrink-0 rounded-full bg-dark-green/12" />

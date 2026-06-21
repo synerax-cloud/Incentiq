@@ -6,6 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { IconArrow } from "@/components/ui/icons";
+import { withLogo } from "@/components/ui/ServiceNowLogo";
 import {
   blogPosts, guideItems, analystInsights,
   firmColors, levelColors,
@@ -123,7 +124,7 @@ function AnalystCard({ insight }: { insight: AnalystInsight }) {
         <span className="shrink-0 text-[11px] text-slate">{insight.source}</span>
       </div>
       <h3 className="mt-4 font-display text-[15.5px] font-bold leading-snug text-dark-green text-balance">
-        {insight.headline}
+        {withLogo(insight.headline, "lg")}
       </h3>
       <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate">{insight.summary}</p>
       <div className="mt-4 flex items-center justify-between border-t border-light-gray pt-4">

@@ -6,6 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { IconArrow } from "@/components/ui/icons";
+import { withLogo } from "@/components/ui/ServiceNowLogo";
 import { blogPosts } from "@/content/resources";
 
 export const metadata: Metadata = {
@@ -56,10 +57,10 @@ export default function BlogPage() {
                       </div>
 
                       <h3 className="mt-4 font-display text-[20px] font-bold leading-snug text-dark-green transition-colors group-hover:text-green text-balance">
-                        {post.title}
+                        {withLogo(post.title, "lg")}
                       </h3>
                       <p className="mt-3 flex-1 text-[14px] leading-relaxed text-slate">
-                        {post.excerpt}
+                        {withLogo(post.excerpt, "sm")}
                       </p>
 
                       <Link

@@ -14,7 +14,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
     .split(" ")
     .map((w) => (w === "&" ? "&" : w.charAt(0) + w.slice(1).toLowerCase()))
     .join(" ");
-  return { title: `${name} — IncentIQ`, description: content.lead };
+  return { title: `${name} — IncentIQ`, description: content.lead as string };
 }
 
 export default function Page({ params }: { params: { slug: string } }) {

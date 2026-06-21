@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import { Logo } from "@/components/ui/Logo";
+import { ServiceNowLogo, withLogo } from "@/components/ui/ServiceNowLogo";
 
 const columns = [
   {
@@ -55,7 +56,7 @@ export function Footer() {
             </Link>
 
             <p className="mt-3 text-[13px] leading-relaxed text-slate">
-              AI-first ICM built natively on ServiceNow — transparent, intelligent, and automated at enterprise scale.
+              AI-first ICM built natively on <ServiceNowLogo size="sm" /> — transparent, intelligent, and automated at enterprise scale.
             </p>
 
             <div className="mt-4 flex items-center gap-2">
@@ -96,7 +97,7 @@ export function Footer() {
                         href={l.href}
                         className="text-[13px] leading-snug text-slate transition-colors hover:text-green"
                       >
-                        {l.label}
+                        {withLogo(l.label, "sm")}
                       </Link>
                     </li>
                   ))}

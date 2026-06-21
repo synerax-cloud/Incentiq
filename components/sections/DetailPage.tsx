@@ -7,6 +7,7 @@ import { Reveal, RevealGroup, RevealItem } from "../ui/Reveal";
 import { SectionHeading } from "../ui/Primitives";
 import { IconArrow } from "../ui/icons";
 import type { DetailContent } from "@/content/detail";
+import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
 /* ── Screenshot placeholder ──────────────────────────────────────────── */
 
@@ -17,7 +18,7 @@ function MockPlaceholder({ label }: { label: string }) {
         <span className="h-2.5 w-2.5 rounded-full bg-slate/20" />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "#FFB703", opacity: 0.7 }} />
         <span className="h-2.5 w-2.5 rounded-full bg-green/70" />
-        <span className="ml-3 text-[11px] font-medium text-slate/60">{label}</span>
+        <span className="ml-3 text-[11px] font-medium text-slate/60">{withLogo(label, "sm")}</span>
       </div>
       <div className="p-5">
         <div className="mb-3 flex items-center justify-between">
@@ -79,7 +80,7 @@ export function DetailPage({ content }: { content: DetailContent }) {
               <SectionHeading
                 eyebrow="HIGHLIGHTS"
                 title={highlightsTitle}
-                description="The essentials, built into one governed platform on ServiceNow."
+                description={<>The essentials, built into one governed platform on <ServiceNowLogo size="md" />.</>}
               />
             </Reveal>
 

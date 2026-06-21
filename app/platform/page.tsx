@@ -8,6 +8,7 @@ import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/Primitives";
 import { IconArrow } from "@/components/ui/icons";
 import { detailByGroup } from "@/content/detail";
+import { ServiceNowLogo, withLogo } from "@/components/ui/ServiceNowLogo";
 
 export const metadata: Metadata = {
   title: "Platform — IncentIQ",
@@ -24,7 +25,7 @@ function PlatformMock({ label }: { label: string }) {
         <span className="h-2.5 w-2.5 rounded-full bg-slate/20" />
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "#FFB703", opacity: 0.7 }} />
         <span className="h-2.5 w-2.5 rounded-full bg-green/70" />
-        <span className="ml-3 text-[11px] font-medium text-slate/60">{label}</span>
+        <span className="ml-3 text-[11px] font-medium text-slate/60">{withLogo(label, "sm")}</span>
       </div>
       <div className="p-5">
         <div className="mb-3 flex items-center justify-between">
@@ -109,7 +110,7 @@ export default function PlatformPage() {
         <PageHero
           eyebrow="PLATFORM"
           title={<>The foundation for <span className="text-gradient">Incentive Intelligence.</span></>}
-          description="IncentIQ combines a unified data model, AI-powered intelligence, enterprise governance, and the power of ServiceNow to transform incentive compensation into a connected business capability."
+          description={<>IncentIQ combines a unified data model, AI-powered intelligence, enterprise governance, and the power of <ServiceNowLogo size="md" /> to transform incentive compensation into a connected business capability.</>}
           primary={{ label: "Book a demo", href: "/book-demo" }}
           secondary={{ label: "See capabilities", href: "/capabilities" }}
         />
@@ -119,16 +120,16 @@ export default function PlatformPage() {
           <div className="shell">
             <RevealGroup className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {pillars.map((pillar) => (
-                <RevealItem key={pillar.name}>
+                <RevealItem key={pillar.href}>
                   <Link
                     href={pillar.href}
                     className="card group flex h-full flex-col p-6 transition-all duration-200 hover:border-green hover:shadow-float"
                   >
                     <h3 className="font-display text-[15px] font-semibold text-dark-green group-hover:text-green transition-colors duration-200">
-                      {pillar.name}
+                      {withLogo(pillar.name, "lg")}
                     </h3>
                     <p className="mt-2 flex-1 text-[13px] leading-relaxed text-slate">
-                      {pillar.desc}
+                      {withLogo(pillar.desc, "sm")}
                     </p>
                     <span className="mt-4 inline-flex items-center gap-1 text-[12.5px] font-semibold text-green">
                       Learn more
@@ -182,7 +183,7 @@ export default function PlatformPage() {
                       href={`/platform/${cap.slug}`}
                       className="group/cta mt-7 inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-green transition-colors hover:text-dark-green"
                     >
-                      Explore {displayName}
+                      Explore {withLogo(displayName, "sm")}
                       <IconArrow className="h-3.5 w-3.5 transition-transform duration-200 group-hover/cta:translate-x-0.5" />
                     </Link>
                   </Reveal>
@@ -223,13 +224,13 @@ export default function PlatformPage() {
                 {/* Table rows */}
                 {tableRows.map((row, i) => (
                   <div
-                    key={row.pillar}
+                    key={row.outcome}
                     className={`grid grid-cols-2 px-6 py-4 ${
                       i < tableRows.length - 1 ? "border-b border-light-gray" : ""
                     }`}
                   >
                     <span className="text-[14px] font-semibold text-dark-green">
-                      {row.pillar}
+                      {withLogo(row.pillar, "sm")}
                     </span>
                     <span className="text-[14px] font-medium text-slate">
                       {row.outcome}

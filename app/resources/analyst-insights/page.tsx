@@ -6,6 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { IconArrow } from "@/components/ui/icons";
+import { withLogo } from "@/components/ui/ServiceNowLogo";
 import { analystInsights } from "@/content/resources";
 
 const firmDotColor: Record<string, string> = {
@@ -70,7 +71,7 @@ export default function AnalystInsightsPage() {
                       </div>
 
                       <h3 className="mt-4 text-[15px] font-bold leading-snug text-[#0B1D2D] text-balance">
-                        {insight.headline}
+                        {withLogo(insight.headline, "lg")}
                       </h3>
                       <p className="mt-2 flex-1 text-[13.5px] leading-[1.6] text-[#475569]">
                         {insight.summary}

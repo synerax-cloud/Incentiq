@@ -11,6 +11,7 @@ import {
   IconVisibility, IconGovernance, IconArrow, IconOrg,
   type IconProps,
 } from "../ui/icons";
+import { withLogo } from "../ui/ServiceNowLogo";
 
 type MenuItem = {
   label: string;
@@ -275,7 +276,7 @@ export function Navbar() {
                               onClick={() => setOpen(false)}
                               className="rounded-lg px-3 py-2 text-[13px] font-medium text-navy hover:bg-white/70 hover:text-green"
                             >
-                              {sub.label}
+                              {withLogo(sub.label, "sm")}
                             </Link>
                           ))}
                         </div>
@@ -365,7 +366,7 @@ function MegaMenu({ item }: { item: NavItem }) {
                   : "text-[#0B1D2D] group-hover/item:text-[#00A651]",
               ].join(" ")}
             >
-              {sub.label}
+              {withLogo(sub.label, "sm")}
             </span>
             <span className="mt-px block text-[11px] leading-snug text-[#475569]">
               {sub.desc}
