@@ -78,6 +78,7 @@ const platform: DetailContent[] = [
     [],
     undefined,
     ["Unified Data Model"],
+    [{ file: "06_import-data-create-data-model.png", caption: "Create a data model that defines the structure of your incentive data." }],
   ),
   make(
     "platform",
@@ -93,6 +94,7 @@ const platform: DetailContent[] = [
     [],
     undefined,
     ["AI Intelligence"],
+    [{ file: "33_ai-assistant.png", caption: "Ask questions about quotas, earnings, and performance in natural language." }],
   ),
   make(
     "platform",
@@ -108,6 +110,7 @@ const platform: DetailContent[] = [
     [],
     undefined,
     ["Built on ServiceNow"],
+    [{ file: "01_admin.png", caption: "Start in the Admin workspace where you configure and manage your IncentIQ environment." }],
   ),
   make(
     "platform",
@@ -123,6 +126,7 @@ const platform: DetailContent[] = [
     [],
     undefined,
     ["Enterprise Governance"],
+    [{ file: "25_incentive-plans-plan-approval.png", caption: "Route incentive plans through governed approval workflows." }],
   ),
 ];
 

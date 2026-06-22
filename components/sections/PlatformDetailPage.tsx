@@ -8,7 +8,7 @@ import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
 /* ── Screenshot placeholder ──────────────────────────────────────────── */
 
-function MockPlaceholder({ label }: { label: string }) {
+function MockPlaceholder({ label, src }: { label: string; src?: string }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-light-gray bg-white shadow-float">
       <div className="flex items-center gap-1.5 border-b border-light-gray px-4 py-3">
@@ -17,36 +17,41 @@ function MockPlaceholder({ label }: { label: string }) {
         <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: "#00A651", opacity: 0.65 }} />
         <span className="ml-3 text-[11px] font-medium text-slate/60">{withLogo(label, "sm")}</span>
       </div>
-      <div className="p-5">
-        <div className="mb-3 flex items-center justify-between">
-          <div className="h-3 w-28 rounded bg-light-green" />
-          <div className="h-3 w-12 rounded bg-green/20" />
+      {src ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={src} alt={label} width={1920} height={1080} style={{ width: "100%", height: "auto", display: "block" }} />
+      ) : (
+        <div className="p-5">
+          <div className="mb-3 flex items-center justify-between">
+            <div className="h-3 w-28 rounded bg-light-green" />
+            <div className="h-3 w-12 rounded bg-green/20" />
+          </div>
+          <div className="mb-4 grid grid-cols-3 gap-2">
+            {[85, 62, 91].map((v, i) => (
+              <div key={i} className="rounded-xl bg-light-green/60 p-3 text-center">
+                <div className="text-[17px] font-bold text-dark-green">{v}%</div>
+                <div className="mx-auto mt-0.5 h-2 w-10 rounded bg-light-green" />
+              </div>
+            ))}
+          </div>
+          <div className="space-y-2">
+            {[72, 84, 60].map((w, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="h-2 w-full rounded bg-light-green/80" style={{ maxWidth: `${w}%` }} />
+                <div className="h-2 w-10 shrink-0 rounded bg-green/30" />
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 space-y-2">
+            {[90, 55, 75].map((w, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className="h-2 w-full rounded bg-light-green/50" style={{ maxWidth: `${w}%` }} />
+                <div className="h-2 w-8 shrink-0 rounded bg-green/20" />
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="mb-4 grid grid-cols-3 gap-2">
-          {[85, 62, 91].map((v, i) => (
-            <div key={i} className="rounded-xl bg-light-green/60 p-3 text-center">
-              <div className="text-[17px] font-bold text-dark-green">{v}%</div>
-              <div className="mx-auto mt-0.5 h-2 w-10 rounded bg-light-green" />
-            </div>
-          ))}
-        </div>
-        <div className="space-y-2">
-          {[72, 84, 60].map((w, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div className="h-2 w-full rounded bg-light-green/80" style={{ maxWidth: `${w}%` }} />
-              <div className="h-2 w-10 shrink-0 rounded bg-green/30" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 space-y-2">
-          {[90, 55, 75].map((w, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <div className="h-2 w-full rounded bg-light-green/50" style={{ maxWidth: `${w}%` }} />
-              <div className="h-2 w-8 shrink-0 rounded bg-green/20" />
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
@@ -56,6 +61,7 @@ function MockPlaceholder({ label }: { label: string }) {
 export function PlatformDetailPage({ content }: { content: DetailContent }) {
   const highlightsTitle = content.highlightsTitle ?? "What you get";
   const imgLabel = content.images?.[0] ?? "Screenshot";
+  const screenshotSrc = content.slides?.[0] ? `/product-tour/${content.slides[0].file}` : undefined;
 
   return (
     <>
@@ -87,7 +93,7 @@ export function PlatformDetailPage({ content }: { content: DetailContent }) {
 
               {/* Right: image/screenshot placeholder */}
               <Reveal delay={0.1} className="hidden sm:block">
-                <MockPlaceholder label={imgLabel} />
+                <MockPlaceholder label={imgLabel} src={screenshotSrc} />
               </Reveal>
             </div>
           </div>
