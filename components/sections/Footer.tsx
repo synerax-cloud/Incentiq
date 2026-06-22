@@ -127,12 +127,6 @@ export function Footer() {
               <Link href="/terms" className="text-[11.5px] text-slate hover:text-dark-green">Terms</Link>
               <Link href="/security" className="text-[11.5px] text-slate hover:text-dark-green">Security</Link>
             </div>
-            <p className="text-[10px] text-slate/50">
-              Website developed by{" "}
-              <a href="https://www.synerax.in/" target="_blank" rel="noopener noreferrer" className="hover:text-dark-green transition-colors">
-                Synerax Cloud Technologies
-              </a>
-            </p>
           </div>
         </div>
 
