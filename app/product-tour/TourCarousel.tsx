@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, memo } from "react";
 import {
   IconData, IconWorkflow, IconScale, IconGovernance, IconPlan, IconOrg,
   IconBusinessUnit, IconVisibility, IconQuota, IconStatement, IconDispute,
@@ -177,7 +177,7 @@ const TABS: TabData[] = [
 
 /* ── Feature highlight cards ─────────────────────────────────────────── */
 
-function FeatureCards({ features }: { features: Feature[] }) {
+const FeatureCards = memo(function FeatureCards({ features }: { features: Feature[] }) {
   return (
     <div className="mt-6 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-3">
       {features.map((f) => {
@@ -201,7 +201,7 @@ function FeatureCards({ features }: { features: Feature[] }) {
       })}
     </div>
   );
-}
+});
 
 /* ── Main tour carousel ──────────────────────────────────────────────── */
 
@@ -215,88 +215,94 @@ export function TourCarousel() {
 
   /* ── Render ── */
   return (
-    <section className="pt-8 pb-10 sm:pb-14">
-      <div className="shell">
+    <>
+      {/* Tour section */}
+      <section id="tour-section" className="scroll-mt-[80px] py-8">
+        <div className="shell">
 
-        {/* ── 1. Tab pills ── */}
-        <div
-          id="tour-tabs"
-          className="flex justify-center overflow-x-auto"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
-        >
+          {/* ── 1. Tab pills ── */}
           <div
-            role="tablist"
-            aria-label="Product tour sections"
-            className="inline-flex gap-1 rounded-2xl"
-            style={{
-              background: "#ffffff",
-              border: "1px solid rgba(0,166,81,0.10)",
-              boxShadow: "0 4px 16px rgba(15,45,36,0.08)",
-              padding: "6px",
-            }}
+            className="flex justify-center overflow-x-auto"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" } as React.CSSProperties}
           >
-            {TABS.map((t, i) => {
-              const isActive = i === tabIdx;
-              return (
-                <button
-                  key={t.id}
-                  role="tab"
-                  id={`tab-${t.id}`}
-                  aria-selected={isActive}
-                  aria-controls={`panel-${t.id}`}
-                  onClick={() => switchTab(i)}
-                  className={[
-                    "relative flex flex-col items-center whitespace-nowrap rounded-xl transition-all duration-200",
-                    isActive
-                      ? "bg-[#00A651] text-white font-semibold"
-                      : "bg-transparent text-[#475569] font-medium hover:bg-[#E8F5E9] hover:text-[#00A651]",
-                  ].join(" ")}
-                  style={{
-                    padding: "6px 14px",
-                    fontSize: "12.5px",
-                    boxShadow: isActive ? "0 2px 8px rgba(0,166,81,0.25)" : "none",
-                  }}
-                >
-                  <span
-                    aria-hidden
+            <div
+              role="tablist"
+              aria-label="Product tour sections"
+              className="inline-flex gap-1 rounded-2xl"
+              style={{
+                background: "#ffffff",
+                border: "1px solid rgba(0,166,81,0.10)",
+                boxShadow: "0 4px 16px rgba(15,45,36,0.08)",
+                padding: "6px",
+              }}
+            >
+              {TABS.map((t, i) => {
+                const isActive = i === tabIdx;
+                return (
+                  <button
+                    key={t.id}
+                    role="tab"
+                    id={`tab-${t.id}`}
+                    aria-selected={isActive}
+                    aria-controls={`panel-${t.id}`}
+                    onClick={() => switchTab(i)}
+                    className={[
+                      "relative flex flex-col items-center whitespace-nowrap rounded-xl transition-all duration-200",
+                      isActive
+                        ? "bg-[#00A651] text-white font-semibold"
+                        : "bg-transparent text-[#475569] font-medium hover:bg-[#E8F5E9] hover:text-[#00A651]",
+                    ].join(" ")}
                     style={{
-                      display: "block",
-                      width: "4px",
-                      height: "4px",
-                      borderRadius: "50%",
-                      marginBottom: "3px",
-                      background: isActive ? "rgba(255,255,255,0.8)" : "transparent",
-                      transition: "background 200ms ease",
-                      flexShrink: 0,
+                      padding: "6px 14px",
+                      fontSize: "12.5px",
+                      boxShadow: isActive ? "0 2px 8px rgba(0,166,81,0.25)" : "none",
                     }}
-                  />
-                  {t.label}
-                </button>
-              );
-            })}
+                  >
+                    <span
+                      aria-hidden
+                      style={{
+                        display: "block",
+                        width: "4px",
+                        height: "4px",
+                        borderRadius: "50%",
+                        marginBottom: "3px",
+                        background: isActive ? "rgba(255,255,255,0.8)" : "transparent",
+                        transition: "background 200ms ease",
+                        flexShrink: 0,
+                      }}
+                    />
+                    {t.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ── Tab panel ── */}
+          <div id={`panel-${tab.id}`} role="tabpanel" aria-labelledby={`tab-${tab.id}`}>
+
+            {/* ── 2. Stage banner ── */}
+            <div className="mt-4 flex items-center gap-3.5 rounded-xl border border-green/15 bg-light-green px-5 py-3.5">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-green" aria-hidden />
+              <span className="eyebrow mr-3">Stage {tabIdx + 1} of {TABS.length}</span>
+              <p className="text-[14.5px] font-semibold leading-snug text-dark-green">{tab.banner}</p>
+            </div>
+
+            {/* ── 3. Screenshot carousel ── */}
+            <div className="mt-4">
+              <SlideCarousel key={tabIdx} slides={tab.slides} slug={tab.id} />
+            </div>
+
           </div>
         </div>
+      </section>
 
-        {/* ── Tab panel ── */}
-        <div id={`panel-${tab.id}`} role="tabpanel" aria-labelledby={`tab-${tab.id}`}>
-
-          {/* ── 2. Stage banner ── */}
-          <div className="mt-5 flex items-center gap-3.5 rounded-xl border border-green/15 bg-light-green px-5 py-3.5">
-            <span className="h-2 w-2 shrink-0 rounded-full bg-green" aria-hidden />
-            <span className="eyebrow mr-3">Stage {tabIdx + 1} of {TABS.length}</span>
-            <p className="text-[14.5px] font-semibold leading-snug text-dark-green">{tab.banner}</p>
-          </div>
-
-          {/* ── 3. Screenshot carousel ── */}
-          <div className="mt-5">
-            <SlideCarousel key={tabIdx} slides={tab.slides} slug={tab.id} />
-          </div>
-
-          {/* ── 4. Feature highlight cards ── */}
+      {/* Feature highlight cards — below the fold, scroll to see */}
+      <section key={`features-${tab.id}`} className="py-8" style={{ transformStyle: "flat" }}>
+        <div className="shell">
           <FeatureCards features={tab.features} />
-
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

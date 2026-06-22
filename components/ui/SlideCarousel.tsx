@@ -1,13 +1,12 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 
 /* ── Types ───────────────────────────────────────────────────────────── */
 
 export type CarouselSlide = { file: string; caption: string };
 
-/* ── Slide image with graceful placeholder ───────────────────────────── */
+/* ── Slide image ─────────────────────────────────────────────────────── */
 
 function SlideImage({ file, caption }: { file: string; caption: string }) {
   const [failed, setFailed] = useState(false);
@@ -15,7 +14,7 @@ function SlideImage({ file, caption }: { file: string; caption: string }) {
 
   if (failed) {
     return (
-      <div className="absolute inset-0 flex items-center justify-center p-8">
+      <div className="flex w-full items-center justify-center p-8" style={{ minHeight: "300px" }}>
         <div className="flex flex-col items-center gap-3 text-center">
           <div className="grid h-16 w-16 place-items-center rounded-2xl bg-light-green">
             <svg className="h-7 w-7 text-green/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden>
@@ -35,13 +34,19 @@ function SlideImage({ file, caption }: { file: string; caption: string }) {
   }
 
   return (
-    <Image
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       src={`/product-tour/${file}`}
       alt={caption}
-      fill
-      className="object-contain"
+      style={{
+        width: "100%",
+        height: "auto",
+        maxHeight: "52vh",
+        objectFit: "contain",
+        display: "block",
+        margin: "0 auto",
+      }}
       onError={() => setFailed(true)}
-      unoptimized
     />
   );
 }
@@ -99,10 +104,11 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
   const totalSlides = slides.length;
   const displayed   = slides[displayedIdx];
 
-  /* Card flip CSS */
   const flipStyle: React.CSSProperties = {
-    position: "absolute",
-    inset: 0,
+    display: "block",
+    width: "100%",
+    isolation: "isolate",
+    transformStyle: "flat",
     backfaceVisibility: "hidden",
     transform:
       flipPhase === "out"
@@ -114,10 +120,9 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
       flipPhase === "out" ? "transform 150ms ease-in"
       : flipPhase === "in" ? "transform 150ms ease-out"
       : "none",
-    willChange: "transform",
+    willChange: flipPhase === "idle" ? "auto" : "transform",
   };
 
-  /* Navigate with card flip */
   const navigateSlide = useCallback((next: number, dir: 1 | -1) => {
     if (next === slideIdx || flipPhase !== "idle") return;
     if (flipRef.current) clearTimeout(flipRef.current);
@@ -150,7 +155,6 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
     if (slideIdx < totalSlides - 1) navigateSlide(slideIdx + 1, 1);
   }, [slideIdx, totalSlides, navigateSlide]);
 
-  /* Keyboard left / right arrows */
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement).closest("input, textarea, [contenteditable]")) return;
@@ -161,48 +165,52 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
     return () => window.removeEventListener("keydown", onKey);
   }, [prev, next]);
 
-  /* Caption fade on slide change */
   useEffect(() => {
     setCaptionVisible(false);
     const t = setTimeout(() => setCaptionVisible(true), 80);
     return () => clearTimeout(t);
   }, [displayedIdx]);
 
-  /* Cleanup on unmount */
   useEffect(() => () => { if (flipRef.current) clearTimeout(flipRef.current); }, []);
 
   /* ── Render ── */
   return (
-    <div>
+    <div style={{ isolation: "isolate", contain: "layout style paint" }}>
       {/* Browser chrome frame */}
-      <div className="overflow-hidden rounded-2xl border border-light-gray bg-white shadow-[0_8px_32px_rgba(15,45,36,0.12),0_2px_8px_rgba(15,45,36,0.06)]">
+      <div
+        className="mx-auto rounded-2xl border border-light-gray bg-white shadow-[0_8px_32px_rgba(15,45,36,0.12),0_2px_8px_rgba(15,45,36,0.06)]"
+        style={{ maxWidth: "900px" }}
+      >
         {/* Chrome bar */}
-        <div className="flex items-center gap-1.5 border-b border-light-gray bg-[#F8FAFC] px-4 py-2.5">
-          <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FF5F57" }} aria-hidden />
-          <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FFBD2E" }} aria-hidden />
-          <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#28C840" }} aria-hidden />
-          <div className="ml-3 flex min-w-0 flex-1 items-center gap-2 rounded-full border border-light-gray bg-white px-3 py-1 max-w-xs">
-            <svg className="h-2.5 w-2.5 shrink-0 text-slate/35" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-              <circle cx="11" cy="11" r="8" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-            <span className="truncate text-[11px] text-slate/45">
-              app.incentiq.io{slug ? ` / ${slug}` : ""}
-            </span>
+        <div className="shrink-0 overflow-hidden rounded-t-2xl">
+          <div className="flex items-center gap-1.5 border-b border-light-gray bg-[#F8FAFC] px-4 py-2.5">
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FF5F57" }} aria-hidden />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FFBD2E" }} aria-hidden />
+            <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#28C840" }} aria-hidden />
+            <div className="ml-3 flex min-w-0 flex-1 items-center gap-2 rounded-full border border-light-gray bg-white px-3 py-1 max-w-xs">
+              <svg className="h-2.5 w-2.5 shrink-0 text-slate/35" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+              </svg>
+              <span className="truncate text-[11px] text-slate/45">
+                app.incentiq.io{slug ? ` / ${slug}` : ""}
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Screenshot area — perspective enables 3D card flip */}
+        {/* Screenshot area — fully contained 3D context */}
         <div
-          className="relative aspect-[16/9] overflow-hidden bg-light-green/20"
-          style={{ perspective: "1200px" }}
+          className="relative rounded-b-2xl"
+          style={{
+            perspective: "1200px",
+            transformStyle: "preserve-3d",
+            contain: "layout paint",
+            isolation: "isolate",
+          }}
         >
           <div style={flipStyle}>
-            <SlideImage
-              key={displayedIdx}
-              file={displayed.file}
-              caption={displayed.caption}
-            />
+            <SlideImage key={displayedIdx} file={displayed.file} caption={displayed.caption} />
           </div>
 
           <ArrowBtn
@@ -221,7 +229,7 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
       </div>
 
       {/* Step counter + dot indicators + caption */}
-      <div className="mt-4 flex flex-col items-center gap-2.5">
+      <div className="mt-3 flex flex-col items-center gap-2">
         <p className="text-[11.5px] font-bold uppercase tracking-[0.1em] text-slate">
           Step {displayedIdx + 1} of {totalSlides}
         </p>

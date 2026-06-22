@@ -27,7 +27,7 @@ export function DetailPage({ content }: { content: DetailContent }) {
           secondary={{ label: content.overviewLabel, href: content.overviewHref }}
         />
 
-        <section className="py-14 sm:py-16">
+        <section className="py-8">
           <div className="shell">
             {/* Screenshot carousel */}
             {content.slides && content.slides.length > 0 ? (
