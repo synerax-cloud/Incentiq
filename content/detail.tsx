@@ -212,9 +212,8 @@ const capabilities: DetailContent[] = [
     undefined,
     ["Calculation Run", "Trace View", "Processing Summary"],
     [
-      { file: "06_import-data-create-data-model.png", caption: "Create a data model that defines the structure of your data." },
-      { file: "07_import-data-upload-csv.png",        caption: "Upload source data and begin the calculation process." },
-      { file: "08_import-data-preview-records.png",   caption: "Preview and validate records before processing." },
+      { file: "36_calculations.png",        caption: "Run incentive calculations across your organization with full audit trail and error detection." },
+      { file: "37_calculations-detail.png", caption: "Drill into calculation details to verify accuracy and trace every commission result." },
     ],
   ),
   make(

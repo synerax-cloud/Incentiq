@@ -16,7 +16,7 @@ export function ServiceNowLogo({ size: _size }: { size?: string }) {
           "'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif",
       }}
     >
-      <span style={{ display: "inline" }}>servicen</span>
+      <span style={{ display: "inline" }}>ServiceN</span>
 
       <span style={{ color: "#62BB46" }}>o</span>
 

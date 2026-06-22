@@ -27,7 +27,7 @@ export function HeroComposition() {
 
       {/* floating glass card — top left */}
       <FloatCard
-        className="absolute -left-4 top-16 hidden w-[236px] sm:block lg:-left-28"
+        className="absolute -left-6 top-32 hidden w-[236px] sm:block lg:-left-48"
         delay={0.55}
         icon={<IconCheck className="h-4 w-4" />}
         title="Commission run complete"
@@ -40,8 +40,8 @@ export function HeroComposition() {
         className="absolute -right-4 bottom-20 hidden w-[224px] sm:block lg:-right-28"
         delay={0.75}
         icon={<IconResolve className="h-4 w-4" />}
-        title="Dispute auto-resolved"
-        sub="Matched to plan rule"
+        title="AI Assistant"
+        sub="Resolve queries"
         accent="#0F2E24"
       />
 
@@ -56,8 +56,8 @@ export function HeroComposition() {
           <IconForecast className="h-4 w-4" />
         </span>
         <div className="pr-1">
-          <p className="text-[11px] font-medium text-slate">Forecast attainment</p>
-          <p className="font-display text-sm font-bold text-dark-green">118% · Q4</p>
+          <p className="text-[11px] font-medium text-slate">Quota attainment</p>
+          <p className="font-display text-sm font-bold text-dark-green">154.7% · FY2026</p>
         </div>
       </motion.div>
     </div>

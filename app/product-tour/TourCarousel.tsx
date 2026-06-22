@@ -29,7 +29,6 @@ const TABS: TabData[] = [
     ],
     slides: [
       { file: "01_admin.png",                         caption: "Start in the Admin workspace where you configure and manage your IncentIQ environment." },
-      { file: "05_look-up-tables.png",                caption: "Set up look-up tables that standardize and map your incoming data values." },
       { file: "06_import-data-create-data-model.png", caption: "Create a data model that defines the structure of the data you're importing." },
       { file: "07_import-data-upload-csv.png",        caption: "Upload your source data via CSV from your CRM or existing systems." },
       { file: "08_import-data-preview-records.png",   caption: "Preview imported records to verify the data before committing." },
@@ -102,6 +101,20 @@ const TABS: TabData[] = [
       { file: "24_incentive-plans-create-plan.png",     caption: "Configure commission rules and calculation logic." },
       { file: "25_incentive-plans-plan-approval.png",   caption: "Send the plan through its approval workflow." },
       { file: "26_incentive-plans-plan-assignment.png", caption: "Assign the approved plan to the relevant participants." },
+    ],
+  },
+  {
+    id: "calculations",
+    label: "Calculations",
+    banner: "Run accurate incentive calculations across your organization.",
+    features: [
+      { icon: IconWorkflow,   title: "Automated Calculations", body: "Run commission and incentive calculations automatically across all participants and plans." },
+      { icon: IconScale,      title: "Audit Trail",            body: "Every calculation is logged and traceable — full transparency for Finance and RevOps." },
+      { icon: IconGovernance, title: "Error Detection",        body: "Catch anomalies and errors before payouts are processed with built-in validation rules." },
+    ],
+    slides: [
+      { file: "36_calculations.png",        caption: "Run incentive calculations across your organization with full audit trail and error detection." },
+      { file: "37_calculations-detail.png", caption: "Drill into calculation details to verify accuracy and trace every commission result." },
     ],
   },
   {

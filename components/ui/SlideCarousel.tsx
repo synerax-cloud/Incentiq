@@ -104,6 +104,14 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
   const totalSlides = slides.length;
   const displayed   = slides[displayedIdx];
 
+  /* Preload all slide images so navigation is instant */
+  useEffect(() => {
+    slides.forEach((s) => {
+      const img = new Image();
+      img.src = `/product-tour/${s.file}`;
+    });
+  }, [slides]);
+
   const flipStyle: React.CSSProperties = {
     display: "block",
     width: "100%",
@@ -178,8 +186,7 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
     <div style={{ isolation: "isolate", contain: "layout style paint" }}>
       {/* Browser chrome frame */}
       <div
-        className="mx-auto rounded-2xl border border-light-gray bg-white shadow-[0_8px_32px_rgba(15,45,36,0.12),0_2px_8px_rgba(15,45,36,0.06)]"
-        style={{ maxWidth: "900px" }}
+        className="w-full rounded-2xl border border-light-gray bg-white shadow-[0_8px_32px_rgba(15,45,36,0.12),0_2px_8px_rgba(15,45,36,0.06)]"
       >
         {/* Chrome bar */}
         <div className="shrink-0 overflow-hidden rounded-t-2xl">
@@ -205,12 +212,12 @@ export function SlideCarousel({ slides, slug }: { slides: CarouselSlide[]; slug?
           style={{
             perspective: "1200px",
             transformStyle: "preserve-3d",
-            contain: "layout paint",
+            contain: "layout paint style",
             isolation: "isolate",
           }}
         >
           <div style={flipStyle}>
-            <SlideImage key={displayedIdx} file={displayed.file} caption={displayed.caption} />
+            <SlideImage file={displayed.file} caption={displayed.caption} />
           </div>
 
           <ArrowBtn

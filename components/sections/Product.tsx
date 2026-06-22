@@ -1,6 +1,6 @@
-﻿import { Reveal } from "../ui/Reveal";
+﻿import Image from "next/image";
+import { Reveal } from "../ui/Reveal";
 import { SectionHeading } from "../ui/Primitives";
-import { DashboardMockup } from "../visuals/DashboardMockup";
 import { IconVisibility, IconScale, IconWorkflow, IconSpark } from "../ui/icons";
 import { ServiceNowLogo, withLogo } from "../ui/ServiceNowLogo";
 
@@ -49,7 +49,29 @@ export function Product() {
           <Reveal delay={0.12} y={30}>
             <div className="relative">
               <div aria-hidden className="absolute -inset-8 -z-10 rounded-[3rem] bg-gradient-to-br from-teal/50 via-light-green/30 to-light-gray/30 blur-3xl" />
-              <DashboardMockup />
+              <div className="w-full overflow-hidden rounded-xl3 border border-light-gray bg-white shadow-float">
+                {/* Browser chrome */}
+                <div className="flex items-center gap-1.5 border-b border-light-gray bg-[#F8FAFC] px-4 py-2.5">
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FF5F57" }} aria-hidden />
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#FFBD2E" }} aria-hidden />
+                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: "#28C840" }} aria-hidden />
+                  <div className="ml-3 flex min-w-0 flex-1 items-center gap-2 rounded-full border border-light-gray bg-white px-3 py-1 max-w-xs">
+                    <svg className="h-2.5 w-2.5 shrink-0 text-slate/35" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
+                      <circle cx="11" cy="11" r="8" />
+                      <path d="M21 21l-4.35-4.35" />
+                    </svg>
+                    <span className="truncate text-[11px] text-slate/45">app.incentiq.io / dashboard</span>
+                  </div>
+                </div>
+                <Image
+                  src="/product-tour/30_performance-tracking-more-graphs.png"
+                  alt="IncentIQ performance monitoring"
+                  width={1920}
+                  height={1080}
+                  className="block w-full h-auto"
+                  unoptimized
+                />
+              </div>
             </div>
           </Reveal>
         </div>
